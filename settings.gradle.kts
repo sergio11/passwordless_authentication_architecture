@@ -1,1 +1,1 @@
-rootProject.name = "com.example.mfa_test"
+rootProject.name = "com.dreamsoftware.mfa_test"

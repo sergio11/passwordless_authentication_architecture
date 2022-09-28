@@ -1,0 +1,52 @@
+version: '3.6'
+
+# Networks
+networks:
+  tcs_network:
+    name: mfa_network
+
+# Platform Services
+services:
+  nginx:
+    container_name: nginx_lb
+    restart: always
+    build:
+      context: ./nginx
+      dockerfile: Dockerfile
+    ports:
+      - "9090:9090"
+    depends_on:
+      - mfa_service_1
+      - mfa_service_2
+    networks:
+      - mfa_network
+
+  # MFA Service
+  mfa_service_1:
+    container_name: mfa_service_1
+    restart: always
+    build:
+      context: ./hotspot
+      dockerfile: hotspot/Dockerfile_hotspot
+    networks:
+      - mfa_network
+
+  # MFA Service
+  mfa_service_2:
+    container_name: mfa_service_2
+    restart: always
+    build:
+      context: .
+      dockerfile: Dockerfile_hotspot
+    networks:
+      - mfa_network
+
+  # MFA Service
+  mfa_service_3:
+    container_name: mfa_service_3
+    restart: always
+    build:
+      context: .
+      dockerfile: Dockerfile_hotspot
+    networks:
+      - mfa_network
