@@ -1,7 +1,10 @@
 package com.dreamsoftware.repository.impl
 
 import com.dreamsoftware.repository.OTPRepository
+import redis.clients.jedis.JedisCluster
 
-class OTPRepositoryImpl: OTPRepository {
+class OTPRepositoryImpl(
+    private val jedisCluster: JedisCluster
+): OTPRepository {
 
 }

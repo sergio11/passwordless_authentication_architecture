@@ -21,7 +21,7 @@ fun Application.configureRouting() {
     routing {
         trace { application.log.trace(it.buildText()) }
         get("/") {
-            call.respondText("Hello World!")
+            call.respond("Hello World!")
         }
         configureOtpRoutes()
     }
