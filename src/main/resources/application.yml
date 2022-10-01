@@ -2,9 +2,9 @@
 mfa:
   senders:
     - {
-      id: "smsOTPSender",
+      type: "SMS",
       name: "SMS OTP Sender",
-      messageTitle: "Acme LLC",
+      messageTitle: "Test",
       messageTemplate: "Confirmation code: ${otp}",
       otpLength: 5,
       useLetters: false,

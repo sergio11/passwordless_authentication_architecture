@@ -1,11 +1,9 @@
 package com.dreamsoftware.service
 
 import com.dreamsoftware.model.OTPGenerated
-import com.dreamsoftware.model.exception.OTPSenderNotFoundException
-import kotlin.jvm.Throws
+import com.dreamsoftware.model.OtpSenderConfig
 
 interface OTPGenerator {
 
-    @Throws(OTPSenderNotFoundException::class)
-    fun generate(senderId: String, dest: String): OTPGenerated
+    fun generate(senderConfig: OtpSenderConfig, dest: String): OTPGenerated
 }

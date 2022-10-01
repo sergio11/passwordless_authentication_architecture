@@ -1,18 +1,26 @@
 package com.dreamsoftware.rest.routes
 
-import com.dreamsoftware.rest.dto.OTPGenerationRequestDTO
-import com.dreamsoftware.rest.dto.OTPVerifyRequestDTO
+import com.dreamsoftware.service.OTPService
 import io.ktor.server.application.*
+import io.ktor.server.request.*
 import io.ktor.server.response.*
 import io.ktor.server.routing.*
+import org.koin.ktor.ext.inject
 
 fun Route.configureOtpRoutes() {
+
+    val otpService by inject<OTPService>()
+
     route("/otp/v1") {
-        post<OTPGenerationRequestDTO>("/generate") {
-            call.respondText("OTPGenerationRequest CALLED!")
+        post("/generate") {
+            with(call) {
+                respond(otpService.generate(receive()))
+            }
         }
-        post<OTPVerifyRequestDTO>("/verify") {
-            call.respondText("OTPVerifyRequest CALLED!")
+        post("/verify") {
+            with(call) {
+                respond(otpService.verify(receive()))
+            }
         }
     }
 }

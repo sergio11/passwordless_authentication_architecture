@@ -66,6 +66,8 @@ dependencies {
     implementation("redis.clients:jedis:$jedis_client_version")
     // https://mvnrepository.com/artifact/org.apache.commons/commons-lang3
     implementation("org.apache.commons:commons-lang3:3.12.0")
+    // https://mvnrepository.com/artifact/org.apache.commons/commons-text
+    implementation("org.apache.commons:commons-text:1.10.0")
 
     testImplementation("io.ktor:ktor-server-tests-jvm:$ktor_version")
     testImplementation("org.jetbrains.kotlin:kotlin-test-junit:$kotlin_version")
