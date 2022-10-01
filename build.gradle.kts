@@ -64,7 +64,8 @@ dependencies {
     implementation("com.sksamuel.hoplite:hoplite-yaml:$hoplite_core_version")
     // Redis Java client designed for performance and ease of use.
     implementation("redis.clients:jedis:$jedis_client_version")
-
+    // https://mvnrepository.com/artifact/org.apache.commons/commons-lang3
+    implementation("org.apache.commons:commons-lang3:3.12.0")
 
     testImplementation("io.ktor:ktor-server-tests-jvm:$ktor_version")
     testImplementation("org.jetbrains.kotlin:kotlin-test-junit:$kotlin_version")

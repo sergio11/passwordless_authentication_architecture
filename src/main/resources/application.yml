@@ -1,3 +1,17 @@
+
+mfa:
+  senders:
+    - {
+      id: "smsOTPSender",
+      name: "SMS OTP Sender",
+      messageTitle: "Acme LLC",
+      messageTemplate: "Confirmation code: ${otp}",
+      otpLength: 5,
+      useLetters: false,
+      useDigits: true,
+      ttlMinutes: 3
+    }
+
 redis:
   nodes:
     - { host: 192.168.0.30, port: 6373 }

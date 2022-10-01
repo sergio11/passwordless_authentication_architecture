@@ -1,6 +1,7 @@
 package com.dreamsoftware.di
 
 import com.dreamsoftware.model.AppConfig
+import com.dreamsoftware.model.MfaConfig
 import com.sksamuel.hoplite.ConfigLoaderBuilder
 import com.sksamuel.hoplite.addResourceSource
 import org.koin.dsl.module
@@ -13,4 +14,6 @@ val configModule = module {
             .build()
             .loadConfigOrThrow()
     }
+    single { get<AppConfig>().mfa }
+    single { get<AppConfig>().redis }
 }
