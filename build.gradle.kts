@@ -1,6 +1,8 @@
 val ktor_version: String by project
 val kotlin_version: String by project
 val logback_version: String by project
+val twilio_sdk_version: String by project
+val koin_ktor: String by project
 
 plugins {
     application
@@ -41,6 +43,13 @@ dependencies {
     implementation("io.ktor:ktor-server-locations-jvm:$ktor_version")
     implementation("io.ktor:ktor-server-netty-jvm:$ktor_version")
     implementation("ch.qos.logback:logback-classic:$logback_version")
+    // Twilio Java Helper Library
+    implementation(group = "com.twilio.sdk", name = "twilio", version = twilio_sdk_version)
+    // Koin for Ktor
+    implementation("io.insert-koin:koin-ktor:$koin_ktor")
+    // SLF4J Logger
+    implementation("io.insert-koin:koin-logger-slf4j:$koin_ktor")
+
     testImplementation("io.ktor:ktor-server-tests-jvm:$ktor_version")
     testImplementation("org.jetbrains.kotlin:kotlin-test-junit:$kotlin_version")
 }
