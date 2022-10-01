@@ -9,6 +9,7 @@ fun main() {
         configureAdministration()
         configureSerialization()
         configureMonitoring()
+        configureKoin()
         configureRouting()
     }.start(wait = true)
 }
