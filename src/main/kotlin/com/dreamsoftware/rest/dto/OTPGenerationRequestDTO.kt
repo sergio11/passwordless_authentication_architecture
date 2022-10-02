@@ -7,8 +7,6 @@ import kotlinx.serialization.Serializable
 data class OTPGenerationRequestDTO(
     @SerialName("type")
     val type: OTPTypeEnum,
-    @SerialName("user_id")
-    val userId: String,
     @SerialName("destination")
     val destination: String,
     @SerialName("properties")

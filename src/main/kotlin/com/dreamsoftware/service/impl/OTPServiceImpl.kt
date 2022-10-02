@@ -22,11 +22,12 @@ class OTPServiceImpl(
 
     override fun generate(otpGenerationRequestDTO: OTPGenerationRequestDTO): OTPGenerationResultDTO = with(otpGenerationRequestDTO) {
         runCatching {
-            OTPGenerationResultDTO(operationId = otpRepository.findNotExpiredByUserId(userId).operationId.toString())
+            val otpGenerated = otpRepository.findByDestination(destination)
+            OTPGenerationResultDTO(operationId = otpGenerated.operationId)
         }.getOrElse {
             mfaConfig.senders.find { it.id == type.name }?.let { otpSenderConfig ->
                 otpGenerator.generate(otpSenderConfig, destination).also { otpGenerated ->
-                    otpRepository.save(userId, otpGenerated).also {
+                    otpRepository.save(otpGenerated).also {
                         get<OTPSender> { parametersOf(type) }.apply {
                             sendOTP(
                                 otpSenderConfig,
@@ -37,13 +38,13 @@ class OTPServiceImpl(
                         }
                     }
                 }.let {
-                    OTPGenerationResultDTO(operationId = it.operationId.toString())
+                    OTPGenerationResultDTO(operationId = it.operationId)
                 }
             } ?: throw OTPSenderNotFoundException()
         }
     }
 
-    override fun verify(otpVerifyRequestDTO: OTPVerifyRequestDTO): OTPVerifyResultDTO {
-        TODO("Not yet implemented")
+    override fun verify(otpVerifyRequestDTO: OTPVerifyRequestDTO): OTPVerifyResultDTO = with(otpVerifyRequestDTO) {
+        OTPVerifyResultDTO(operationId, otpRepository.existsByOperationIdAndOtp(operationId, otp))
     }
 }

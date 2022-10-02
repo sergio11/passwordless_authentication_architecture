@@ -2,15 +2,16 @@ package com.dreamsoftware.repository
 
 import com.dreamsoftware.model.OTPGenerated
 import com.dreamsoftware.model.exception.OTPNotFoundException
-import com.dreamsoftware.model.exception.SaveOTPDataException
-import kotlin.jvm.Throws
+import com.dreamsoftware.model.exception.OTPSaveDataException
 
 interface OTPRepository {
 
-    @Throws(SaveOTPDataException::class)
-    fun save(userId: String, otpGenerated: OTPGenerated)
+    @Throws(OTPSaveDataException::class)
+    fun save(otpGenerated: OTPGenerated)
 
     @Throws(OTPNotFoundException::class)
-    fun findNotExpiredByUserId(userId: String): OTPGenerated
+    fun findByDestination(destination: String): OTPGenerated
+
+    fun existsByOperationIdAndOtp(operationId: String, otp: String): Boolean
 
 }

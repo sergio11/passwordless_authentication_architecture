@@ -5,7 +5,7 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class OTPVerifyRequestDTO(
-    @SerialName("user_id")
-    val userId: String,
+    @SerialName("operation_id")
+    val operationId: String,
     val otp: String
 )

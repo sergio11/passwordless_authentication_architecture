@@ -10,7 +10,7 @@ class OTPGeneratorImpl: OTPGenerator {
     override fun generate(senderConfig: OtpSenderConfig, dest: String): OTPGenerated =
         with(senderConfig) {
             OTPGenerated(
-                operationId = UUID.randomUUID(),
+                operationId = UUID.randomUUID().toString(),
                 otp = RandomStringUtils.random(otpLength, useLetters, useDigits),
                 expireTime = System.currentTimeMillis() + ttlMinutes * 60 * 1000,
                 destination = dest
