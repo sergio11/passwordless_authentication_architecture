@@ -32,7 +32,7 @@ services:
     container_name: mfa_service_1
     restart: always
     build:
-      context: .
+      context: ./ktor
       dockerfile: Dockerfile_hotspot
     networks:
       mfa_network:
@@ -43,7 +43,7 @@ services:
     container_name: mfa_service_2
     restart: always
     build:
-      context: .
+      context: ./ktor
       dockerfile: Dockerfile_hotspot
     networks:
       mfa_network:
@@ -54,26 +54,11 @@ services:
     container_name: mfa_service_3
     restart: always
     build:
-      context: .
+      context: ./ktor
       dockerfile: Dockerfile_hotspot
     networks:
       mfa_network:
         ipv4_address: 192.168.0.20
-
-  # Redis Master Node
-  redis-master-node:
-    image: 'redis:6.0-alpine'
-    command: redis-cli --cluster create 192.168.0.30:6373 192.168.0.35:6373 192.168.0.40:6373 192.168.0.45:6373 192.168.0.50:6373 192.168.0.55:6373 --cluster-replicas 1 --cluster-yes
-    networks:
-      mfa_network:
-        ipv4_address: 192.168.0.25
-    depends_on:
-      - redis-node-1
-      - redis-node-2
-      - redis-node-3
-      - redis-node-4
-      - redis-node-5
-      - redis-node-6
 
   # Redis Node 1
   redis-node-1:
