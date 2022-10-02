@@ -9,7 +9,19 @@ mfa:
       otpLength: 5,
       useLetters: false,
       useDigits: true,
-      ttlMinutes: 3
+      ttlMinutes: 5,
+      serviceKey: "secret"
+    }
+    - {
+      type: "PUSH",
+      name: "PUSH OTP Sender",
+      messageTitle: "Test",
+      messageTemplate: "Confirmation code: #otp",
+      otpLength: 10,
+      useLetters: true,
+      useDigits: true,
+      ttlMinutes: 3,
+      serviceKey: "secret"
     }
 
 redis:
