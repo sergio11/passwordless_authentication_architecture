@@ -3,7 +3,7 @@ package com.dreamsoftware.model
 data class AppConfig(val mfa: MfaConfig, val redis: RedisClusterConfig)
 data class MfaConfig(val senders: List<OtpSenderConfig>)
 data class OtpSenderConfig(
-    val id: String,
+    val type: String,
     val name: String,
     val messageTitle: String,
     val messageTemplate: String,

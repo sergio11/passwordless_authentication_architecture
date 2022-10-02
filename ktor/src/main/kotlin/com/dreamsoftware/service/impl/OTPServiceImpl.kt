@@ -25,7 +25,7 @@ class OTPServiceImpl(
             val otpGenerated = otpRepository.findByDestination(destination)
             OTPGenerationResultDTO(operationId = otpGenerated.operationId)
         }.getOrElse {
-            mfaConfig.senders.find { it.id == type.name }?.let { otpSenderConfig ->
+            mfaConfig.senders.find { it.type == type.name }?.let { otpSenderConfig ->
                 otpGenerator.generate(otpSenderConfig, destination).also { otpGenerated ->
                     otpRepository.save(otpGenerated).also {
                         get<OTPSender> { parametersOf(type) }.apply {

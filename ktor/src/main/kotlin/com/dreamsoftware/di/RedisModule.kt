@@ -6,8 +6,8 @@ import redis.clients.jedis.HostAndPort
 import redis.clients.jedis.JedisCluster
 
 val redisModule = module {
-    single { (redisClusterConfig : RedisClusterConfig) ->
-        JedisCluster(hashSetOf(*redisClusterConfig.nodes.map {
+    single {
+        JedisCluster(hashSetOf(*get<RedisClusterConfig>().nodes.map {
             HostAndPort(it.host, it.port) }.toTypedArray()) )
     }
 }

@@ -5,7 +5,7 @@ mfa:
       type: "SMS",
       name: "SMS OTP Sender",
       messageTitle: "Test",
-      messageTemplate: "Confirmation code: ${otp}",
+      messageTemplate: "Confirmation code: #otp",
       otpLength: 5,
       useLetters: false,
       useDigits: true,
