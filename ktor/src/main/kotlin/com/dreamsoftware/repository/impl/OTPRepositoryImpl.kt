@@ -8,11 +8,22 @@ import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
 import redis.clients.jedis.JedisCluster
-import redis.clients.jedis.args.ExpiryOption
+import redis.clients.jedis.search.IndexDefinition
+import redis.clients.jedis.search.IndexOptions
+import redis.clients.jedis.search.Schema
 
 class OTPRepositoryImpl(
     private val jedisCluster: JedisCluster
 ): OTPRepository {
+
+    init {
+        createRSearchIndex()
+    }
+
+    private companion object {
+        private const val OTP_INDEX_NAME = "mfa-otp-index"
+        private const val OTP_INDEX_PREFIX = "mfa:"
+    }
 
     private val json by lazy {
         Json {
@@ -25,9 +36,9 @@ class OTPRepositoryImpl(
         runCatching {
             with(jedisCluster) {
                 with(otpGenerated) {
-                    jsonSet(operationId, json.encodeToString(this))
-                    // Set expiry only when the key has no expiry
-                    expire(operationId, expireTime, ExpiryOption.NX)
+                    val itemKey = OTP_INDEX_PREFIX + operationId
+                    jsonSet(itemKey, json.encodeToString(this))
+                    expire(itemKey, expireTime)
                 }
             }
         }.getOrElse {
@@ -49,5 +60,31 @@ class OTPRepositoryImpl(
         }
         otpGenerated.otp == otp
     }.getOrDefault(false)
+
+    override fun deleteByOperationId(operationId: String) {
+        val result = jedisCluster.del(OTP_INDEX_PREFIX + operationId)
+        println("deleteByOperationId -> $operationId result -> $result")
+    }
+
+    private fun createRSearchIndex() {
+        try {
+            jedisCluster.sadd("SERGIO", "Index Created!")
+            val options = jedisCluster.ftInfo(OTP_INDEX_NAME)
+            options.forEach { (k, v) ->
+                println("Key: $k, Value: $v")
+            }
+        } catch (e: Exception) {
+            println("createRSearchIndex ex -> ${e.message}")
+            jedisCluster.ftCreate(OTP_INDEX_NAME, IndexOptions
+                .defaultOptions()
+                .setDefinition(
+                    IndexDefinition()
+                        .setPrefixes(OTP_INDEX_PREFIX)
+                ), Schema()
+                .addTextField("operation_id", 5.0)
+                .addTextField("otp", 1.0)
+                .addTextField("destination", 1.0));
+        }
+    }
 
 }

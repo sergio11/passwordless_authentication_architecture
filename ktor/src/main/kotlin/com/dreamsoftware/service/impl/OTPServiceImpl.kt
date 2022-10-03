@@ -45,6 +45,10 @@ class OTPServiceImpl(
     }
 
     override fun verify(otpVerifyRequestDTO: OTPVerifyRequestDTO): OTPVerifyResultDTO = with(otpVerifyRequestDTO) {
-        OTPVerifyResultDTO(operationId, otpRepository.existsByOperationIdAndOtp(operationId, otp))
+        with(otpRepository) {
+            OTPVerifyResultDTO(operationId, existsByOperationIdAndOtp(operationId, otp).also {
+                deleteByOperationId(operationId)
+            })
+        }
     }
 }

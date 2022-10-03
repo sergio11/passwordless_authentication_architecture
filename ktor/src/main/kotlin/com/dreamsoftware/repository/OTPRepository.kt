@@ -2,6 +2,7 @@ package com.dreamsoftware.repository
 
 import com.dreamsoftware.model.OTPGenerated
 import com.dreamsoftware.model.exception.OTPNotFoundException
+import com.dreamsoftware.model.exception.OTPRepositoryException
 import com.dreamsoftware.model.exception.OTPSaveDataException
 
 interface OTPRepository {
@@ -13,5 +14,8 @@ interface OTPRepository {
     fun findByDestination(destination: String): OTPGenerated
 
     fun existsByOperationIdAndOtp(operationId: String, otp: String): Boolean
+
+    @Throws(OTPRepositoryException::class)
+    fun deleteByOperationId(operationId: String)
 
 }

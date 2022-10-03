@@ -72,7 +72,7 @@ namespace :mfa do
 	desc "Configure Redis Cluster"
 	task :start_redis_cluster => [ :check_docker_task ] do
 		puts "Configure Redis Cluster ..."
-		puts `docker run -it --rm --network=mfa_test_mfa_network redis:6.0-alpine redis-cli --cluster create 192.168.0.30:6373 192.168.0.35:6373 192.168.0.40:6373 192.168.0.45:6373 192.168.0.50:6373 192.168.0.55:6373 --cluster-replicas 1 --cluster-yes`
+		puts `docker run -it --rm --network=mfa_test_mfa_network redislabs/rejson:latest redis-cli --cluster create 192.168.0.30:6373 192.168.0.35:6373 192.168.0.40:6373 192.168.0.45:6373 192.168.0.50:6373 192.168.0.55:6373 --cluster-replicas 1 --cluster-yes`
 	end
 
 	## Utils Functions

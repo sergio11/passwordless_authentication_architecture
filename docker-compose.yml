@@ -134,14 +134,12 @@ services:
         mfa_network:
           ipv4_address: 192.168.0.55
 
-  # P3X Redis UI is a very functional handy database GUI and works in your pocket on the responsive web or as a desktop app
-  redis-ui:
-    image: patrikx3/p3x-redis-ui
-    container_name: redis-ui
+  redisinsight:
+    image: redislabs/redisinsight:latest
     ports:
-      - 7843:7843
-    volumes: 
-      - ./redis/ui:/settings
+      - '8001:8001'
+    volumes:
+      - ./redis/ui:/db 
     networks:
         mfa_network:
           ipv4_address: 192.168.0.60
