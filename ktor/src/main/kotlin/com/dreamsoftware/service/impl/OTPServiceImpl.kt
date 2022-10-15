@@ -20,7 +20,7 @@ class OTPServiceImpl(
     private val mfaConfig: MfaConfig
 ): OTPService, KoinComponent {
 
-    override fun generate(otpGenerationRequestDTO: OTPGenerationRequestDTO): OTPGenerationResultDTO = with(otpGenerationRequestDTO) {
+    override suspend fun generate(otpGenerationRequestDTO: OTPGenerationRequestDTO): OTPGenerationResultDTO = with(otpGenerationRequestDTO) {
         runCatching {
             val otpGenerated = otpRepository.findByDestination(destination)
             OTPGenerationResultDTO(operationId = otpGenerated.operationId)
@@ -44,7 +44,7 @@ class OTPServiceImpl(
         }
     }
 
-    override fun verify(otpVerifyRequestDTO: OTPVerifyRequestDTO): OTPVerifyResultDTO = with(otpVerifyRequestDTO) {
+    override suspend fun verify(otpVerifyRequestDTO: OTPVerifyRequestDTO): OTPVerifyResultDTO = with(otpVerifyRequestDTO) {
         with(otpRepository) {
             OTPVerifyResultDTO(operationId, existsByOperationIdAndOtp(operationId, otp).also {
                 deleteByOperationId(operationId)

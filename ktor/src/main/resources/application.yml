@@ -10,7 +10,8 @@ mfa:
       useLetters: false,
       useDigits: true,
       ttlMinutes: 5,
-      serviceKey: "secret"
+      serviceKey: "secret",
+      serviceUrl: ""
     }
     - {
       type: "PUSH",
@@ -21,7 +22,8 @@ mfa:
       useLetters: true,
       useDigits: true,
       ttlMinutes: 3,
-      serviceKey: "secret"
+      serviceKey: "secret",
+      serviceUrl: "https://fcm.googleapis.com/fcm/send"
     }
 
 redis:

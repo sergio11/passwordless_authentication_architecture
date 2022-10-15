@@ -4,7 +4,7 @@ import com.dreamsoftware.model.OtpSenderConfig
 
 class OTPSmsSenderServiceImpl: SupportOTPSender() {
 
-    override fun sendOTP(
+    override suspend fun sendOTP(
         otpSetting: OtpSenderConfig,
         otp: String,
         destination: String,

@@ -11,6 +11,8 @@ data class OtpSenderConfig(
     val useLetters: Boolean,
     val useDigits: Boolean,
     val ttlMinutes: Int,
-    val serviceKey: String)
+    val serviceKey: String,
+    val serviceUrl: String
+)
 data class RedisClusterConfig(val nodes: List<RedisNodeConfig>)
 data class RedisNodeConfig(val host: String, val port: Int)

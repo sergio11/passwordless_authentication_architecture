@@ -62,8 +62,9 @@ class OTPRepositoryImpl(
     }.getOrDefault(false)
 
     override fun deleteByOperationId(operationId: String) {
-        val result = jedisCluster.del(OTP_INDEX_PREFIX + operationId)
-        println("deleteByOperationId -> $operationId result -> $result")
+        jedisCluster.del(OTP_INDEX_PREFIX + operationId).also {
+            println("deleteByOperationId -> $operationId result -> $it")
+        }
     }
 
     private fun createRSearchIndex() {

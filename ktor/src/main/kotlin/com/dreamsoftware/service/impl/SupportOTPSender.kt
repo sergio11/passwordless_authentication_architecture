@@ -4,7 +4,7 @@ import com.dreamsoftware.model.OtpSenderConfig
 import com.dreamsoftware.service.OTPSender
 import org.apache.commons.text.StringSubstitutor
 
-abstract class SupportOTPSender: OTPSender {
+abstract class SupportOTPSender : OTPSender {
 
     protected fun createMessage(
         otpSetting: OtpSenderConfig,
@@ -15,6 +15,7 @@ abstract class SupportOTPSender: OTPSender {
         putAll(properties)
         put("destination", destination)
         put("otp", otp)
-    }).replace(otpSetting.messageTemplate)
+    })
+        .replace(otpSetting.messageTemplate)
 
 }
