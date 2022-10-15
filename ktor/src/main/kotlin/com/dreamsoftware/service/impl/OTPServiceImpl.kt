@@ -1,18 +1,18 @@
 package com.dreamsoftware.service.impl
 
+import com.dreamsoftware.di.MAIL_NOTIFICATION_SENDER
+import com.dreamsoftware.di.PUSH_NOTIFICATION_SENDER
+import com.dreamsoftware.di.SMS_NOTIFICATION_SENDER
 import com.dreamsoftware.model.MfaConfig
-import com.dreamsoftware.model.exception.OTPSenderNotFoundException
+import com.dreamsoftware.model.OtpSenderConfig
 import com.dreamsoftware.repository.OTPRepository
-import com.dreamsoftware.rest.dto.OTPGenerationRequestDTO
-import com.dreamsoftware.rest.dto.OTPGenerationResultDTO
-import com.dreamsoftware.rest.dto.OTPVerifyRequestDTO
-import com.dreamsoftware.rest.dto.OTPVerifyResultDTO
+import com.dreamsoftware.rest.dto.*
 import com.dreamsoftware.service.OTPGenerator
 import com.dreamsoftware.service.OTPSender
 import com.dreamsoftware.service.OTPService
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.get
-import org.koin.core.parameter.parametersOf
+import org.koin.core.qualifier.named
 
 class OTPServiceImpl(
     private val otpRepository: OTPRepository,
@@ -25,10 +25,10 @@ class OTPServiceImpl(
             val otpGenerated = otpRepository.findByDestination(destination)
             OTPGenerationResultDTO(operationId = otpGenerated.operationId)
         }.getOrElse {
-            mfaConfig.senders.find { it.type == type.name }?.let { otpSenderConfig ->
+            getOtpSenderConfig(type).let { otpSenderConfig ->
                 otpGenerator.generate(otpSenderConfig, destination).also { otpGenerated ->
                     otpRepository.save(otpGenerated).also {
-                        get<OTPSender> { parametersOf(type) }.apply {
+                        getOtpSender<OtpSenderConfig>(type).apply {
                             sendOTP(
                                 otpSenderConfig,
                                 otpGenerated.otp,
@@ -40,7 +40,7 @@ class OTPServiceImpl(
                 }.let {
                     OTPGenerationResultDTO(operationId = it.operationId)
                 }
-            } ?: throw OTPSenderNotFoundException()
+            }
         }
     }
 
@@ -50,5 +50,17 @@ class OTPServiceImpl(
                 deleteByOperationId(operationId)
             })
         }
+    }
+
+    private fun getOtpSenderConfig(type: OTPTypeEnum) = when(type) {
+        OTPTypeEnum.SMS -> mfaConfig.smsSender
+        OTPTypeEnum.PUSH -> mfaConfig.pushSender
+        OTPTypeEnum.MAIL -> mfaConfig.mailSender
+    }
+
+    private fun <T: OtpSenderConfig> getOtpSender(type: OTPTypeEnum): OTPSender<T> =  when(type) {
+        OTPTypeEnum.SMS -> get(named(SMS_NOTIFICATION_SENDER))
+        OTPTypeEnum.PUSH -> get(named(PUSH_NOTIFICATION_SENDER))
+        OTPTypeEnum.MAIL -> get(named(MAIL_NOTIFICATION_SENDER))
     }
 }

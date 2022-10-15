@@ -1,11 +1,11 @@
 package com.dreamsoftware.service.impl
 
-import com.dreamsoftware.model.OtpSenderConfig
+import com.dreamsoftware.model.SmsSenderConfig
 
-class OTPSmsSenderServiceImpl: SupportOTPSender() {
+class OTPSmsSenderServiceImpl: SupportOTPSender<SmsSenderConfig>() {
 
     override suspend fun sendOTP(
-        otpSetting: OtpSenderConfig,
+        otpSetting: SmsSenderConfig,
         otp: String,
         destination: String,
         properties: Map<String, String>

@@ -1,9 +1,7 @@
 
 mfa:
   senders:
-    - {
-      type: "SMS",
-      name: "SMS OTP Sender",
+    smsSender: {
       messageTitle: "Test",
       messageTemplate: "Confirmation code: #otp",
       otpLength: 5,
@@ -11,11 +9,8 @@ mfa:
       useDigits: true,
       ttlMinutes: 5,
       serviceKey: "secret",
-      serviceUrl: ""
     }
-    - {
-      type: "PUSH",
-      name: "PUSH OTP Sender",
+    pushSender: {
       messageTitle: "Test",
       messageTemplate: "Confirmation code: #otp",
       otpLength: 10,
@@ -25,6 +20,7 @@ mfa:
       serviceKey: "secret",
       serviceUrl: "https://fcm.googleapis.com/fcm/send"
     }
+
 
 redis:
   nodes:

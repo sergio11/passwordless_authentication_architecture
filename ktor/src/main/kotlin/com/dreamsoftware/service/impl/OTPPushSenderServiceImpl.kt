@@ -1,6 +1,6 @@
 package com.dreamsoftware.service.impl
 
-import com.dreamsoftware.model.OtpSenderConfig
+import com.dreamsoftware.model.PushNotificationSenderConfig
 import com.dreamsoftware.model.exception.OTPSenderFailedException
 import com.dreamsoftware.model.fcm.NotificationData
 import com.dreamsoftware.model.fcm.NotificationPushPriority
@@ -17,10 +17,10 @@ import io.ktor.http.*
 import io.ktor.serialization.kotlinx.json.*
 import kotlinx.serialization.json.Json
 
-class OTPPushSenderServiceImpl : SupportOTPSender() {
+class OTPPushSenderServiceImpl : SupportOTPSender<PushNotificationSenderConfig>() {
 
     override suspend fun sendOTP(
-        otpSetting: OtpSenderConfig,
+        otpSetting: PushNotificationSenderConfig,
         otp: String,
         destination: String,
         properties: Map<String, String>
