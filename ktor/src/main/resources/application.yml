@@ -3,12 +3,14 @@ mfa:
   senders:
     smsSender: {
       messageTitle: "Test",
-      messageTemplate: "Confirmation code: #otp",
+      messageTemplate: "Your OTP is: #otp, and it's valid for 5 minutes.",
       otpLength: 5,
       useLetters: false,
       useDigits: true,
       ttlMinutes: 5,
+      accountSid: "secret",
       serviceKey: "secret",
+      fromPhoneNumber: "secret"
     }
     pushSender: {
       messageTitle: "Test",
@@ -19,6 +21,15 @@ mfa:
       ttlMinutes: 3,
       serviceKey: "secret",
       serviceUrl: "https://fcm.googleapis.com/fcm/send"
+    }
+    mailSender: {
+      messageTitle: "Test",
+      messageTemplate: "Confirmation code: #otp",
+      otpLength: 20,
+      useLetters: true,
+      useDigits: true,
+      ttlMinutes: 10,
+      serviceKey: "secret"
     }
 
 

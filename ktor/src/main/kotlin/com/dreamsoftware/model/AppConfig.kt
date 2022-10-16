@@ -35,7 +35,10 @@ data class SmsSenderConfig(
     override val otpLength: Int,
     override val useLetters: Boolean,
     override val useDigits: Boolean,
-    override val ttlMinutes: Int
+    override val ttlMinutes: Int,
+    val accountSid: String,
+    val serviceKey: String,
+    val fromPhoneNumber: String
 ): OtpSenderConfig
 data class RedisClusterConfig(val nodes: List<RedisNodeConfig>)
 data class RedisNodeConfig(val host: String, val port: Int)
