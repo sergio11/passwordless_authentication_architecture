@@ -29,7 +29,12 @@ mfa:
       useLetters: true,
       useDigits: true,
       ttlMinutes: 10,
-      serviceKey: "secret"
+      serviceKey: "secret",
+      emailFrom: "secret",
+      emailFromName: "secret",
+      messageTemplateId: "d-eb46147a705f442b973e809f0205337c",
+      messageTitlePlaceholder: "message_title",
+      messageContentPlaceholder: "message_content"
     }
 
 

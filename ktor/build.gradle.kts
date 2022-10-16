@@ -60,6 +60,8 @@ dependencies {
     implementation("io.ktor:ktor-client-content-negotiation-jvm:$ktor_version")
     // Twilio Java Helper Library
     implementation(group = "com.twilio.sdk", name = "twilio", version = twilio_sdk_version)
+    // https://mvnrepository.com/artifact/com.sendgrid/sendgrid-java
+    implementation("com.sendgrid:sendgrid-java:4.9.3")
     // Koin for Ktor
     implementation("io.insert-koin:koin-ktor:$koin_ktor")
     // SLF4J Logger

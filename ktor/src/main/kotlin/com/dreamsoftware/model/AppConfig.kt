@@ -17,7 +17,12 @@ data class MailSenderConfig(
     override val useLetters: Boolean,
     override val useDigits: Boolean,
     override val ttlMinutes: Int,
-    val serviceKey: String
+    val serviceKey: String,
+    val emailFrom: String,
+    val emailFromName: String,
+    val messageTemplateId: String,
+    val messageTitlePlaceholder: String,
+    val messageContentPlaceholder: String
 ): OtpSenderConfig
 data class PushNotificationSenderConfig(
     override val messageTitle: String,
