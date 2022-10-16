@@ -1,13 +1,14 @@
 package com.dreamsoftware
 
+import com.dreamsoftware.plugins.*
 import io.ktor.server.engine.*
 import io.ktor.server.netty.*
-import com.dreamsoftware.plugins.*
 
 fun main() {
     embeddedServer(Netty, port = 8080, host = "0.0.0.0") {
         configureAdministration()
         configureSerialization()
+        configureValidation()
         configureMonitoring()
         configureKoin()
         configureRouting()
