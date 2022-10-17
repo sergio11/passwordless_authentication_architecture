@@ -4,7 +4,12 @@ import com.dreamsoftware.model.OtpSenderConfig
 import com.dreamsoftware.service.OTPSender
 import org.apache.commons.text.StringSubstitutor
 
-abstract class SupportOTPSender<T: OtpSenderConfig> : OTPSender<T> {
+abstract class SupportOTPSender<T : OtpSenderConfig> : OTPSender<T> {
+
+    private companion object {
+        const val VARIABLE_PREFIX = "#{"
+        const val VARIABLE_SUFFIX = "}"
+    }
 
     protected fun createMessage(
         otpSetting: OtpSenderConfig,
@@ -16,6 +21,8 @@ abstract class SupportOTPSender<T: OtpSenderConfig> : OTPSender<T> {
         put("destination", destination)
         put("otp", otp)
     })
+        .setVariablePrefix(VARIABLE_PREFIX)
+        .setVariableSuffix(VARIABLE_SUFFIX)
         .replace(otpSetting.messageTemplate)
 
 }

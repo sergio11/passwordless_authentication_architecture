@@ -69,7 +69,6 @@ class OTPRepositoryImpl(
 
     private fun createRSearchIndex() {
         try {
-            jedisCluster.sadd("SERGIO", "Index Created!")
             val options = jedisCluster.ftInfo(OTP_INDEX_NAME)
             options.forEach { (k, v) ->
                 println("Key: $k, Value: $v")

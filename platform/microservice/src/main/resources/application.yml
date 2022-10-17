@@ -22,15 +22,15 @@ mfa:
     serviceUrl: "https://fcm.googleapis.com/fcm/send"
   }
   mailSender: {
-    messageTitle: "Test",
-    messageTemplate: "Confirmation code: #otp",
+    messageTitle: "Your OTP Verification Code!",
+    messageTemplate: "Your OTP is: #{otp}, and it's valid for 10 minutes.",
     otpLength: 20,
     useLetters: true,
     useDigits: true,
     ttlMinutes: 10,
     serviceKey: "secret",
     emailFrom: "secret",
-    emailFromName: "secret",
+    emailFromName: "DreamSoftware",
     messageTemplateId: "d-eb46147a705f442b973e809f0205337c",
     messageTitlePlaceholder: "message_title",
     messageContentPlaceholder: "message_content"
