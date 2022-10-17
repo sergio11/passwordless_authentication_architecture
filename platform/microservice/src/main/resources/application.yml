@@ -1,0 +1,48 @@
+
+mfa:
+  smsSender: {
+    messageTitle: "Test",
+    messageTemplate: "Your OTP is: #otp, and it's valid for 5 minutes.",
+    otpLength: 5,
+    useLetters: false,
+    useDigits: true,
+    ttlMinutes: 5,
+    accountSid: "secret",
+    serviceKey: "secret",
+    fromPhoneNumber: "secret"
+  }
+  pushSender: {
+    messageTitle: "Test",
+    messageTemplate: "Confirmation code: #otp",
+    otpLength: 10,
+    useLetters: true,
+    useDigits: true,
+    ttlMinutes: 3,
+    serviceKey: "secret",
+    serviceUrl: "https://fcm.googleapis.com/fcm/send"
+  }
+  mailSender: {
+    messageTitle: "Test",
+    messageTemplate: "Confirmation code: #otp",
+    otpLength: 20,
+    useLetters: true,
+    useDigits: true,
+    ttlMinutes: 10,
+    serviceKey: "secret",
+    emailFrom: "secret",
+    emailFromName: "secret",
+    messageTemplateId: "d-eb46147a705f442b973e809f0205337c",
+    messageTitlePlaceholder: "message_title",
+    messageContentPlaceholder: "message_content"
+  }
+
+redis:
+  nodes:
+    - { host: 192.168.1.39, port: 6379 }
+    - { host: 192.168.1.39, port: 6380 }
+    - { host: 192.168.1.39, port: 6381 }
+    - { host: 192.168.1.39, port: 6382 }
+    - { host: 192.168.1.39, port: 6383 }
+    - { host: 192.168.1.39, port: 6384 }
+    - { host: 192.168.1.39, port: 6385 }
+    - { host: 192.168.1.39, port: 6386 }

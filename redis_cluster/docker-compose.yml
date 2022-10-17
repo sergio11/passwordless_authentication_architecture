@@ -1,0 +1,145 @@
+version: '3.6'
+
+# Networks
+networks:
+  redis_cluster_network:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: 192.168.0.0/24
+
+# Platform Services
+services:
+
+  # Redis Node 1
+  redis-node-1:
+      image: 'redislabs/rejson:latest'
+      container_name: redis-node-1
+      command: redis-server /usr/local/etc/redis/redis.conf
+      volumes:
+        - ./data:/var/lib/redis
+        - ./conf/node_1/redis.conf:/usr/local/etc/redis/redis.conf
+      ports:
+        - 6379:6379
+        - 16379:16379
+      networks:
+        redis_cluster_network:
+          ipv4_address: 192.168.0.30
+
+  # Redis Node 2
+  redis-node-2:
+      image: 'redislabs/rejson:latest'
+      container_name: redis-node-2
+      command: redis-server /usr/local/etc/redis/redis.conf
+      volumes:
+        - ./data:/var/lib/redis
+        - ./conf/node_2/redis.conf:/usr/local/etc/redis/redis.conf
+      ports:
+        - 6380:6380
+        - 16380:16380
+      networks:
+        redis_cluster_network:
+          ipv4_address: 192.168.0.35
+
+  # Redis Node 3
+  redis-node-3:
+      image: 'redislabs/rejson:latest'
+      container_name: redis-node-3
+      command: redis-server /usr/local/etc/redis/redis.conf
+      volumes:
+        - ./data:/var/lib/redis
+        - ./conf/node_3/redis.conf:/usr/local/etc/redis/redis.conf
+      ports:
+        - 6381:6381
+        - 16381:16381
+      networks:
+        redis_cluster_network:
+          ipv4_address: 192.168.0.40
+
+  # Redis Node 4
+  redis-node-4:
+      image: 'redislabs/rejson:latest'
+      container_name: redis-node-4
+      command: redis-server /usr/local/etc/redis/redis.conf
+      volumes:
+        - ./data:/var/lib/redis
+        - ./conf/node_4/redis.conf:/usr/local/etc/redis/redis.conf
+      ports:
+        - 6382:6382
+        - 16382:16382
+      networks:
+        redis_cluster_network:
+          ipv4_address: 192.168.0.45
+
+  # Redis Node 5
+  redis-node-5:
+      image: 'redislabs/rejson:latest'
+      container_name: redis-node-5
+      command: redis-server /usr/local/etc/redis/redis.conf
+      volumes:
+        - ./data:/var/lib/redis
+        - ./conf/node_5/redis.conf:/usr/local/etc/redis/redis.conf
+      ports:
+        - 6383:6383
+        - 16383:16383
+      networks:
+        redis_cluster_network:
+          ipv4_address: 192.168.0.50
+
+  # Redis Node 6
+  redis-node-6:
+      image: 'redislabs/rejson:latest'
+      container_name: redis-node-6
+      command: redis-server /usr/local/etc/redis/redis.conf
+      volumes:
+        - ./data:/var/lib/redis
+        - ./conf/node_6/redis.conf:/usr/local/etc/redis/redis.conf
+      ports:
+        - 6384:6384
+        - 16384:16384      
+      networks:
+        redis_cluster_network:
+          ipv4_address: 192.168.0.55
+
+  # Redis Node 7
+  redis-node-7:
+      image: 'redislabs/rejson:latest'
+      container_name: redis-node-7
+      command: redis-server /usr/local/etc/redis/redis.conf
+      volumes:
+        - ./data:/var/lib/redis
+        - ./conf/node_7/redis.conf:/usr/local/etc/redis/redis.conf
+      ports:
+        - 6385:6385
+        - 16385:16385      
+      networks:
+        redis_cluster_network:
+          ipv4_address: 192.168.0.60
+
+  # Redis Node 8
+  redis-node-8:
+      image: 'redislabs/rejson:latest'
+      container_name: redis-node-8
+      command: redis-server /usr/local/etc/redis/redis.conf
+      volumes:
+        - ./data:/var/lib/redis
+        - ./conf/node_8/redis.conf:/usr/local/etc/redis/redis.conf
+      ports:
+        - 6386:6386
+        - 16386:16386      
+      networks:
+        redis_cluster_network:
+          ipv4_address: 192.168.0.65
+
+  # Redis Insight 
+  redisinsight:
+    image: redislabs/redisinsight:latest
+    container_name: redisinsight
+    ports:
+      - '8001:8001'
+    volumes:
+      - ./ui:/db 
+    networks:
+        redis_cluster_network:
+          ipv4_address: 192.168.0.70

@@ -24,8 +24,8 @@ namespace :mfa do
 	desc "Deploys Platform Containers and launches all services and daemons needed to properly work"
 	task :deploy => [
 		:cleaning_environment_task,
-		:start,
-		:start_redis_cluster,
+		"platform:start",
+		"redis:start",
 		:status] do
 	    puts "Deploying services..."
 	end
@@ -34,20 +34,6 @@ namespace :mfa do
 	task :undeploy => [ :status ] do 
 		puts "Undeploy Services"
 		puts `docker-compose down -v 2>&1`
-	end
-
-
-	desc "Start Platform Containers"
-	task :start => [ :check_docker_task, :login, :check_deployment_file ] do 
-		puts "Start Platform Containers"
-		puts `docker-compose up -d`
-	end 
-
-
-	desc "Stop Platform Containers"
-	task :stop => [ :check_docker_task, :login, :check_deployment_file  ] do
-		puts "Stop Platform Containers"
-		puts `docker-compose stop 2>&1`
 	end
 
 
@@ -62,18 +48,56 @@ namespace :mfa do
 		end
 	end
 
-	desc "Check Platform Deployment File"
-	task :check_deployment_file do
-		puts "Check Platform Deployment File ..."
-		raise "Deployment file not found, please check availability" unless File.file?("./docker-compose.yml")
-		puts "Platform Deployment File OK!"
-	end
 
-	desc "Configure Redis Cluster"
-	task :start_redis_cluster => [ :check_docker_task ] do
-		puts "Configure Redis Cluster ..."
-		puts `docker run -it --rm --network=mfa_test_mfa_network redislabs/rejson:latest redis-cli --cluster create 192.168.0.30:6373 192.168.0.35:6373 192.168.0.40:6373 192.168.0.45:6373 192.168.0.50:6373 192.168.0.55:6373 --cluster-replicas 1 --cluster-yes`
+	## Deploy Platform
+	namespace :platform do
+
+		desc "Check Platform Deployment File"
+		task :check_deployment_file do
+			puts "Check Platform Deployment File ..."
+			raise "Deployment file not found, please check availability" unless File.file?("./platform/docker-compose.yml")
+			puts "Platform Deployment File OK!"
+		end
+
+		desc "Start Platform Containers"
+		task :start => [ :check_docker_task, :login, :check_deployment_file ] do 
+			puts "Start Platform Containers"
+			puts `docker-compose -f ./platform/docker-compose.yml up -d`
+		end 
+
+
+		desc "Stop Platform Containers"
+		task :stop => [ :check_docker_task, :login, :check_deployment_file  ] do
+			puts "Stop Platform Containers"
+			puts `docker-compose -f ./platform/docker-compose.yml stop 2>&1`
+		end
+
 	end
+	
+	# Redis Cluster
+	namespace :redis do
+
+		desc "Check Redis Cluster Deployment File"
+		task :check_deployment_file do
+			puts "Check Redis Cluster Deployment File ..."
+			raise "Deployment file not found, please check availability" unless File.file?("./redis_cluster/docker-compose.yml")
+			puts "Platform Deployment File OK!"
+		end
+
+		desc "Start and configure Cluster Containers"
+		task :start => [ :check_docker_task, :login, :check_deployment_file ] do 
+			puts "Start Cluster Containers"
+			puts `docker-compose -f ./redis_cluster/docker-compose.yml up -d`
+			puts `docker run -it --rm --network=redis_cluster_redis_cluster_network redislabs/rejson:latest redis-cli --cluster create 192.168.0.30:6379 192.168.0.35:6380 192.168.0.40:6381 192.168.0.45:6382 192.168.0.50:6383 192.168.0.55:6384 192.168.0.60:6385 192.168.0.65:6386 --cluster-replicas 1 --cluster-yes`
+		end 
+
+		desc "Stop Cluster Containers"
+		task :stop => [ :check_docker_task, :login, :check_deployment_file  ] do
+			puts "Stop Cluster Containers"
+			puts `docker-compose -f ./redis_cluster/docker-compose.yml stop 2>&1`
+		end
+
+	end	
 
 	## Utils Functions
 
