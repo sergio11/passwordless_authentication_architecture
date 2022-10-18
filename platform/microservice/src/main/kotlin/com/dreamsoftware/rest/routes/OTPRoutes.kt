@@ -22,5 +22,10 @@ fun Route.configureOtpRoutes() {
                 respond(otpService.verify(receive()))
             }
         }
+        post("/resend") {
+            with(call) {
+                respond(otpService.resend(receive()))
+            }
+        }
     }
 }

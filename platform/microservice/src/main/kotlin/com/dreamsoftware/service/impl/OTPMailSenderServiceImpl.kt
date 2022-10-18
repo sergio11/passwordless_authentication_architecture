@@ -1,6 +1,7 @@
 package com.dreamsoftware.service.impl
 
 import com.dreamsoftware.model.MailSenderConfig
+import com.dreamsoftware.model.exception.OTPSenderFailedException
 import com.sendgrid.Method
 import com.sendgrid.Request
 import com.sendgrid.SendGrid
@@ -14,6 +15,7 @@ class OTPMailSenderServiceImpl: SupportOTPSender<MailSenderConfig>() {
         const val MAIL_SEND_ENDPOINT = "mail/send"
         const val CONTENT_TYPE = "text/html"
         const val CONTENT_VALUE = "<h1>OTP Mail</h1>"
+        const val MAIL_SENT_SUCCESSFULLY_STATUS_CODE = 202
     }
 
     override suspend fun sendOTP(
@@ -41,6 +43,9 @@ class OTPMailSenderServiceImpl: SupportOTPSender<MailSenderConfig>() {
             println("OTPMailSenderServiceImpl - response.headers -> ${response.headers} CALLED!")
             println("OTPMailSenderServiceImpl - response.body -> ${response.body} CALLED!")
             println("OTPMailSenderServiceImpl - response.statusCode -> ${response.statusCode} CALLED!")
+            if(response.statusCode != MAIL_SENT_SUCCESSFULLY_STATUS_CODE) {
+                throw OTPSenderFailedException("An error occurred when sending a mail")
+            }
         }
     }
 }

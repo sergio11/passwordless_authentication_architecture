@@ -58,6 +58,7 @@ dependencies {
     implementation("io.ktor:ktor-client-serialization:$ktor_version")
     implementation("io.ktor:ktor-client-logging-jvm:$ktor_version")
     implementation("io.ktor:ktor-client-content-negotiation-jvm:$ktor_version")
+    implementation("com.google.code.gson:gson:2.9.1")
     // Twilio Java Helper Library
     implementation(group = "com.twilio.sdk", name = "twilio", version = twilio_sdk_version)
     // https://mvnrepository.com/artifact/com.sendgrid/sendgrid-java

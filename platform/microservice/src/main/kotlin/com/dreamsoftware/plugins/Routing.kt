@@ -1,5 +1,10 @@
 package com.dreamsoftware.plugins
 
+import com.dreamsoftware.model.ErrorType
+import com.dreamsoftware.model.exception.OTPMaxAttemptsAllowedReachedException
+import com.dreamsoftware.model.exception.OTPNotFoundException
+import com.dreamsoftware.model.exception.OTPSenderFailedException
+import com.dreamsoftware.model.toErrorResponseDTO
 import com.dreamsoftware.rest.routes.configureOtpRoutes
 import io.ktor.http.*
 import io.ktor.server.application.*
@@ -19,13 +24,26 @@ fun Application.configureRouting() {
         exception<RequestValidationException> { call, cause ->
             call.respond(HttpStatusCode.BadRequest, cause.reasons.joinToString())
         }
+        exception<OTPSenderFailedException> { call, _ ->
+            call.respond(
+                HttpStatusCode.InternalServerError,
+                ErrorType.OTP_SENDER_FAILED.toErrorResponseDTO()
+            )
+        }
+        exception<OTPNotFoundException> { call, _ ->
+            call.respond(
+                HttpStatusCode.NotFound,
+                ErrorType.OTP_NOT_FOUND.toErrorResponseDTO()
+            )
+        }
+        exception<OTPMaxAttemptsAllowedReachedException> { call, _ ->
+            call.respond(HttpStatusCode.BadRequest,
+                ErrorType.OTP_MAX_ATTEMPTS_ALLOWED_REACHED.toErrorResponseDTO())
+        }
     }
 
     routing {
         trace { application.log.trace(it.buildText()) }
-        get("/") {
-            call.respond("Hello World!")
-        }
         configureOtpRoutes()
     }
 }

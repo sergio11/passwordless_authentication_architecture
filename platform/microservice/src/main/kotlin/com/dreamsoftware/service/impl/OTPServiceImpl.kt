@@ -4,7 +4,9 @@ import com.dreamsoftware.di.MAIL_NOTIFICATION_SENDER
 import com.dreamsoftware.di.PUSH_NOTIFICATION_SENDER
 import com.dreamsoftware.di.SMS_NOTIFICATION_SENDER
 import com.dreamsoftware.model.MfaConfig
+import com.dreamsoftware.model.OTPGenerated
 import com.dreamsoftware.model.OtpSenderConfig
+import com.dreamsoftware.model.exception.OTPMaxAttemptsAllowedReachedException
 import com.dreamsoftware.repository.OTPRepository
 import com.dreamsoftware.rest.dto.*
 import com.dreamsoftware.service.OTPGenerator
@@ -20,25 +22,31 @@ class OTPServiceImpl(
     private val mfaConfig: MfaConfig
 ): OTPService, KoinComponent {
 
+    private companion object {
+        const val MAX_ATTEMPTS_ALLOWED = 3
+    }
+
     override suspend fun generate(otpGenerationRequestDTO: OTPGenerationRequestDTO): OTPGenerationResultDTO = with(otpGenerationRequestDTO) {
         runCatching {
-            val otpGenerated = otpRepository.findByDestination(destination)
-            OTPGenerationResultDTO(operationId = otpGenerated.operationId)
+            with(otpRepository.findByDestination(destination)){
+                OTPGenerationResultDTO(operationId = operationId)
+            }
         }.getOrElse {
             getOtpSenderConfig(type).let { otpSenderConfig ->
-                otpGenerator.generate(otpSenderConfig, destination).also { otpGenerated ->
-                    otpRepository.save(otpGenerated).also {
-                        getOtpSender<OtpSenderConfig>(type).apply {
-                            sendOTP(
-                                otpSenderConfig,
-                                otpGenerated.otp,
-                                otpGenerated.destination,
-                                properties
-                            )
-                        }
-                    }
-                }.let {
-                    OTPGenerationResultDTO(operationId = it.operationId)
+                sendAndSaveOTP(otpSenderConfig, otpGenerator.generate(otpSenderConfig, otpGenerationRequestDTO))
+            }
+        }
+    }
+
+    override suspend fun resend(otpResendRequestDTO: OTPResendRequestDTO): OTPGenerationResultDTO = with(otpResendRequestDTO) {
+        with(otpRepository) {
+            findByOperationId(operationId).let { otpGenerated ->
+                val currentAttempts = otpGenerated.attempts + 1
+                if(currentAttempts > MAX_ATTEMPTS_ALLOWED) {
+                    deleteByOperationId(otpGenerated.operationId)
+                    throw OTPMaxAttemptsAllowedReachedException("No more attempts are allowed")
+                } else {
+                    sendAndSaveOTP(getOtpSenderConfig(otpGenerated.senderType), otpGenerated.copy(attempts = currentAttempts))
                 }
             }
         }
@@ -52,6 +60,10 @@ class OTPServiceImpl(
         }
     }
 
+    /**
+     * Private Methods
+     */
+
     private fun getOtpSenderConfig(type: OTPTypeEnum) = when(type) {
         OTPTypeEnum.SMS -> mfaConfig.smsSender
         OTPTypeEnum.PUSH -> mfaConfig.pushSender
@@ -63,4 +75,19 @@ class OTPServiceImpl(
         OTPTypeEnum.PUSH -> get(named(PUSH_NOTIFICATION_SENDER))
         OTPTypeEnum.MAIL -> get(named(MAIL_NOTIFICATION_SENDER))
     }
+
+    private suspend fun sendAndSaveOTP(otpSenderConfig: OtpSenderConfig, otpGenerated: OTPGenerated): OTPGenerationResultDTO =
+        with(otpGenerated) {
+            getOtpSender<OtpSenderConfig>(senderType).apply {
+                sendOTP(
+                    otpSenderConfig,
+                    otp,
+                    destination,
+                    properties
+                )
+            }
+            otpRepository.save(this)
+            OTPGenerationResultDTO(operationId = otpGenerated.operationId)
+        }
+
 }

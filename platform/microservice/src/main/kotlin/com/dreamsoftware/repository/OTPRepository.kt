@@ -13,6 +13,9 @@ interface OTPRepository {
     @Throws(OTPNotFoundException::class)
     fun findByDestination(destination: String): OTPGenerated
 
+    @Throws(OTPNotFoundException::class)
+    fun findByOperationId(operationId: String): OTPGenerated
+
     fun existsByOperationIdAndOtp(operationId: String, otp: String): Boolean
 
     @Throws(OTPRepositoryException::class)

@@ -4,9 +4,6 @@ import com.dreamsoftware.model.OTPGenerated
 import com.dreamsoftware.model.exception.OTPNotFoundException
 import com.dreamsoftware.model.exception.OTPSaveDataException
 import com.dreamsoftware.repository.OTPRepository
-import kotlinx.serialization.decodeFromString
-import kotlinx.serialization.encodeToString
-import kotlinx.serialization.json.Json
 import redis.clients.jedis.JedisCluster
 import redis.clients.jedis.search.IndexDefinition
 import redis.clients.jedis.search.IndexOptions
@@ -25,20 +22,13 @@ class OTPRepositoryImpl(
         private const val OTP_INDEX_PREFIX = "mfa:"
     }
 
-    private val json by lazy {
-        Json {
-            prettyPrint = true
-            isLenient = true
-        }
-    }
-
     override fun save(otpGenerated: OTPGenerated) {
         runCatching {
             with(jedisCluster) {
                 with(otpGenerated) {
                     val itemKey = OTP_INDEX_PREFIX + operationId
-                    jsonSet(itemKey, json.encodeToString(this))
-                    expire(itemKey, expireTime)
+                    jsonSet(itemKey, toJSON())
+                    expire(itemKey, ttlInSeconds)
                 }
             }
         }.getOrElse {
@@ -48,17 +38,21 @@ class OTPRepositoryImpl(
 
     override fun findByDestination(destination: String): OTPGenerated = runCatching {
         jedisCluster.jsonGet(destination).let {
-            json.decodeFromString<OTPGenerated>(it as String)
+            it as OTPGenerated
         }
     }.getOrElse {
         throw OTPNotFoundException("OTP data not found", it)
     }
 
+    override fun findByOperationId(operationId: String): OTPGenerated = runCatching {
+        println("findByOperationId -> ${OTP_INDEX_PREFIX + operationId}")
+        jedisCluster.jsonGet(OTP_INDEX_PREFIX + operationId, OTPGenerated::class.java)
+    }.getOrElse {
+        throw OTPNotFoundException("OTP data not found", it)
+    }
+
     override fun existsByOperationIdAndOtp(operationId: String, otp: String): Boolean = runCatching {
-        val otpGenerated = jedisCluster.jsonGet(operationId).let {
-            json.decodeFromString<OTPGenerated>(it as String)
-        }
-        otpGenerated.otp == otp
+        findByOperationId(operationId).otp == otp
     }.getOrDefault(false)
 
     override fun deleteByOperationId(operationId: String) {
