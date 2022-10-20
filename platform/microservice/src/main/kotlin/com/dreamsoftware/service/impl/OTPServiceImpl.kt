@@ -54,8 +54,11 @@ class OTPServiceImpl(
 
     override suspend fun verify(otpVerifyRequestDTO: OTPVerifyRequestDTO): OTPVerifyResultDTO = with(otpVerifyRequestDTO) {
         with(otpRepository) {
-            OTPVerifyResultDTO(operationId, existsByOperationIdAndOtp(operationId, otp).also {
+            OTPVerifyResultDTO(operationId, existsByOperationIdAndOtp(operationId, otp).also {exists ->
                 deleteByOperationId(operationId)
+                if(!exists) {
+
+                }
             })
         }
     }

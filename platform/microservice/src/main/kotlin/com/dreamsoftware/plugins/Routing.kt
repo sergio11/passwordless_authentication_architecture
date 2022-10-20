@@ -1,6 +1,7 @@
 package com.dreamsoftware.plugins
 
 import com.dreamsoftware.model.ErrorType
+import com.dreamsoftware.model.exception.OTPDestinationIsBlockedException
 import com.dreamsoftware.model.exception.OTPMaxAttemptsAllowedReachedException
 import com.dreamsoftware.model.exception.OTPNotFoundException
 import com.dreamsoftware.model.exception.OTPSenderFailedException
@@ -39,6 +40,10 @@ fun Application.configureRouting() {
         exception<OTPMaxAttemptsAllowedReachedException> { call, _ ->
             call.respond(HttpStatusCode.BadRequest,
                 ErrorType.OTP_MAX_ATTEMPTS_ALLOWED_REACHED.toErrorResponseDTO())
+        }
+        exception<OTPDestinationIsBlockedException> { call, _ ->
+            call.respond(HttpStatusCode.BadRequest,
+                ErrorType.OTP_DESTINATION_IS_BLOCKED.toErrorResponseDTO())
         }
     }
 
