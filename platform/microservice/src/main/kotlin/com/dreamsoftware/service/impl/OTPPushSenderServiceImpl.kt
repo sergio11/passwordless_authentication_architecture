@@ -1,7 +1,6 @@
 package com.dreamsoftware.service.impl
 
 import com.dreamsoftware.model.PushNotificationSenderConfig
-import com.dreamsoftware.model.exception.OTPSenderFailedException
 import com.dreamsoftware.model.fcm.NotificationData
 import com.dreamsoftware.model.fcm.NotificationPushPriority
 import com.dreamsoftware.model.fcm.NotificationRequestData

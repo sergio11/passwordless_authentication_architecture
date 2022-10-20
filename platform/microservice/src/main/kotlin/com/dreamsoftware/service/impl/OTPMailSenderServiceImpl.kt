@@ -1,7 +1,6 @@
 package com.dreamsoftware.service.impl
 
 import com.dreamsoftware.model.MailSenderConfig
-import com.dreamsoftware.model.exception.OTPSenderFailedException
 import com.sendgrid.Method
 import com.sendgrid.Request
 import com.sendgrid.SendGrid

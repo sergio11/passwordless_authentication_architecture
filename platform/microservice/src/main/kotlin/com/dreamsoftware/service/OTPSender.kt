@@ -1,7 +1,6 @@
 package com.dreamsoftware.service
 
 import com.dreamsoftware.model.OtpSenderConfig
-import com.dreamsoftware.model.exception.OTPSenderFailedException
 
 interface OTPSender<T: OtpSenderConfig> {
 

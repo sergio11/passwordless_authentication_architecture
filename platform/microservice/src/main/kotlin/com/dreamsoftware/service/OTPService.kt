@@ -2,7 +2,6 @@ package com.dreamsoftware.service
 
 import com.dreamsoftware.model.exception.OTPMaxAttemptsAllowedReachedException
 import com.dreamsoftware.model.exception.OTPNotFoundException
-import com.dreamsoftware.model.exception.OTPSenderFailedException
 import com.dreamsoftware.rest.dto.*
 
 interface OTPService {
