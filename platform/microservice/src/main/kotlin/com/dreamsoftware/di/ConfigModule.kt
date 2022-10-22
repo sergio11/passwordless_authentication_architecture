@@ -15,4 +15,5 @@ val configModule = module {
     }
     single { get<AppConfig>().mfa }
     single { get<AppConfig>().redis }
+    single { get<AppConfig>().auth }
 }

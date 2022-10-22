@@ -1,10 +1,7 @@
 package com.dreamsoftware.plugins
 
 import com.dreamsoftware.model.ErrorType
-import com.dreamsoftware.model.exception.OTPDestinationIsBlockedException
-import com.dreamsoftware.model.exception.OTPMaxAttemptsAllowedReachedException
-import com.dreamsoftware.model.exception.OTPNotFoundException
-import com.dreamsoftware.model.exception.OTPSenderFailedException
+import com.dreamsoftware.model.exception.*
 import com.dreamsoftware.model.toErrorResponseDTO
 import com.dreamsoftware.rest.routes.configureOtpRoutes
 import io.ktor.http.*
@@ -23,7 +20,8 @@ fun Application.configureRouting() {
             call.respond(HttpStatusCode.Forbidden, cause)
         }
         exception<RequestValidationException> { call, cause ->
-            call.respond(HttpStatusCode.BadRequest, cause.reasons.joinToString())
+            call.respond(HttpStatusCode.BadRequest,
+                ErrorType.REQUEST_VALIDATION_FAILED.toErrorResponseDTO().copy(details = cause.reasons.joinToString()))
         }
         exception<OTPSenderFailedException> { call, _ ->
             call.respond(
@@ -52,5 +50,3 @@ fun Application.configureRouting() {
         configureOtpRoutes()
     }
 }
-class AuthenticationException : RuntimeException()
-class AuthorizationException : RuntimeException()

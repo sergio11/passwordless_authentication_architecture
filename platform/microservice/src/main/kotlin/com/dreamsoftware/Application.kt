@@ -10,6 +10,7 @@ fun main() {
         configureSerialization()
         configureValidation()
         configureMonitoring()
+        configureAuthentication()
         configureKoin()
         configureRouting()
     }.start(wait = true)

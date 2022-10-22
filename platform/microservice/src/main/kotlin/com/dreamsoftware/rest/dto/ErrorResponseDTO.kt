@@ -10,5 +10,7 @@ data class ErrorResponseDTO(
     @SerialName("code")
     private val code: Int,
     @SerialName("message")
-    private val message: String
+    private val message: String,
+    @SerialName("details")
+    private val details: String? = null
 )

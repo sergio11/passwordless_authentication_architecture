@@ -43,6 +43,7 @@ tasks.compileKotlin {
 
 dependencies {
     implementation("io.ktor:ktor-server-content-negotiation-jvm:$ktor_version")
+    implementation("io.ktor:ktor-server-auth:$ktor_version")
     implementation("io.ktor:ktor-server-request-validation:$ktor_version")
     implementation("io.ktor:ktor-server-core-jvm:$ktor_version")
     implementation("io.ktor:ktor-serialization-kotlinx-json-jvm:$ktor_version")

@@ -1,7 +1,8 @@
 package com.dreamsoftware.model
 
-data class AppConfig(val mfa: MfaConfig, val redis: RedisClusterConfig)
+data class AppConfig(val mfa: MfaConfig, val auth: AuthConfig, val redis: RedisClusterConfig)
 data class MfaConfig(val mailSender: MailSenderConfig, val smsSender: SmsSenderConfig, val pushSender: PushNotificationSenderConfig)
+data class AuthConfig(val realmName: String, val adminUser: String, val password: String)
 interface OtpSenderConfig {
     val messageTitle: String
     val messageTemplate: String

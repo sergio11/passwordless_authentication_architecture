@@ -1,4 +1,3 @@
-
 mfa:
   smsSender: {
     messageTitle: "Test",
@@ -35,6 +34,11 @@ mfa:
     messageTitlePlaceholder: "message_title",
     messageContentPlaceholder: "message_content"
   }
+
+auth:
+  realmName: "MFA_REALM"
+  adminUser: "root"
+  password: "secret"
 
 redis:
   nodes:
