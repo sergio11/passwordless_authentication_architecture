@@ -36,7 +36,7 @@ mfa:
   }
 
 auth:
-  realmName: "MFA_REALM"
+  realmName: "mfa@support.com"
   adminUser: "root"
   password: "secret"
 

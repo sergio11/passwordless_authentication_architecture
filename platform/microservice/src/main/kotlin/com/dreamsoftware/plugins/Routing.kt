@@ -3,6 +3,7 @@ package com.dreamsoftware.plugins
 import com.dreamsoftware.model.ErrorType
 import com.dreamsoftware.model.exception.*
 import com.dreamsoftware.model.toErrorResponseDTO
+import com.dreamsoftware.rest.routes.configureAuthorizedClientsRoutes
 import com.dreamsoftware.rest.routes.configureOtpRoutes
 import io.ktor.http.*
 import io.ktor.server.application.*
@@ -48,5 +49,6 @@ fun Application.configureRouting() {
     routing {
         trace { application.log.trace(it.buildText()) }
         configureOtpRoutes()
+        configureAuthorizedClientsRoutes()
     }
 }
