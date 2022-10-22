@@ -86,7 +86,8 @@ graalvmNative {
         named("main") {
             fallback.set(false)
             verbose.set(true)
-            buildArgs.add("--initialize-at-build-time=io.ktor,kotlin,ch.qos.logback,kotlinx.serialization,org.slf4j,io.netty,kotlinx.coroutines.channels.ArrayChannel")
+            buildArgs.add("--initialize-at-build-time=io.ktor,kotlin,ch.qos.logback,kotlinx.serialization,org.slf4j,io.netty")
+            buildArgs.add("--initialize-at-build-time=kotlinx.coroutines")
             buildArgs.add("--initialize-at-run-time=io.netty.channel.DefaultFileRegion")
             buildArgs.add("--initialize-at-run-time=io.netty.channel.epoll.Native")
             buildArgs.add("--initialize-at-run-time=io.netty.channel.epoll.Epoll")
@@ -99,7 +100,6 @@ graalvmNative {
             buildArgs.add("--initialize-at-run-time=io.netty.channel.unix.Limits")
             buildArgs.add("--initialize-at-run-time=io.netty.channel.unix.Errors")
             buildArgs.add("--initialize-at-run-time=io.netty.channel.unix.IovArray")
-            buildArgs.add("--initialize-at-run-time=kotlinx.coroutines.channels.ArrayChannel")
             buildArgs.add("-H:+InstallExitHandlers")
             buildArgs.add("-H:+PrintClassInitialization")
             buildArgs.add("-H:+ReportUnsupportedElementsAtRuntime")
