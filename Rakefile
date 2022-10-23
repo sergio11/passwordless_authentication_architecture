@@ -77,8 +77,20 @@ namespace :mfa do
 		task :build_native_image => [:check_docker_task, :login] do 
 			dockerImageName = "ssanchez11/mfa_service:0.0.1"
 			microserviceFolder = "./platform/microservice"
-			puts "Build Docker Image based on Graavlm ..."  
+			puts "Build Docker Image based on Graavlm at #{microserviceFolder}"  
 			puts `docker build -t #{dockerImageName} #{microserviceFolder}`
+			puts `docker images`
+			puts "Docker image #{dockerImageName} has been created! trying to upload it!"  
+			puts `docker push #{dockerImageName}`
+		end
+
+		desc "Build Docker Image based on Hotspot"
+		task :build_hotspot_image => [:check_docker_task, :login] do 
+			dockerImageName = "ssanchez11/mfa_service_hotspot:0.0.1"
+			microserviceFolder = "./platform/microservice"
+			dockerFile = "#{microserviceFolder}/Dockerfile_hotspot"
+			puts "Build Docker Image based on Hotspot at #{microserviceFolder}"  
+			puts `docker build -t #{dockerImageName} -f #{dockerFile} #{microserviceFolder}`
 			puts `docker images`
 			puts "Docker image #{dockerImageName} has been created! trying to upload it!"  
 			puts `docker push #{dockerImageName}`

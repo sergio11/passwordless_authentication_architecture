@@ -1,14 +1,15 @@
-FROM openjdk:11-jdk-slim
+# ---- Building phase ----
+FROM openjdk:11-jdk-slim AS build
 RUN apt-get update
 RUN apt-get install -y dos2unix
-
 WORKDIR /src
 COPY . /src
 RUN dos2unix gradlew
 RUN bash gradlew buildFatJar --no-daemon --debug
+# ---- Release ----
+FROM adoptopenjdk/openjdk11:jre-11.0.9.1_1-alpine AS release
 RUN mkdir -p /opt/mfa
-RUN cp build/libs/mfa_server.jar /opt/mfa/
-
+COPY --from=build /src/build/libs/mfa_server.jar /opt/mfa/mfa_server.jar
 WORKDIR /opt/mfa
 EXPOSE 8080
 CMD java -jar ./mfa_server.jar
