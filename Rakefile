@@ -72,6 +72,19 @@ namespace :mfa do
 			puts `docker-compose -f ./platform/docker-compose.yml stop 2>&1`
 		end
 
+
+		desc "Build Docker Image based on Graavlm"
+		task :build_native_image => [:check_docker_task, :login] do 
+			dockerImageName = "ssanchez11/mfa_service:0.0.1"
+			microserviceFolder = "./platform/microservice"
+			puts "Build Docker Image based on Graavlm ..."  
+			puts `docker build -t #{dockerImageName} #{microserviceFolder}`
+			puts `docker images`
+			puts "Docker image #{dockerImageName} has been created! trying to upload it!"  
+			puts `docker push #{dockerImageName}`
+		end
+
+
 	end
 	
 	# Redis Cluster

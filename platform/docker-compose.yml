@@ -1,12 +1,5 @@
 version: '3.6'
 
-# Networks
-networks:
-  mfa_network:
-    driver: bridge
-    ipam:
-      config:
-        - subnet: 192.168.0.0/24
 
 # Platform Services
 services:
@@ -23,39 +16,22 @@ services:
     depends_on:
       - mfa_service_1
       - mfa_service_2
-    networks:
-      mfa_network:
-        ipv4_address: 192.168.0.5
+      - mfa_service_3
 
   # MFA Service
   mfa_service_1:
     container_name: mfa_service_1
+    image: 'ssanchez11/mfa_service:0.0.1'
     restart: always
-    build:
-      context: ./microservice
-      dockerfile: Dockerfile_hotspot
-    networks:
-      mfa_network:
-        ipv4_address: 192.168.0.10
 
   # MFA Service
   mfa_service_2:
     container_name: mfa_service_2
+    image: 'ssanchez11/mfa_service:0.0.1'
     restart: always
-    build:
-      context: ./microservice
-      dockerfile: Dockerfile_hotspot
-    networks:
-      mfa_network:
-        ipv4_address: 192.168.0.15
 
   # MFA Service
   mfa_service_3:
     container_name: mfa_service_3
+    image: 'ssanchez11/mfa_service:0.0.1'
     restart: always
-    build:
-      context: ./microservice
-      dockerfile: Dockerfile_hotspot
-    networks:
-      mfa_network:
-        ipv4_address: 192.168.0.20
