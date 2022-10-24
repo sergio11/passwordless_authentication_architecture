@@ -24,7 +24,9 @@ version = "0.0.1"
 application {
     mainClass.set("com.dreamsoftware.ApplicationKt")
     val isDevelopment: Boolean = project.ext.has("development")
-    applicationDefaultJvmArgs = listOf("-Dio.ktor.development=$isDevelopment")
+    applicationDefaultJvmArgs = listOf(
+        "-Dio.ktor.development=$isDevelopment",
+        "-agentlib:native-image-agent=config-output-dir=META-INF/native-image/generated")
 }
 
 repositories {

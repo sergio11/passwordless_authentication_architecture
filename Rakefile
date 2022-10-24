@@ -59,17 +59,29 @@ namespace :mfa do
 			puts "Platform Deployment File OK!"
 		end
 
-		desc "Start Platform Containers"
+		desc "Start Platform Graalvm Containers"
 		task :start => [ :check_docker_task, :login, :check_deployment_file ] do 
 			puts "Start Platform Containers"
 			puts `docker-compose -f ./platform/docker-compose.yml up -d`
 		end 
 
+		desc "Start Platform Hotspot Containers"
+		task :start_hotspot => [ :check_docker_task, :login, :check_deployment_file ] do 
+			puts "Start Platform Containers"
+			puts `docker-compose -f ./platform/docker-compose-hotspot.yml up -d`
+		end 
 
-		desc "Stop Platform Containers"
+
+		desc "Stop Platform Graalvm Containers"
 		task :stop => [ :check_docker_task, :login, :check_deployment_file  ] do
 			puts "Stop Platform Containers"
 			puts `docker-compose -f ./platform/docker-compose.yml stop 2>&1`
+		end
+
+		desc "Stop Platform Hotspot Containers"
+		task :stop_hotspot => [ :check_docker_task, :login, :check_deployment_file  ] do
+			puts "Stop Platform Containers"
+			puts `docker-compose -f ./platform/docker-compose-hotspot.yml stop 2>&1`
 		end
 
 

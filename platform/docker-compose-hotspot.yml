@@ -9,7 +9,7 @@ services:
     image: haproxytech/haproxy-alpine:2.7
     container_name: haproxy
     volumes:
-        - ./haproxy/haproxy.cfg:/usr/local/etc/haproxy/haproxy.cfg:ro
+        - ./haproxy:/usr/local/etc/haproxy:ro
     links:
         - mfa_service_1
         - mfa_service_2
@@ -17,23 +17,24 @@ services:
         - mfa_service_4
     ports:
         - "9090:9090"
+        - "8404:8404"
 
   # MFA Service
   mfa_service_1:
     container_name: mfa_service_1
-    image: 'ssanchez11/mfa_service:0.0.1'
+    image: 'ssanchez11/mfa_service_hotspot:0.0.1'
 
   # MFA Service
   mfa_service_2:
     container_name: mfa_service_2
-    image: 'ssanchez11/mfa_service:0.0.1'
+    image: 'ssanchez11/mfa_service_hotspot:0.0.1'
 
   # MFA Service
   mfa_service_3:
     container_name: mfa_service_3
-    image: 'ssanchez11/mfa_service:0.0.1'
+    image: 'ssanchez11/mfa_service_hotspot:0.0.1'
 
    # MFA Service
   mfa_service_4:
     container_name: mfa_service_4
-    image: 'ssanchez11/mfa_service:0.0.1'
+    image: 'ssanchez11/mfa_service_hotspot:0.0.1'
