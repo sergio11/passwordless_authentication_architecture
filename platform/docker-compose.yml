@@ -9,7 +9,7 @@ services:
     image: haproxytech/haproxy-alpine:2.7
     container_name: haproxy
     volumes:
-        - ./haproxy/haproxy.cfg:/usr/local/etc/haproxy/haproxy.cfg:ro
+        - ./haproxy:/usr/local/etc/haproxy:ro
     links:
         - mfa_service_1
         - mfa_service_2
@@ -17,6 +17,17 @@ services:
         - mfa_service_4
     ports:
         - "9090:9090"
+        - "8404:8404"
+
+  # Easy to use SFTP (SSH File Transfer Protocol) server with OpenSSH.
+  sftp:
+    image: atmoz/sftp
+    container_name: sftp
+    volumes:
+      - ./sftp/users.conf:/etc/sftp/users.conf:ro
+      - ./sftp/config:/home/sftp/config
+    ports:
+      - "2222:22"
 
   # MFA Service
   mfa_service_1:

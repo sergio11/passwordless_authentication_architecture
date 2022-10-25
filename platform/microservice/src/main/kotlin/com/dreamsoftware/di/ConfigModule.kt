@@ -1,14 +1,16 @@
 package com.dreamsoftware.di
 
 import com.dreamsoftware.model.AppConfig
+import com.dreamsoftware.service.ISftpService
 import com.sksamuel.hoplite.ConfigLoaderBuilder
-import com.sksamuel.hoplite.addResourceSource
+import com.sksamuel.hoplite.addResourceOrFileSource
 import org.koin.dsl.module
 
 val configModule = module {
+    includes(sftpModule)
     single<AppConfig> {
         ConfigLoaderBuilder.default()
-            .addResourceSource("/application.yml")
+            .addResourceOrFileSource(get<ISftpService>().getFile(folderName = "config", fileName = "application", fileExt = "yml"))
             .strict()
             .build()
             .loadConfigOrThrow()

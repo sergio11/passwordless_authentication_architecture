@@ -5,11 +5,14 @@ RUN apt-get install -y dos2unix
 WORKDIR /src
 COPY . /src
 RUN dos2unix gradlew
+RUN dos2unix resources/wait-for-it.sh
+RUN chmod +x resources/wait-for-it.sh
 RUN bash gradlew buildFatJar --no-daemon --debug
 # ---- Release ----
 FROM adoptopenjdk/openjdk11:jre-11.0.9.1_1-alpine AS release
 RUN mkdir -p /opt/mfa
 COPY --from=build /src/build/libs/mfa_server.jar /opt/mfa/mfa_server.jar
+COPY --from=build /src/resources/wait-for-it.sh /opt/mfa/wait-for-it.sh
 WORKDIR /opt/mfa
 EXPOSE 8080
-CMD java -jar ./mfa_server.jar
+CMD ["sh", "-c", "echo 'waiting for 300 seconds for sftp to be accessable before starting application' && ./wait-for-it.sh -t 300 sftp:22 -- java -jar mfa_server.jar"]
