@@ -1,0 +1,228 @@
+{
+	"info": {
+		"_postman_id": "65efb494-726d-42df-a5c1-c2989906319a",
+		"name": "MFA APIs",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "23656589"
+	},
+	"item": [
+		{
+			"name": "OTPGenerationRequest",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "ClientId",
+						"value": "QqKmp3WjxtHAliqF3vCFm1RrM7d+FLwXSXoIt58UQGM=",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"type\": \"MAIL\",\r\n    \"destination\": \"target_mail@gmail.com\",\r\n    \"properties\": {}\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9090/otp/v1/generate",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9090",
+					"path": [
+						"otp",
+						"v1",
+						"generate"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "OTPVerifyRequest",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "ClientId",
+						"value": "QqKmp3WjxtHAliqF3vCFm1RrM7d+FLwXSXoIt58UQGM=",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"operation_id\": \"73400643-adbb-4bbb-8349-d6a89f0fa1aa\",\r\n    \"otp\": \"Iv1T4czJBaZb9d3984D\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9090/otp/v1/verify",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9090",
+					"path": [
+						"otp",
+						"v1",
+						"verify"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "OTPResendRequest",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "ClientId",
+						"value": "QqKmp3WjxtHAliqF3vCFm1RrM7d+FLwXSXoIt58UQGM=",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n   \"operation_id\": \"260e108b-d323-4f21-bc22-75f89f1d5ce7\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9090/otp/v1/resend",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9090",
+					"path": [
+						"otp",
+						"v1",
+						"resend"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CreateAuthorizedClient",
+			"request": {
+				"auth": {
+					"type": "digest",
+					"digest": [
+						{
+							"key": "algorithm",
+							"value": "MD5",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "secret",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "root",
+							"type": "string"
+						},
+						{
+							"key": "realm",
+							"value": "mfa@support.com",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n   \"name\": \"client_name\",\r\n   \"password\": \"client_password\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9090/clients/v1/create",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9090",
+					"path": [
+						"clients",
+						"v1",
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DeleteAuthorizedClient",
+			"request": {
+				"auth": {
+					"type": "digest",
+					"digest": [
+						{
+							"key": "algorithm",
+							"value": "MD5",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "secret",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "root",
+							"type": "string"
+						},
+						{
+							"key": "realm",
+							"value": "mfa@support.com",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n   \"id\": \"LJN9RqrcyypqRqQj3cAPWVPsTuyKxDY3Fbe6E3NCSXs=\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9090/clients/v1/delete",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9090",
+					"path": [
+						"clients",
+						"v1",
+						"delete"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
