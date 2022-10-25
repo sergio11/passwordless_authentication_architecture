@@ -33,18 +33,26 @@ services:
   mfa_service_1:
     container_name: mfa_service_1
     image: 'ssanchez11/mfa_service:0.0.1'
+    links:
+      - sftp
 
   # MFA Service
   mfa_service_2:
     container_name: mfa_service_2
     image: 'ssanchez11/mfa_service:0.0.1'
+    links:
+      - sftp
 
   # MFA Service
   mfa_service_3:
     container_name: mfa_service_3
     image: 'ssanchez11/mfa_service:0.0.1'
+    links:
+      - sftp
 
    # MFA Service
   mfa_service_4:
     container_name: mfa_service_4
     image: 'ssanchez11/mfa_service:0.0.1'
+    links:
+      - sftp

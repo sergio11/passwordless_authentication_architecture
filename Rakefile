@@ -65,7 +65,7 @@ namespace :mfa do
 			puts `docker-compose -f ./platform/docker-compose.yml up -d`
 		end 
 
-		desc "Start Platform Hotspot Containers"
+		desc "Start Platform Hotspot JVM Containers"
 		task :start_hotspot => [ :check_docker_task, :login, :check_deployment_file ] do 
 			puts "Start Platform Containers"
 			puts `docker-compose -f ./platform/docker-compose-hotspot.yml up -d`
@@ -78,7 +78,7 @@ namespace :mfa do
 			puts `docker-compose -f ./platform/docker-compose.yml stop 2>&1`
 		end
 
-		desc "Stop Platform Hotspot Containers"
+		desc "Stop Platform Hotspot JVM Containers"
 		task :stop_hotspot => [ :check_docker_task, :login, :check_deployment_file  ] do
 			puts "Stop Platform Containers"
 			puts `docker-compose -f ./platform/docker-compose-hotspot.yml stop 2>&1`
@@ -96,7 +96,7 @@ namespace :mfa do
 			puts `docker push #{dockerImageName}`
 		end
 
-		desc "Build Docker Image based on Hotspot"
+		desc "Build Docker Image based on Hotspot JVM"
 		task :build_hotspot_image => [:check_docker_task, :login] do 
 			dockerImageName = "ssanchez11/mfa_service_hotspot:0.0.1"
 			microserviceFolder = "./platform/microservice"

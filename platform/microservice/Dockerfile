@@ -1,5 +1,5 @@
 # ---- Building phase ----
-FROM ghcr.io/graalvm/native-image AS builder
+FROM ghcr.io/graalvm/native-image:22.2.0 AS builder
 RUN mkdir -p /tmp/export/lib64 \
     && cp /usr/lib64/libstdc++.so.6.0.25 /tmp/export/lib64/libstdc++.so.6 \
     && cp /usr/lib64/libz.so.1 /tmp/export/lib64/libz.so.1
