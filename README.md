@@ -1,5 +1,12 @@
 # mfa_test
 
+Passwordless authentication will be the future of online authentication
+
+Passwordless authentication has been gaining traction, and the main reason is the lack of security that passwords offer today, as passwords are reused and stolen, more and more frequently. The second reason is that passwords have to be increasingly complex, which degrades the user experience. Security and user experience are among the top priorities of any digital company and usually are in direct conflict. Hence the interest in passwordless authentication, with its promises to offer more security and a better user experience at the same time.
+
+## What is passwordless authentication?
+
+In online authentication, a passwordless authentication system is any process that authenticates the user without using a password
 
 ## Used technology.
 
