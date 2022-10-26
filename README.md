@@ -1,5 +1,5 @@
 
-# A passwordless authentication architecture based on an One-time passwords approach.
+# A passwordless authentication architecture based on an One-time codes approach.
 
 Passwordless authentication will be the future of online authentication!
 
