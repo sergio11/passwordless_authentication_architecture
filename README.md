@@ -6,7 +6,15 @@ Passwordless authentication has been gaining traction, and the main reason is th
 
 ## What is passwordless authentication?
 
-In online authentication, a passwordless authentication system is any process that authenticates the user without using a password
+In online authentication, a passwordless authentication system is any process that authenticates the user without using a password, more specifically is the verification of a user's identity by a method that does not require a password. It is important to make a clear distinction between the different methods used to deliver passwordless authentication. Some are more secure and some provide a better user experience. This architecture has been implemented using the one-time passwords (OTPs) solution. They are best known for multi-factor authentication processes, but one-time passwords or one-time codes can also be used as a standalone authentication method.
+
+## How do OTPs work in passwordless authentication?
+
+One-time passwords (or OTPs) are numeric codes linked to a reference. These codes are sent to the user, so only the server and the user can know this code. When the user enters the code in the platform, they are granted with access and hence they are authenticated.
+
+These codes will be sent to the user's phone via SMS, Push Notification or e-mail.
+
+Furthermore, one-time passwords are always linked to a unique reference, so there aren't any chances that the code is overtaken by different uses. OTPs can be limited in time too, which limits the time of validity of the code.
 
 ## Used technology.
 
