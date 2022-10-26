@@ -3,6 +3,16 @@
 
 ## Used technology.
 
+* Redis Cluster Architecture ( rejson module enabled).
+* HAProxy Load Balancer.
+* Ktor Framework.
+* Netty Server.
+* Graalvm high-performance JDK distribution.
+* Twilio Java Helper Library.
+* Sendgrid Java Helper Library.
+* Firebase Cloud Messaging.
+* Jedis ( A redis Java client designed for performance and ease of use ).
+* Hoplite ( A boilerplate-free Kotlin config library for loading configuration files as data classes ).
 
 ## Running Applications as Docker containers.
 
