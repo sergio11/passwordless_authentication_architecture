@@ -5,6 +5,11 @@ val twilio_sdk_version: String by project
 val koin_ktor: String by project
 val hoplite_core_version: String by project
 val jedis_client_version: String by project
+val gson_version: String by project
+val send_grid_sdk_version: String by project
+val commons_lang3_version: String by project
+val commons_text_version: String by project
+val sshj_version: String by project
 
 plugins {
     application
@@ -61,11 +66,11 @@ dependencies {
     implementation("io.ktor:ktor-client-serialization:$ktor_version")
     implementation("io.ktor:ktor-client-logging-jvm:$ktor_version")
     implementation("io.ktor:ktor-client-content-negotiation-jvm:$ktor_version")
-    implementation("com.google.code.gson:gson:2.9.1")
+    implementation("com.google.code.gson:gson:$gson_version")
     // Twilio Java Helper Library
     implementation(group = "com.twilio.sdk", name = "twilio", version = twilio_sdk_version)
     // https://mvnrepository.com/artifact/com.sendgrid/sendgrid-java
-    implementation("com.sendgrid:sendgrid-java:4.9.3")
+    implementation("com.sendgrid:sendgrid-java:$send_grid_sdk_version")
     // Koin for Ktor
     implementation("io.insert-koin:koin-ktor:$koin_ktor")
     // SLF4J Logger
@@ -76,11 +81,11 @@ dependencies {
     // Redis Java client designed for performance and ease of use.
     implementation("redis.clients:jedis:$jedis_client_version")
     // https://mvnrepository.com/artifact/org.apache.commons/commons-lang3
-    implementation("org.apache.commons:commons-lang3:3.12.0")
+    implementation("org.apache.commons:commons-lang3:$commons_lang3_version")
     // https://mvnrepository.com/artifact/org.apache.commons/commons-text
-    implementation("org.apache.commons:commons-text:1.10.0")
+    implementation("org.apache.commons:commons-text:$commons_text_version")
     // https://mvnrepository.com/artifact/com.hierynomus/sshj
-    implementation("com.hierynomus:sshj:0.34.0")
+    implementation("com.hierynomus:sshj:$sshj_version")
     testImplementation("io.ktor:ktor-server-tests-jvm:$ktor_version")
     testImplementation("org.jetbrains.kotlin:kotlin-test-junit:$kotlin_version")
 }

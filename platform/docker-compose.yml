@@ -19,40 +19,39 @@ services:
         - "9090:9090"
         - "8404:8404"
 
-  # Easy to use SFTP (SSH File Transfer Protocol) server with OpenSSH.
-  sftp:
-    image: atmoz/sftp
-    container_name: sftp
+  ftp_repository:
+    container_name: ftp_repository
+    image: garethflowers/ftp-server
+    environment:
+      - FTP_PASS=thunderotp00
+      - FTP_USER=thunderotp
     volumes:
-      - ./sftp/users.conf:/etc/sftp/users.conf:ro
-      - ./sftp/config:/home/sftp/config
-    ports:
-      - "2222:22"
+      - './ftp/data:/home/thunderotp'
 
   # MFA Service
   mfa_service_1:
     container_name: mfa_service_1
     image: 'ssanchez11/mfa_service:0.0.1'
     links:
-      - sftp
+      - ftp_repository
 
   # MFA Service
   mfa_service_2:
     container_name: mfa_service_2
     image: 'ssanchez11/mfa_service:0.0.1'
     links:
-      - sftp
+      - ftp_repository
 
   # MFA Service
   mfa_service_3:
     container_name: mfa_service_3
     image: 'ssanchez11/mfa_service:0.0.1'
     links:
-      - sftp
+      - ftp_repository
 
    # MFA Service
   mfa_service_4:
     container_name: mfa_service_4
     image: 'ssanchez11/mfa_service:0.0.1'
     links:
-      - sftp
+      - ftp_repository
