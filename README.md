@@ -17,6 +17,10 @@ These codes will be sent to the user's phone via SMS, Push Notification or e-mai
 
 Furthermore, one-time passwords are always linked to a unique reference, so there aren't any chances that the code is overtaken by different uses. OTPs can be limited in time too, which limits the time of validity of the code.
 
+## Architecture Overview
+
+<img width="auto" src="./doc/ThunderOTP.drawio.png" />
+
 ## Used technology.
 
 * Redis Cluster Architecture ( rejson module enabled).
