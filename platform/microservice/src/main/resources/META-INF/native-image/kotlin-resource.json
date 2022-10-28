@@ -1,0 +1,16 @@
+{
+  "resources": [
+    {
+      "pattern": "META-INF/.*.kotlin_module$"
+    },
+    {
+      "pattern": "META-INF/services/kotlin.reflect.jvm.internal.impl.builtins.BuiltInsLoader"
+    },
+    {
+      "pattern": "META-INF/services/kotlin.reflect.jvm.internal.impl.resolve.ExternalOverridabilityCondition"
+    },
+    {
+      "pattern": ".*.kotlin_builtins"
+    }
+  ]
+}

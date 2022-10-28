@@ -19,12 +19,16 @@ services:
         - "9090:9090"
         - "8404:8404"
 
+  # FTP configuration repository
   ftp_repository:
     container_name: ftp_repository
     image: garethflowers/ftp-server
     environment:
       - FTP_PASS=thunderotp00
       - FTP_USER=thunderotp
+    ports:
+      - '20-21:20-21/tcp'
+      - '40000-40009:40000-40009/tcp'
     volumes:
       - './ftp/data:/home/thunderotp'
 
