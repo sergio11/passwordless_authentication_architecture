@@ -76,3 +76,5 @@ In this table you can view the ports assigned to each service to access to the W
 | Container | Port |
 | ------ | ------ |
 | Redis Insight | localhost:8001 |
+| HAProxy Load Balancer | localhost:9090 |
+| HAProxy Stats | localhost:8404 |
