@@ -23,6 +23,11 @@ Furthermore, one-time passwords are always linked to a unique reference, so ther
 
 <img width="auto" src="./doc/ThunderOTP.drawio.png" />
 
+## Powered by lightweight cloud-native microservices implemented by Ktor Graalvm native images.
+
+<img width="350" height="auto" src="./doc/screenshots/ktor_logo.png" />
+<img width="250" height="auto" src="./doc/screenshots/graalvm_logo.png" />
+
 ## Used technology.
 
 * Redis Cluster Architecture ( rejson module enabled).
