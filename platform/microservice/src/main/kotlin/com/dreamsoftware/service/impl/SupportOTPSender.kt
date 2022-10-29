@@ -11,7 +11,7 @@ abstract class SupportOTPSender<T : OtpSenderConfig> : OTPSender<T> {
         const val VARIABLE_SUFFIX = "}"
     }
 
-    protected fun createMessage(
+    protected open fun createMessage(
         otpSetting: OtpSenderConfig,
         otp: String,
         destination: String,
