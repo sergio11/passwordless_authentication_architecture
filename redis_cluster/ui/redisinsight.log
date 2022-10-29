@@ -1,12 +1,3 @@
-WARNING 2022-10-18 18:50:42,790 django.request Not Found: /api/instance/fddbe73b-91c5-484c-9ed4-99ee321295b5/delete-key/
-WARNING 2022-10-18 18:50:44,398 django.request Not Found: /api/instance/fddbe73b-91c5-484c-9ed4-99ee321295b5/delete-key/
-WARNING 2022-10-18 18:50:45,859 django.request Not Found: /api/instance/fddbe73b-91c5-484c-9ed4-99ee321295b5/delete-key/
-WARNING 2022-10-18 18:50:46,286 django.request Not Found: /api/instance/fddbe73b-91c5-484c-9ed4-99ee321295b5/delete-key/
-WARNING 2022-10-18 18:50:47,381 django.request Not Found: /api/instance/fddbe73b-91c5-484c-9ed4-99ee321295b5/delete-key/
-WARNING 2022-10-18 19:08:41,225 django.request Not Found: /api/instance/fddbe73b-91c5-484c-9ed4-99ee321295b5/value-details/
-WARNING 2022-10-18 19:08:41,281 django.request Not Found: /api/instance/fddbe73b-91c5-484c-9ed4-99ee321295b5/key-metadata/
-WARNING 2022-10-18 19:36:41,018 django.request Not Found: /api/instance/fddbe73b-91c5-484c-9ed4-99ee321295b5/value-details/
-WARNING 2022-10-18 19:36:41,043 django.request Not Found: /api/instance/fddbe73b-91c5-484c-9ed4-99ee321295b5/key-metadata/
-WARNING 2022-10-18 19:57:07,905 django.request Not Found: /api/instance/fddbe73b-91c5-484c-9ed4-99ee321295b5/delete-key/
-WARNING 2022-10-18 20:00:05,920 django.request Not Found: /api/instance/fddbe73b-91c5-484c-9ed4-99ee321295b5/key-metadata/
-WARNING 2022-10-18 20:00:05,914 django.request Not Found: /api/instance/fddbe73b-91c5-484c-9ed4-99ee321295b5/value-details/
+WARNING 2022-10-29 11:38:37,076 django.request Not Found: /api/instance/fddbe73b-91c5-484c-9ed4-99ee321295b5/value-details/
+WARNING 2022-10-29 11:38:37,099 django.request Not Found: /api/instance/fddbe73b-91c5-484c-9ed4-99ee321295b5/key-metadata/
+WARNING 2022-10-29 11:38:37,371 django.request Not Found: /api/instance/fddbe73b-91c5-484c-9ed4-99ee321295b5/key-metadata/
