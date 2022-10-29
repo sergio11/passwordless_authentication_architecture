@@ -9,13 +9,14 @@ val gson_version: String by project
 val send_grid_sdk_version: String by project
 val commons_lang3_version: String by project
 val commons_text_version: String by project
+val commons_net_version: String by project
 
 plugins {
     application
     kotlin("jvm") version "1.7.10"
     id("io.ktor.plugin") version "2.1.1"
     id("org.jetbrains.kotlin.plugin.serialization") version "1.7.10"
-    id("org.graalvm.buildtools.native") version "0.9.11"
+    id("org.graalvm.buildtools.native") version "0.9.14"
 }
 
 java {
@@ -38,7 +39,7 @@ repositories {
 
 ktor {
     fatJar {
-        archiveFileName.set("mfa_server.jar")
+        archiveFileName.set("otp_service.jar")
     }
 }
 
@@ -83,7 +84,7 @@ dependencies {
     // https://mvnrepository.com/artifact/org.apache.commons/commons-text
     implementation("org.apache.commons:commons-text:$commons_text_version")
     // https://mvnrepository.com/artifact/commons-net/commons-net
-    implementation("commons-net:commons-net:3.8.0")
+    implementation("commons-net:commons-net:$commons_net_version")
     testImplementation("io.ktor:ktor-server-tests-jvm:$ktor_version")
     testImplementation("org.jetbrains.kotlin:kotlin-test-junit:$kotlin_version")
 }
@@ -115,7 +116,7 @@ graalvmNative {
             buildArgs.add("""-H:ResourceConfigurationFiles=
         |${projectDir}/src/main/resources/META-INF/native-image/kotlin-resource.json,
         |${projectDir}/src/main/resources/META-INF/native-image/resource-config.json""".trimMargin().replace(System.lineSeparator(), ""))
-            imageName.set("mfa_graalvm_service")
+            imageName.set("otp_graalvm_service")
         }
     }
 }

@@ -11,10 +11,12 @@ services:
     volumes:
         - ./haproxy:/usr/local/etc/haproxy:ro
     links:
-        - mfa_service_1
-        - mfa_service_2
-        - mfa_service_3
-        - mfa_service_4
+        - otp_service_1
+        - otp_service_2
+        - otp_service_3
+        - otp_service_4
+        - otp_service_5
+        - otp_service_6
     ports:
         - "9090:9090"
         - "8404:8404"
@@ -26,36 +28,47 @@ services:
     environment:
       - FTP_PASS=thunderotp00
       - FTP_USER=thunderotp
-    ports:
-      - '20-21:20-21/tcp'
-      - '40000-40009:40000-40009/tcp'
     volumes:
       - './ftp/data:/home/thunderotp'
 
-  # MFA Service
-  mfa_service_1:
-    container_name: mfa_service_1
-    image: 'ssanchez11/mfa_service:0.0.1'
+  # OTP service
+  otp_service_1:
+    container_name: otp_service_1
+    image: 'ssanchez11/otp_service:0.0.1'
     links:
       - ftp_repository
 
-  # MFA Service
-  mfa_service_2:
-    container_name: mfa_service_2
-    image: 'ssanchez11/mfa_service:0.0.1'
+  # OTP Service
+  otp_service_2:
+    container_name: otp_service_2
+    image: 'ssanchez11/otp_service:0.0.1'
     links:
       - ftp_repository
 
-  # MFA Service
-  mfa_service_3:
-    container_name: mfa_service_3
-    image: 'ssanchez11/mfa_service:0.0.1'
+  # OTP Service
+  otp_service_3:
+    container_name: otp_service_3
+    image: 'ssanchez11/otp_service:0.0.1'
     links:
       - ftp_repository
 
-   # MFA Service
-  mfa_service_4:
-    container_name: mfa_service_4
-    image: 'ssanchez11/mfa_service:0.0.1'
+  # OTP Service
+  otp_service_4:
+    container_name: otp_service_4
+    image: 'ssanchez11/otp_service:0.0.1'
+    links:
+      - ftp_repository
+
+  # OTP Service
+  otp_service_5:
+    container_name: otp_service_5
+    image: 'ssanchez11/otp_service:0.0.1'
+    links:
+      - ftp_repository
+
+  # OTP Service
+  otp_service_6:
+    container_name: otp_service_6
+    image: 'ssanchez11/otp_service:0.0.1'
     links:
       - ftp_repository

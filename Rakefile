@@ -1,4 +1,4 @@
-namespace :mfa do
+namespace :thunderotp do
 
 	task default: %w[deploy]
 
@@ -87,7 +87,7 @@ namespace :mfa do
 
 		desc "Build Docker Image based on Graavlm"
 		task :build_native_image => [:check_docker_task, :login] do 
-			dockerImageName = "ssanchez11/mfa_service:0.0.1"
+			dockerImageName = "ssanchez11/otp_service:0.0.1"
 			microserviceFolder = "./platform/microservice"
 			puts "Build Docker Image based on Graavlm at #{microserviceFolder}"  
 			puts `docker build -t #{dockerImageName} #{microserviceFolder}`
@@ -98,7 +98,7 @@ namespace :mfa do
 
 		desc "Build Docker Image based on Hotspot JVM"
 		task :build_hotspot_image => [:check_docker_task, :login] do 
-			dockerImageName = "ssanchez11/mfa_service_hotspot:0.0.1"
+			dockerImageName = "ssanchez11/otp_service_hotspot:0.0.1"
 			microserviceFolder = "./platform/microservice"
 			dockerFile = "#{microserviceFolder}/Dockerfile_hotspot"
 			puts "Build Docker Image based on Hotspot at #{microserviceFolder}"  

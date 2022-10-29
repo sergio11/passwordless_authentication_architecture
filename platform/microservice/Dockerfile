@@ -10,7 +10,7 @@ RUN ./gradlew clean nativeCompile --no-daemon --debug
 # ---- Release ----
 FROM gcr.io/distroless/base AS release
 COPY --from=builder /tmp/export/lib64 /lib64
-COPY --from=builder /home/gradle/src/build/native/nativeCompile/mfa_graalvm_service app
+COPY --from=builder /home/gradle/src/build/native/nativeCompile/otp_graalvm_service app
 ENV LD_LIBRARY_PATH /lib64
 EXPOSE 8080
 ENTRYPOINT ["/app"]
