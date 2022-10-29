@@ -1,5 +1,6 @@
 package com.dreamsoftware.repository.impl
 
+import com.dreamsoftware.model.RedisStorageConfig
 import com.dreamsoftware.model.exception.AuthorizedClientsCheckException
 import com.dreamsoftware.model.exception.AuthorizedClientsRemoveException
 import com.dreamsoftware.model.exception.AuthorizedClientsSaveException
@@ -9,16 +10,13 @@ import redis.clients.jedis.JedisCluster
 import java.util.*
 
 class AuthorizedClientsRepositoryImpl(
-    private val jedisCluster: JedisCluster
+    private val jedisCluster: JedisCluster,
+    private val redisStorageConfig: RedisStorageConfig
 ): AuthorizedClientsRepository {
-
-    private companion object {
-        const val AUTHORIZED_CLIENTS_KEY = "mfa_authorized_clients"
-    }
 
     override fun save(name: String, password: String): String = runCatching {
         "${UUID.randomUUID()}_${name}_${password}".hashSha256andEncode().also {
-            jedisCluster.lpush(AUTHORIZED_CLIENTS_KEY, it)
+            jedisCluster.lpush(redisStorageConfig.authorizedClientsKey, it)
         }
     }.getOrElse {
         throw AuthorizedClientsSaveException("An error occurred when trying to save client")
@@ -26,14 +24,14 @@ class AuthorizedClientsRepositoryImpl(
 
     override fun delete(id: String) {
         runCatching {
-            jedisCluster.lrem(AUTHORIZED_CLIENTS_KEY, 0, id)
+            jedisCluster.lrem(redisStorageConfig.authorizedClientsKey, 0, id)
         }.getOrElse {
             throw AuthorizedClientsRemoveException("An error occurred when trying to remove client")
         }
     }
 
     override fun exists(id: String): Boolean = runCatching {
-        jedisCluster.lpos(AUTHORIZED_CLIENTS_KEY,  id) != null
+        jedisCluster.lpos(redisStorageConfig.authorizedClientsKey,  id) != null
     }.getOrElse {
         throw AuthorizedClientsCheckException("An error occurred when checking clients")
     }

@@ -15,6 +15,8 @@ data class OTPGenerated(
     val ttlInSeconds: Long,
     @SerializedName("destination")
     val destination: String,
+    @SerializedName("destination_hash")
+    val destinationHash: String,
     @SerializedName("sender_type")
     val senderType: OTPTypeEnum,
     @SerializedName("properties")

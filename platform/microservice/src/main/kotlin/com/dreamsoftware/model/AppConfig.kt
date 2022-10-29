@@ -1,7 +1,7 @@
 package com.dreamsoftware.model
 
-data class AppConfig(val mfa: MfaConfig, val auth: AuthConfig, val redis: RedisClusterConfig)
-data class MfaConfig(val mailSender: MailSenderConfig, val smsSender: SmsSenderConfig, val pushSender: PushNotificationSenderConfig)
+data class AppConfig(val senders: SendersConfig, val auth: AuthConfig, val redis: RedisClusterConfig)
+data class SendersConfig(val mailSender: MailSenderConfig, val smsSender: SmsSenderConfig, val pushSender: PushNotificationSenderConfig)
 data class AuthConfig(val realmName: String, val adminUser: String, val password: String)
 interface OtpSenderConfig {
     val messageTitle: String
@@ -46,5 +46,12 @@ data class SmsSenderConfig(
     val serviceKey: String,
     val fromPhoneNumber: String
 ): OtpSenderConfig
-data class RedisClusterConfig(val nodes: List<RedisNodeConfig>)
+data class RedisClusterConfig(val storageConfig: RedisStorageConfig, val nodes: List<RedisNodeConfig>)
+data class RedisStorageConfig(
+    val operationsPrefix: String,
+    val destinationsPrefix: String,
+    val faultsPrefix: String,
+    val verificationFailedTtlInSeconds: Long,
+    val maxVerificationFailedByDestination: Int,
+    val authorizedClientsKey: String)
 data class RedisNodeConfig(val host: String, val port: Int)

@@ -1,38 +1,29 @@
 package com.dreamsoftware.repository.impl
 
 import com.dreamsoftware.model.OTPGenerated
+import com.dreamsoftware.model.RedisStorageConfig
 import com.dreamsoftware.model.exception.OTPDestinationIsBlockedException
 import com.dreamsoftware.model.exception.OTPNotFoundException
 import com.dreamsoftware.model.exception.OTPSaveDataException
 import com.dreamsoftware.repository.OTPRepository
 import com.dreamsoftware.utils.hashSha256andEncode
 import redis.clients.jedis.JedisCluster
-import redis.clients.jedis.search.IndexDefinition
-import redis.clients.jedis.search.IndexOptions
-import redis.clients.jedis.search.Schema
 
 class OTPRepositoryImpl(
-    private val jedisCluster: JedisCluster
+    private val jedisCluster: JedisCluster,
+    private val redisStorageConfig: RedisStorageConfig
 ): OTPRepository {
-
-    init {
-        createRSearchIndex()
-    }
-
-    private companion object {
-        private const val OTP_INDEX_NAME = "mfa-otp-index"
-        private const val OTP_INDEX_PREFIX = "mfa:"
-        private const val VERIFICATION_FAILED_TTL_IN_SECONDS = 15 * 60L
-        private const val MAX_VERIFICATION_FAILED_BY_DESTINATION = 5
-    }
 
     override fun save(otpGenerated: OTPGenerated): Unit = with(otpGenerated) {
         checkDestinationIsBlocked(destination)
         runCatching {
             with(jedisCluster) {
-                val itemKey = OTP_INDEX_PREFIX + operationId
-                jsonSet(itemKey, toJSON())
-                expire(itemKey, ttlInSeconds)
+                with(redisStorageConfig) {
+                    val operationKey = operationsPrefix + operationId
+                    jsonSet(operationKey, toJSON())
+                    expire(operationKey, ttlInSeconds)
+                    set(destinationsPrefix + destination.hashSha256andEncode(), operationId)
+                }
             }
         }.getOrElse {
             throw OTPSaveDataException("An error occurred when trying to save OTP data", it)
@@ -40,18 +31,15 @@ class OTPRepositoryImpl(
     }
 
     override fun findByDestination(destination: String): OTPGenerated = runCatching {
-        jedisCluster.jsonGet(destination).let {
-            it as OTPGenerated
-        }
+        val operationId = jedisCluster.get(redisStorageConfig.destinationsPrefix + destination.hashSha256andEncode())
+        findByOperationId(operationId)
     }.getOrElse {
         throw OTPNotFoundException("OTP data not found", it)
-    }.also {
-        checkDestinationIsBlocked(it.destination)
     }
 
     override fun findByOperationId(operationId: String): OTPGenerated = runCatching {
-        println("findByOperationId -> ${OTP_INDEX_PREFIX + operationId}")
-        jedisCluster.jsonGet(OTP_INDEX_PREFIX + operationId, OTPGenerated::class.java)
+        println("findByOperationId -> ${redisStorageConfig.operationsPrefix + operationId}")
+        jedisCluster.jsonGet(redisStorageConfig.operationsPrefix + operationId, OTPGenerated::class.java)
     }.getOrElse {
         throw OTPNotFoundException("OTP data not found", it)
     }.also {
@@ -73,48 +61,32 @@ class OTPRepositoryImpl(
     }
 
     override fun deleteByOperationId(operationId: String) {
-        jedisCluster.del(OTP_INDEX_PREFIX + operationId).also {
+        jedisCluster.del(redisStorageConfig.operationsPrefix + operationId).also {
             println("deleteByOperationId -> $operationId result -> $it")
         }
     }
 
     private fun checkDestinationIsBlocked(destination: String) = with(jedisCluster) {
-        destination.hashSha256andEncode().let { key ->
-            if(exists(key) && get(key).toInt() > MAX_VERIFICATION_FAILED_BY_DESTINATION) {
-                throw OTPDestinationIsBlockedException("$destination has been blocked.")
+        with(redisStorageConfig) {
+            destination.hashSha256andEncode().let { faultsPrefix + it }.let { key ->
+                if(exists(key) && get(key).toInt() > maxVerificationFailedByDestination) {
+                    throw OTPDestinationIsBlockedException("$destination has been blocked.")
+                }
             }
         }
     }
 
     private fun recordVerificationFailed(destination: String) = runCatching {
         with(jedisCluster) {
-            destination.hashSha256andEncode().let { key ->
-                incr(key)
-                expire(key, VERIFICATION_FAILED_TTL_IN_SECONDS)
+            with(redisStorageConfig) {
+                destination.hashSha256andEncode().let { key ->
+                    incr(faultsPrefix + key)
+                    expire(key, verificationFailedTtlInSeconds)
+                }
             }
         }
     }.getOrElse {
         throw OTPSaveDataException("An error occurred when recording verification failed")
-    }
-
-    private fun createRSearchIndex() {
-        try {
-            val options = jedisCluster.ftInfo(OTP_INDEX_NAME)
-            options.forEach { (k, v) ->
-                println("Key: $k, Value: $v")
-            }
-        } catch (e: Exception) {
-            println("createRSearchIndex ex -> ${e.message}")
-            jedisCluster.ftCreate(OTP_INDEX_NAME, IndexOptions
-                .defaultOptions()
-                .setDefinition(
-                    IndexDefinition()
-                        .setPrefixes(OTP_INDEX_PREFIX)
-                ), Schema()
-                .addTextField("operation_id", 5.0)
-                .addTextField("otp", 1.0)
-                .addTextField("destination", 1.0));
-        }
     }
 
 }

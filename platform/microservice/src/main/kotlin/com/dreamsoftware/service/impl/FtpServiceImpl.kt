@@ -12,7 +12,7 @@ class FtpServiceImpl(
 ): IFtpService {
 
     private companion object {
-        const val FTP_HOSTNAME = "ftp_repository"
+        const val FTP_HOSTNAME = "localhost"
         const val FTP_USER = "thunderotp"
         const val FTP_PASSWORD = "thunderotp00"
     }

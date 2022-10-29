@@ -4,6 +4,7 @@ import com.dreamsoftware.model.OTPGenerated
 import com.dreamsoftware.model.OtpSenderConfig
 import com.dreamsoftware.rest.dto.OTPGenerationRequestDTO
 import com.dreamsoftware.service.OTPGenerator
+import com.dreamsoftware.utils.hashSha256andEncode
 import org.apache.commons.lang3.RandomStringUtils
 import java.util.*
 
@@ -17,6 +18,7 @@ class OTPGeneratorImpl: OTPGenerator {
                     ttlInSeconds = ttlMinutes * 60L,
                     expireAtInMillis = System.currentTimeMillis() + ttlMinutes * 60 * 1000,
                     destination = destination,
+                    destinationHash = destination.hashSha256andEncode(),
                     properties = properties,
                     senderType = type,
                     attempts = 1

@@ -1,3 +1,1183 @@
 WARNING 2022-10-29 11:38:37,076 django.request Not Found: /api/instance/fddbe73b-91c5-484c-9ed4-99ee321295b5/value-details/
 WARNING 2022-10-29 11:38:37,099 django.request Not Found: /api/instance/fddbe73b-91c5-484c-9ed4-99ee321295b5/key-metadata/
 WARNING 2022-10-29 11:38:37,371 django.request Not Found: /api/instance/fddbe73b-91c5-484c-9ed4-99ee321295b5/key-metadata/
+ERROR 2022-10-29 17:03:13,655 django.request Internal Server Error: /api/instance/fddbe73b-91c5-484c-9ed4-99ee321295b5/redisai/scripts/
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/usr/local/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/usr/local/lib/python3.10/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/usr/local/lib/python3.10/site-packages/django/views/generic/base.py", line 84, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/usr/local/lib/python3.10/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/usr/local/lib/python3.10/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/usr/local/lib/python3.10/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/usr/local/lib/python3.10/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/usr/local/lib/python3.10/site-packages/rest_framework/decorators.py", line 50, in handler
+    return func(*args, **kwargs)
+  File "./redisinsight/core/views/decorators.py", line 47, in _wrapped_view
+  File "./redisinsight/utils/__init__.py", line 109, in _wrapped_view
+  File "./redisinsight/utils/__init__.py", line 144, in _wrapped_view
+  File "./redisinsight/utils/__init__.py", line 199, in _wrapped_view
+  File "./redisinsight/core/views/decorators.py", line 21, in wrapped_view
+  File "./redisinsight/redisai/views.py", line 40, in _wrapped_view
+  File "./redisinsight/redisai/views.py", line 224, in scripts_view
+  File "./redisinsight/redisai/services.py", line 206, in list_scripts
+  File "./redisinsight/redisai/services.py", line 185, in _list_scripts
+  File "/usr/local/lib/python3.10/site-packages/rediscluster/client.py", line 555, in execute_command
+    return self._execute_command(*args, **kwargs)
+  File "/usr/local/lib/python3.10/site-packages/rediscluster/client.py", line 588, in _execute_command
+    slot = self._determine_slot(*args)
+  File "/usr/local/lib/python3.10/site-packages/rediscluster/client.py", line 481, in _determine_slot
+    raise RedisClusterException("No way to dispatch this command to Redis Cluster. Missing key.")
+rediscluster.exceptions.RedisClusterException: No way to dispatch this command to Redis Cluster. Missing key.
+ERROR 2022-10-29 17:03:13,656 django.request Internal Server Error: /api/instance/fddbe73b-91c5-484c-9ed4-99ee321295b5/redisai/check-module-loaded/
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/usr/local/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/usr/local/lib/python3.10/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/usr/local/lib/python3.10/site-packages/django/views/generic/base.py", line 84, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/usr/local/lib/python3.10/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/usr/local/lib/python3.10/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/usr/local/lib/python3.10/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/usr/local/lib/python3.10/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/usr/local/lib/python3.10/site-packages/rest_framework/decorators.py", line 50, in handler
+    return func(*args, **kwargs)
+  File "./redisinsight/core/views/decorators.py", line 47, in _wrapped_view
+  File "./redisinsight/utils/__init__.py", line 109, in _wrapped_view
+  File "./redisinsight/utils/__init__.py", line 144, in _wrapped_view
+  File "./redisinsight/utils/__init__.py", line 199, in _wrapped_view
+  File "./redisinsight/core/views/decorators.py", line 21, in wrapped_view
+  File "./redisinsight/redisai/views.py", line 40, in _wrapped_view
+  File "./redisinsight/redisai/views.py", line 371, in check_redisai_module_loaded
+  File "./redisinsight/redisai/services.py", line 579, in check_redisai_module_loaded
+  File "/usr/local/lib/python3.10/site-packages/rediscluster/client.py", line 555, in execute_command
+    return self._execute_command(*args, **kwargs)
+  File "/usr/local/lib/python3.10/site-packages/rediscluster/client.py", line 588, in _execute_command
+    slot = self._determine_slot(*args)
+  File "/usr/local/lib/python3.10/site-packages/rediscluster/client.py", line 481, in _determine_slot
+    raise RedisClusterException("No way to dispatch this command to Redis Cluster. Missing key.")
+rediscluster.exceptions.RedisClusterException: No way to dispatch this command to Redis Cluster. Missing key.
+ERROR 2022-10-29 17:03:13,656 django.request Internal Server Error: /api/instance/fddbe73b-91c5-484c-9ed4-99ee321295b5/redisai/models/
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/usr/local/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/usr/local/lib/python3.10/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/usr/local/lib/python3.10/site-packages/django/views/generic/base.py", line 84, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/usr/local/lib/python3.10/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/usr/local/lib/python3.10/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/usr/local/lib/python3.10/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/usr/local/lib/python3.10/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/usr/local/lib/python3.10/site-packages/rest_framework/decorators.py", line 50, in handler
+    return func(*args, **kwargs)
+  File "./redisinsight/core/views/decorators.py", line 47, in _wrapped_view
+  File "./redisinsight/utils/__init__.py", line 109, in _wrapped_view
+  File "./redisinsight/utils/__init__.py", line 144, in _wrapped_view
+  File "./redisinsight/utils/__init__.py", line 199, in _wrapped_view
+  File "./redisinsight/core/views/decorators.py", line 21, in wrapped_view
+  File "./redisinsight/redisai/views.py", line 40, in _wrapped_view
+  File "./redisinsight/redisai/views.py", line 85, in models_view
+  File "./redisinsight/redisai/services.py", line 181, in list_models
+  File "./redisinsight/redisai/services.py", line 157, in _list_models
+  File "/usr/local/lib/python3.10/site-packages/rediscluster/client.py", line 555, in execute_command
+    return self._execute_command(*args, **kwargs)
+  File "/usr/local/lib/python3.10/site-packages/rediscluster/client.py", line 588, in _execute_command
+    slot = self._determine_slot(*args)
+  File "/usr/local/lib/python3.10/site-packages/rediscluster/client.py", line 481, in _determine_slot
+    raise RedisClusterException("No way to dispatch this command to Redis Cluster. Missing key.")
+rediscluster.exceptions.RedisClusterException: No way to dispatch this command to Redis Cluster. Missing key.
+ERROR 2022-10-29 17:03:17,622 django.request Internal Server Error: /api/instance/fddbe73b-91c5-484c-9ed4-99ee321295b5/all-index/
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/usr/local/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/usr/local/lib/python3.10/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/usr/local/lib/python3.10/site-packages/django/views/generic/base.py", line 84, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/usr/local/lib/python3.10/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/usr/local/lib/python3.10/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/usr/local/lib/python3.10/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/usr/local/lib/python3.10/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/usr/local/lib/python3.10/site-packages/rest_framework/decorators.py", line 50, in handler
+    return func(*args, **kwargs)
+  File "./redisinsight/core/views/decorators.py", line 47, in _wrapped_view
+  File "./redisinsight/utils/__init__.py", line 109, in _wrapped_view
+  File "./redisinsight/utils/__init__.py", line 144, in _wrapped_view
+  File "./redisinsight/core/services/licensing.py", line 325, in _wrapped_view
+  File "./redisinsight/core/services/access_control.py", line 198, in _wrapped_view
+  File "./redisinsight/utils/__init__.py", line 199, in _wrapped_view
+  File "./redisinsight/core/views/decorators.py", line 21, in wrapped_view
+  File "./redisinsight/redisearch/decorators.py", line 35, in _wrapped_view
+  File "./redisinsight/redisearch/views/__init__.py", line 12, in get_all_index
+  File "./redisinsight/redisearch/services/api.py", line 271, in get_indices
+  File "/usr/local/lib/python3.10/site-packages/rediscluster/client.py", line 555, in execute_command
+    return self._execute_command(*args, **kwargs)
+  File "/usr/local/lib/python3.10/site-packages/rediscluster/client.py", line 588, in _execute_command
+    slot = self._determine_slot(*args)
+  File "/usr/local/lib/python3.10/site-packages/rediscluster/client.py", line 481, in _determine_slot
+    raise RedisClusterException("No way to dispatch this command to Redis Cluster. Missing key.")
+rediscluster.exceptions.RedisClusterException: No way to dispatch this command to Redis Cluster. Missing key.
+ERROR 2022-10-29 17:03:20,733 django.request Internal Server Error: /api/instance/fddbe73b-91c5-484c-9ed4-99ee321295b5/all-index/
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/usr/local/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/usr/local/lib/python3.10/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/usr/local/lib/python3.10/site-packages/django/views/generic/base.py", line 84, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/usr/local/lib/python3.10/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/usr/local/lib/python3.10/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/usr/local/lib/python3.10/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/usr/local/lib/python3.10/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/usr/local/lib/python3.10/site-packages/rest_framework/decorators.py", line 50, in handler
+    return func(*args, **kwargs)
+  File "./redisinsight/core/views/decorators.py", line 47, in _wrapped_view
+  File "./redisinsight/utils/__init__.py", line 109, in _wrapped_view
+  File "./redisinsight/utils/__init__.py", line 144, in _wrapped_view
+  File "./redisinsight/core/services/licensing.py", line 325, in _wrapped_view
+  File "./redisinsight/core/services/access_control.py", line 198, in _wrapped_view
+  File "./redisinsight/utils/__init__.py", line 199, in _wrapped_view
+  File "./redisinsight/core/views/decorators.py", line 21, in wrapped_view
+  File "./redisinsight/redisearch/decorators.py", line 35, in _wrapped_view
+  File "./redisinsight/redisearch/views/__init__.py", line 12, in get_all_index
+  File "./redisinsight/redisearch/services/api.py", line 271, in get_indices
+  File "/usr/local/lib/python3.10/site-packages/rediscluster/client.py", line 555, in execute_command
+    return self._execute_command(*args, **kwargs)
+  File "/usr/local/lib/python3.10/site-packages/rediscluster/client.py", line 588, in _execute_command
+    slot = self._determine_slot(*args)
+  File "/usr/local/lib/python3.10/site-packages/rediscluster/client.py", line 481, in _determine_slot
+    raise RedisClusterException("No way to dispatch this command to Redis Cluster. Missing key.")
+rediscluster.exceptions.RedisClusterException: No way to dispatch this command to Redis Cluster. Missing key.
+ERROR 2022-10-29 17:03:21,252 django.request Internal Server Error: /api/instance/fddbe73b-91c5-484c-9ed4-99ee321295b5/all-index/
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/usr/local/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/usr/local/lib/python3.10/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/usr/local/lib/python3.10/site-packages/django/views/generic/base.py", line 84, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/usr/local/lib/python3.10/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/usr/local/lib/python3.10/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/usr/local/lib/python3.10/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/usr/local/lib/python3.10/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/usr/local/lib/python3.10/site-packages/rest_framework/decorators.py", line 50, in handler
+    return func(*args, **kwargs)
+  File "./redisinsight/core/views/decorators.py", line 47, in _wrapped_view
+  File "./redisinsight/utils/__init__.py", line 109, in _wrapped_view
+  File "./redisinsight/utils/__init__.py", line 144, in _wrapped_view
+  File "./redisinsight/core/services/licensing.py", line 325, in _wrapped_view
+  File "./redisinsight/core/services/access_control.py", line 198, in _wrapped_view
+  File "./redisinsight/utils/__init__.py", line 199, in _wrapped_view
+  File "./redisinsight/core/views/decorators.py", line 21, in wrapped_view
+  File "./redisinsight/redisearch/decorators.py", line 35, in _wrapped_view
+  File "./redisinsight/redisearch/views/__init__.py", line 12, in get_all_index
+  File "./redisinsight/redisearch/services/api.py", line 271, in get_indices
+  File "/usr/local/lib/python3.10/site-packages/rediscluster/client.py", line 555, in execute_command
+    return self._execute_command(*args, **kwargs)
+  File "/usr/local/lib/python3.10/site-packages/rediscluster/client.py", line 588, in _execute_command
+    slot = self._determine_slot(*args)
+  File "/usr/local/lib/python3.10/site-packages/rediscluster/client.py", line 481, in _determine_slot
+    raise RedisClusterException("No way to dispatch this command to Redis Cluster. Missing key.")
+rediscluster.exceptions.RedisClusterException: No way to dispatch this command to Redis Cluster. Missing key.
+ERROR 2022-10-29 17:03:21,428 django.request Internal Server Error: /api/instance/fddbe73b-91c5-484c-9ed4-99ee321295b5/all-index/
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/usr/local/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/usr/local/lib/python3.10/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/usr/local/lib/python3.10/site-packages/django/views/generic/base.py", line 84, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/usr/local/lib/python3.10/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/usr/local/lib/python3.10/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/usr/local/lib/python3.10/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/usr/local/lib/python3.10/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/usr/local/lib/python3.10/site-packages/rest_framework/decorators.py", line 50, in handler
+    return func(*args, **kwargs)
+  File "./redisinsight/core/views/decorators.py", line 47, in _wrapped_view
+  File "./redisinsight/utils/__init__.py", line 109, in _wrapped_view
+  File "./redisinsight/utils/__init__.py", line 144, in _wrapped_view
+  File "./redisinsight/core/services/licensing.py", line 325, in _wrapped_view
+  File "./redisinsight/core/services/access_control.py", line 198, in _wrapped_view
+  File "./redisinsight/utils/__init__.py", line 199, in _wrapped_view
+  File "./redisinsight/core/views/decorators.py", line 21, in wrapped_view
+  File "./redisinsight/redisearch/decorators.py", line 35, in _wrapped_view
+  File "./redisinsight/redisearch/views/__init__.py", line 12, in get_all_index
+  File "./redisinsight/redisearch/services/api.py", line 271, in get_indices
+  File "/usr/local/lib/python3.10/site-packages/rediscluster/client.py", line 555, in execute_command
+    return self._execute_command(*args, **kwargs)
+  File "/usr/local/lib/python3.10/site-packages/rediscluster/client.py", line 588, in _execute_command
+    slot = self._determine_slot(*args)
+  File "/usr/local/lib/python3.10/site-packages/rediscluster/client.py", line 481, in _determine_slot
+    raise RedisClusterException("No way to dispatch this command to Redis Cluster. Missing key.")
+rediscluster.exceptions.RedisClusterException: No way to dispatch this command to Redis Cluster. Missing key.
+ERROR 2022-10-29 17:03:21,598 django.request Internal Server Error: /api/instance/fddbe73b-91c5-484c-9ed4-99ee321295b5/all-index/
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/usr/local/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/usr/local/lib/python3.10/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/usr/local/lib/python3.10/site-packages/django/views/generic/base.py", line 84, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/usr/local/lib/python3.10/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/usr/local/lib/python3.10/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/usr/local/lib/python3.10/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/usr/local/lib/python3.10/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/usr/local/lib/python3.10/site-packages/rest_framework/decorators.py", line 50, in handler
+    return func(*args, **kwargs)
+  File "./redisinsight/core/views/decorators.py", line 47, in _wrapped_view
+  File "./redisinsight/utils/__init__.py", line 109, in _wrapped_view
+  File "./redisinsight/utils/__init__.py", line 144, in _wrapped_view
+  File "./redisinsight/core/services/licensing.py", line 325, in _wrapped_view
+  File "./redisinsight/core/services/access_control.py", line 198, in _wrapped_view
+  File "./redisinsight/utils/__init__.py", line 199, in _wrapped_view
+  File "./redisinsight/core/views/decorators.py", line 21, in wrapped_view
+  File "./redisinsight/redisearch/decorators.py", line 35, in _wrapped_view
+  File "./redisinsight/redisearch/views/__init__.py", line 12, in get_all_index
+  File "./redisinsight/redisearch/services/api.py", line 271, in get_indices
+  File "/usr/local/lib/python3.10/site-packages/rediscluster/client.py", line 555, in execute_command
+    return self._execute_command(*args, **kwargs)
+  File "/usr/local/lib/python3.10/site-packages/rediscluster/client.py", line 588, in _execute_command
+    slot = self._determine_slot(*args)
+  File "/usr/local/lib/python3.10/site-packages/rediscluster/client.py", line 481, in _determine_slot
+    raise RedisClusterException("No way to dispatch this command to Redis Cluster. Missing key.")
+rediscluster.exceptions.RedisClusterException: No way to dispatch this command to Redis Cluster. Missing key.
+ERROR 2022-10-29 17:03:21,758 django.request Internal Server Error: /api/instance/fddbe73b-91c5-484c-9ed4-99ee321295b5/all-index/
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/usr/local/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/usr/local/lib/python3.10/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/usr/local/lib/python3.10/site-packages/django/views/generic/base.py", line 84, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/usr/local/lib/python3.10/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/usr/local/lib/python3.10/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/usr/local/lib/python3.10/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/usr/local/lib/python3.10/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/usr/local/lib/python3.10/site-packages/rest_framework/decorators.py", line 50, in handler
+    return func(*args, **kwargs)
+  File "./redisinsight/core/views/decorators.py", line 47, in _wrapped_view
+  File "./redisinsight/utils/__init__.py", line 109, in _wrapped_view
+  File "./redisinsight/utils/__init__.py", line 144, in _wrapped_view
+  File "./redisinsight/core/services/licensing.py", line 325, in _wrapped_view
+  File "./redisinsight/core/services/access_control.py", line 198, in _wrapped_view
+  File "./redisinsight/utils/__init__.py", line 199, in _wrapped_view
+  File "./redisinsight/core/views/decorators.py", line 21, in wrapped_view
+  File "./redisinsight/redisearch/decorators.py", line 35, in _wrapped_view
+  File "./redisinsight/redisearch/views/__init__.py", line 12, in get_all_index
+  File "./redisinsight/redisearch/services/api.py", line 271, in get_indices
+  File "/usr/local/lib/python3.10/site-packages/rediscluster/client.py", line 555, in execute_command
+    return self._execute_command(*args, **kwargs)
+  File "/usr/local/lib/python3.10/site-packages/rediscluster/client.py", line 588, in _execute_command
+    slot = self._determine_slot(*args)
+  File "/usr/local/lib/python3.10/site-packages/rediscluster/client.py", line 481, in _determine_slot
+    raise RedisClusterException("No way to dispatch this command to Redis Cluster. Missing key.")
+rediscluster.exceptions.RedisClusterException: No way to dispatch this command to Redis Cluster. Missing key.
+ERROR 2022-10-29 17:03:21,921 django.request Internal Server Error: /api/instance/fddbe73b-91c5-484c-9ed4-99ee321295b5/all-index/
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/usr/local/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/usr/local/lib/python3.10/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/usr/local/lib/python3.10/site-packages/django/views/generic/base.py", line 84, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/usr/local/lib/python3.10/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/usr/local/lib/python3.10/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/usr/local/lib/python3.10/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/usr/local/lib/python3.10/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/usr/local/lib/python3.10/site-packages/rest_framework/decorators.py", line 50, in handler
+    return func(*args, **kwargs)
+  File "./redisinsight/core/views/decorators.py", line 47, in _wrapped_view
+  File "./redisinsight/utils/__init__.py", line 109, in _wrapped_view
+  File "./redisinsight/utils/__init__.py", line 144, in _wrapped_view
+  File "./redisinsight/core/services/licensing.py", line 325, in _wrapped_view
+  File "./redisinsight/core/services/access_control.py", line 198, in _wrapped_view
+  File "./redisinsight/utils/__init__.py", line 199, in _wrapped_view
+  File "./redisinsight/core/views/decorators.py", line 21, in wrapped_view
+  File "./redisinsight/redisearch/decorators.py", line 35, in _wrapped_view
+  File "./redisinsight/redisearch/views/__init__.py", line 12, in get_all_index
+  File "./redisinsight/redisearch/services/api.py", line 271, in get_indices
+  File "/usr/local/lib/python3.10/site-packages/rediscluster/client.py", line 555, in execute_command
+    return self._execute_command(*args, **kwargs)
+  File "/usr/local/lib/python3.10/site-packages/rediscluster/client.py", line 588, in _execute_command
+    slot = self._determine_slot(*args)
+  File "/usr/local/lib/python3.10/site-packages/rediscluster/client.py", line 481, in _determine_slot
+    raise RedisClusterException("No way to dispatch this command to Redis Cluster. Missing key.")
+rediscluster.exceptions.RedisClusterException: No way to dispatch this command to Redis Cluster. Missing key.
+ERROR 2022-10-29 17:03:22,076 django.request Internal Server Error: /api/instance/fddbe73b-91c5-484c-9ed4-99ee321295b5/all-index/
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/usr/local/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/usr/local/lib/python3.10/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/usr/local/lib/python3.10/site-packages/django/views/generic/base.py", line 84, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/usr/local/lib/python3.10/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/usr/local/lib/python3.10/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/usr/local/lib/python3.10/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/usr/local/lib/python3.10/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/usr/local/lib/python3.10/site-packages/rest_framework/decorators.py", line 50, in handler
+    return func(*args, **kwargs)
+  File "./redisinsight/core/views/decorators.py", line 47, in _wrapped_view
+  File "./redisinsight/utils/__init__.py", line 109, in _wrapped_view
+  File "./redisinsight/utils/__init__.py", line 144, in _wrapped_view
+  File "./redisinsight/core/services/licensing.py", line 325, in _wrapped_view
+  File "./redisinsight/core/services/access_control.py", line 198, in _wrapped_view
+  File "./redisinsight/utils/__init__.py", line 199, in _wrapped_view
+  File "./redisinsight/core/views/decorators.py", line 21, in wrapped_view
+  File "./redisinsight/redisearch/decorators.py", line 35, in _wrapped_view
+  File "./redisinsight/redisearch/views/__init__.py", line 12, in get_all_index
+  File "./redisinsight/redisearch/services/api.py", line 271, in get_indices
+  File "/usr/local/lib/python3.10/site-packages/rediscluster/client.py", line 555, in execute_command
+    return self._execute_command(*args, **kwargs)
+  File "/usr/local/lib/python3.10/site-packages/rediscluster/client.py", line 588, in _execute_command
+    slot = self._determine_slot(*args)
+  File "/usr/local/lib/python3.10/site-packages/rediscluster/client.py", line 481, in _determine_slot
+    raise RedisClusterException("No way to dispatch this command to Redis Cluster. Missing key.")
+rediscluster.exceptions.RedisClusterException: No way to dispatch this command to Redis Cluster. Missing key.
+ERROR 2022-10-29 17:03:22,243 django.request Internal Server Error: /api/instance/fddbe73b-91c5-484c-9ed4-99ee321295b5/all-index/
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/usr/local/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/usr/local/lib/python3.10/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/usr/local/lib/python3.10/site-packages/django/views/generic/base.py", line 84, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/usr/local/lib/python3.10/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/usr/local/lib/python3.10/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/usr/local/lib/python3.10/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/usr/local/lib/python3.10/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/usr/local/lib/python3.10/site-packages/rest_framework/decorators.py", line 50, in handler
+    return func(*args, **kwargs)
+  File "./redisinsight/core/views/decorators.py", line 47, in _wrapped_view
+  File "./redisinsight/utils/__init__.py", line 109, in _wrapped_view
+  File "./redisinsight/utils/__init__.py", line 144, in _wrapped_view
+  File "./redisinsight/core/services/licensing.py", line 325, in _wrapped_view
+  File "./redisinsight/core/services/access_control.py", line 198, in _wrapped_view
+  File "./redisinsight/utils/__init__.py", line 199, in _wrapped_view
+  File "./redisinsight/core/views/decorators.py", line 21, in wrapped_view
+  File "./redisinsight/redisearch/decorators.py", line 35, in _wrapped_view
+  File "./redisinsight/redisearch/views/__init__.py", line 12, in get_all_index
+  File "./redisinsight/redisearch/services/api.py", line 271, in get_indices
+  File "/usr/local/lib/python3.10/site-packages/rediscluster/client.py", line 555, in execute_command
+    return self._execute_command(*args, **kwargs)
+  File "/usr/local/lib/python3.10/site-packages/rediscluster/client.py", line 588, in _execute_command
+    slot = self._determine_slot(*args)
+  File "/usr/local/lib/python3.10/site-packages/rediscluster/client.py", line 481, in _determine_slot
+    raise RedisClusterException("No way to dispatch this command to Redis Cluster. Missing key.")
+rediscluster.exceptions.RedisClusterException: No way to dispatch this command to Redis Cluster. Missing key.
+ERROR 2022-10-29 17:03:22,433 django.request Internal Server Error: /api/instance/fddbe73b-91c5-484c-9ed4-99ee321295b5/all-index/
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/usr/local/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/usr/local/lib/python3.10/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/usr/local/lib/python3.10/site-packages/django/views/generic/base.py", line 84, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/usr/local/lib/python3.10/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/usr/local/lib/python3.10/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/usr/local/lib/python3.10/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/usr/local/lib/python3.10/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/usr/local/lib/python3.10/site-packages/rest_framework/decorators.py", line 50, in handler
+    return func(*args, **kwargs)
+  File "./redisinsight/core/views/decorators.py", line 47, in _wrapped_view
+  File "./redisinsight/utils/__init__.py", line 109, in _wrapped_view
+  File "./redisinsight/utils/__init__.py", line 144, in _wrapped_view
+  File "./redisinsight/core/services/licensing.py", line 325, in _wrapped_view
+  File "./redisinsight/core/services/access_control.py", line 198, in _wrapped_view
+  File "./redisinsight/utils/__init__.py", line 199, in _wrapped_view
+  File "./redisinsight/core/views/decorators.py", line 21, in wrapped_view
+  File "./redisinsight/redisearch/decorators.py", line 35, in _wrapped_view
+  File "./redisinsight/redisearch/views/__init__.py", line 12, in get_all_index
+  File "./redisinsight/redisearch/services/api.py", line 271, in get_indices
+  File "/usr/local/lib/python3.10/site-packages/rediscluster/client.py", line 555, in execute_command
+    return self._execute_command(*args, **kwargs)
+  File "/usr/local/lib/python3.10/site-packages/rediscluster/client.py", line 588, in _execute_command
+    slot = self._determine_slot(*args)
+  File "/usr/local/lib/python3.10/site-packages/rediscluster/client.py", line 481, in _determine_slot
+    raise RedisClusterException("No way to dispatch this command to Redis Cluster. Missing key.")
+rediscluster.exceptions.RedisClusterException: No way to dispatch this command to Redis Cluster. Missing key.
+ERROR 2022-10-29 17:03:22,611 django.request Internal Server Error: /api/instance/fddbe73b-91c5-484c-9ed4-99ee321295b5/all-index/
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/usr/local/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/usr/local/lib/python3.10/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/usr/local/lib/python3.10/site-packages/django/views/generic/base.py", line 84, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/usr/local/lib/python3.10/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/usr/local/lib/python3.10/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/usr/local/lib/python3.10/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/usr/local/lib/python3.10/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/usr/local/lib/python3.10/site-packages/rest_framework/decorators.py", line 50, in handler
+    return func(*args, **kwargs)
+  File "./redisinsight/core/views/decorators.py", line 47, in _wrapped_view
+  File "./redisinsight/utils/__init__.py", line 109, in _wrapped_view
+  File "./redisinsight/utils/__init__.py", line 144, in _wrapped_view
+  File "./redisinsight/core/services/licensing.py", line 325, in _wrapped_view
+  File "./redisinsight/core/services/access_control.py", line 198, in _wrapped_view
+  File "./redisinsight/utils/__init__.py", line 199, in _wrapped_view
+  File "./redisinsight/core/views/decorators.py", line 21, in wrapped_view
+  File "./redisinsight/redisearch/decorators.py", line 35, in _wrapped_view
+  File "./redisinsight/redisearch/views/__init__.py", line 12, in get_all_index
+  File "./redisinsight/redisearch/services/api.py", line 271, in get_indices
+  File "/usr/local/lib/python3.10/site-packages/rediscluster/client.py", line 555, in execute_command
+    return self._execute_command(*args, **kwargs)
+  File "/usr/local/lib/python3.10/site-packages/rediscluster/client.py", line 588, in _execute_command
+    slot = self._determine_slot(*args)
+  File "/usr/local/lib/python3.10/site-packages/rediscluster/client.py", line 481, in _determine_slot
+    raise RedisClusterException("No way to dispatch this command to Redis Cluster. Missing key.")
+rediscluster.exceptions.RedisClusterException: No way to dispatch this command to Redis Cluster. Missing key.
+ERROR 2022-10-29 17:03:28,138 django.request Internal Server Error: /api/instance/fddbe73b-91c5-484c-9ed4-99ee321295b5/all-index/
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/usr/local/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/usr/local/lib/python3.10/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/usr/local/lib/python3.10/site-packages/django/views/generic/base.py", line 84, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/usr/local/lib/python3.10/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/usr/local/lib/python3.10/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/usr/local/lib/python3.10/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/usr/local/lib/python3.10/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/usr/local/lib/python3.10/site-packages/rest_framework/decorators.py", line 50, in handler
+    return func(*args, **kwargs)
+  File "./redisinsight/core/views/decorators.py", line 47, in _wrapped_view
+  File "./redisinsight/utils/__init__.py", line 109, in _wrapped_view
+  File "./redisinsight/utils/__init__.py", line 144, in _wrapped_view
+  File "./redisinsight/core/services/licensing.py", line 325, in _wrapped_view
+  File "./redisinsight/core/services/access_control.py", line 198, in _wrapped_view
+  File "./redisinsight/utils/__init__.py", line 199, in _wrapped_view
+  File "./redisinsight/core/views/decorators.py", line 21, in wrapped_view
+  File "./redisinsight/redisearch/decorators.py", line 35, in _wrapped_view
+  File "./redisinsight/redisearch/views/__init__.py", line 12, in get_all_index
+  File "./redisinsight/redisearch/services/api.py", line 271, in get_indices
+  File "/usr/local/lib/python3.10/site-packages/rediscluster/client.py", line 555, in execute_command
+    return self._execute_command(*args, **kwargs)
+  File "/usr/local/lib/python3.10/site-packages/rediscluster/client.py", line 588, in _execute_command
+    slot = self._determine_slot(*args)
+  File "/usr/local/lib/python3.10/site-packages/rediscluster/client.py", line 481, in _determine_slot
+    raise RedisClusterException("No way to dispatch this command to Redis Cluster. Missing key.")
+rediscluster.exceptions.RedisClusterException: No way to dispatch this command to Redis Cluster. Missing key.
+ERROR 2022-10-29 17:03:28,356 django.request Internal Server Error: /api/instance/fddbe73b-91c5-484c-9ed4-99ee321295b5/all-index/
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/usr/local/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/usr/local/lib/python3.10/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/usr/local/lib/python3.10/site-packages/django/views/generic/base.py", line 84, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/usr/local/lib/python3.10/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/usr/local/lib/python3.10/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/usr/local/lib/python3.10/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/usr/local/lib/python3.10/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/usr/local/lib/python3.10/site-packages/rest_framework/decorators.py", line 50, in handler
+    return func(*args, **kwargs)
+  File "./redisinsight/core/views/decorators.py", line 47, in _wrapped_view
+  File "./redisinsight/utils/__init__.py", line 109, in _wrapped_view
+  File "./redisinsight/utils/__init__.py", line 144, in _wrapped_view
+  File "./redisinsight/core/services/licensing.py", line 325, in _wrapped_view
+  File "./redisinsight/core/services/access_control.py", line 198, in _wrapped_view
+  File "./redisinsight/utils/__init__.py", line 199, in _wrapped_view
+  File "./redisinsight/core/views/decorators.py", line 21, in wrapped_view
+  File "./redisinsight/redisearch/decorators.py", line 35, in _wrapped_view
+  File "./redisinsight/redisearch/views/__init__.py", line 12, in get_all_index
+  File "./redisinsight/redisearch/services/api.py", line 271, in get_indices
+  File "/usr/local/lib/python3.10/site-packages/rediscluster/client.py", line 555, in execute_command
+    return self._execute_command(*args, **kwargs)
+  File "/usr/local/lib/python3.10/site-packages/rediscluster/client.py", line 588, in _execute_command
+    slot = self._determine_slot(*args)
+  File "/usr/local/lib/python3.10/site-packages/rediscluster/client.py", line 481, in _determine_slot
+    raise RedisClusterException("No way to dispatch this command to Redis Cluster. Missing key.")
+rediscluster.exceptions.RedisClusterException: No way to dispatch this command to Redis Cluster. Missing key.
+ERROR 2022-10-29 17:03:28,541 django.request Internal Server Error: /api/instance/fddbe73b-91c5-484c-9ed4-99ee321295b5/all-index/
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/usr/local/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/usr/local/lib/python3.10/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/usr/local/lib/python3.10/site-packages/django/views/generic/base.py", line 84, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/usr/local/lib/python3.10/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/usr/local/lib/python3.10/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/usr/local/lib/python3.10/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/usr/local/lib/python3.10/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/usr/local/lib/python3.10/site-packages/rest_framework/decorators.py", line 50, in handler
+    return func(*args, **kwargs)
+  File "./redisinsight/core/views/decorators.py", line 47, in _wrapped_view
+  File "./redisinsight/utils/__init__.py", line 109, in _wrapped_view
+  File "./redisinsight/utils/__init__.py", line 144, in _wrapped_view
+  File "./redisinsight/core/services/licensing.py", line 325, in _wrapped_view
+  File "./redisinsight/core/services/access_control.py", line 198, in _wrapped_view
+  File "./redisinsight/utils/__init__.py", line 199, in _wrapped_view
+  File "./redisinsight/core/views/decorators.py", line 21, in wrapped_view
+  File "./redisinsight/redisearch/decorators.py", line 35, in _wrapped_view
+  File "./redisinsight/redisearch/views/__init__.py", line 12, in get_all_index
+  File "./redisinsight/redisearch/services/api.py", line 271, in get_indices
+  File "/usr/local/lib/python3.10/site-packages/rediscluster/client.py", line 555, in execute_command
+    return self._execute_command(*args, **kwargs)
+  File "/usr/local/lib/python3.10/site-packages/rediscluster/client.py", line 588, in _execute_command
+    slot = self._determine_slot(*args)
+  File "/usr/local/lib/python3.10/site-packages/rediscluster/client.py", line 481, in _determine_slot
+    raise RedisClusterException("No way to dispatch this command to Redis Cluster. Missing key.")
+rediscluster.exceptions.RedisClusterException: No way to dispatch this command to Redis Cluster. Missing key.
+ERROR 2022-10-29 17:03:28,736 django.request Internal Server Error: /api/instance/fddbe73b-91c5-484c-9ed4-99ee321295b5/all-index/
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/usr/local/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/usr/local/lib/python3.10/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/usr/local/lib/python3.10/site-packages/django/views/generic/base.py", line 84, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/usr/local/lib/python3.10/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/usr/local/lib/python3.10/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/usr/local/lib/python3.10/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/usr/local/lib/python3.10/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/usr/local/lib/python3.10/site-packages/rest_framework/decorators.py", line 50, in handler
+    return func(*args, **kwargs)
+  File "./redisinsight/core/views/decorators.py", line 47, in _wrapped_view
+  File "./redisinsight/utils/__init__.py", line 109, in _wrapped_view
+  File "./redisinsight/utils/__init__.py", line 144, in _wrapped_view
+  File "./redisinsight/core/services/licensing.py", line 325, in _wrapped_view
+  File "./redisinsight/core/services/access_control.py", line 198, in _wrapped_view
+  File "./redisinsight/utils/__init__.py", line 199, in _wrapped_view
+  File "./redisinsight/core/views/decorators.py", line 21, in wrapped_view
+  File "./redisinsight/redisearch/decorators.py", line 35, in _wrapped_view
+  File "./redisinsight/redisearch/views/__init__.py", line 12, in get_all_index
+  File "./redisinsight/redisearch/services/api.py", line 271, in get_indices
+  File "/usr/local/lib/python3.10/site-packages/rediscluster/client.py", line 555, in execute_command
+    return self._execute_command(*args, **kwargs)
+  File "/usr/local/lib/python3.10/site-packages/rediscluster/client.py", line 588, in _execute_command
+    slot = self._determine_slot(*args)
+  File "/usr/local/lib/python3.10/site-packages/rediscluster/client.py", line 481, in _determine_slot
+    raise RedisClusterException("No way to dispatch this command to Redis Cluster. Missing key.")
+rediscluster.exceptions.RedisClusterException: No way to dispatch this command to Redis Cluster. Missing key.
+ERROR 2022-10-29 17:03:29,092 django.request Internal Server Error: /api/instance/fddbe73b-91c5-484c-9ed4-99ee321295b5/all-index/
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/usr/local/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/usr/local/lib/python3.10/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/usr/local/lib/python3.10/site-packages/django/views/generic/base.py", line 84, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/usr/local/lib/python3.10/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/usr/local/lib/python3.10/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/usr/local/lib/python3.10/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/usr/local/lib/python3.10/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/usr/local/lib/python3.10/site-packages/rest_framework/decorators.py", line 50, in handler
+    return func(*args, **kwargs)
+  File "./redisinsight/core/views/decorators.py", line 47, in _wrapped_view
+  File "./redisinsight/utils/__init__.py", line 109, in _wrapped_view
+  File "./redisinsight/utils/__init__.py", line 144, in _wrapped_view
+  File "./redisinsight/core/services/licensing.py", line 325, in _wrapped_view
+  File "./redisinsight/core/services/access_control.py", line 198, in _wrapped_view
+  File "./redisinsight/utils/__init__.py", line 199, in _wrapped_view
+  File "./redisinsight/core/views/decorators.py", line 21, in wrapped_view
+  File "./redisinsight/redisearch/decorators.py", line 35, in _wrapped_view
+  File "./redisinsight/redisearch/views/__init__.py", line 12, in get_all_index
+  File "./redisinsight/redisearch/services/api.py", line 271, in get_indices
+  File "/usr/local/lib/python3.10/site-packages/rediscluster/client.py", line 555, in execute_command
+    return self._execute_command(*args, **kwargs)
+  File "/usr/local/lib/python3.10/site-packages/rediscluster/client.py", line 588, in _execute_command
+    slot = self._determine_slot(*args)
+  File "/usr/local/lib/python3.10/site-packages/rediscluster/client.py", line 481, in _determine_slot
+    raise RedisClusterException("No way to dispatch this command to Redis Cluster. Missing key.")
+rediscluster.exceptions.RedisClusterException: No way to dispatch this command to Redis Cluster. Missing key.
+ERROR 2022-10-29 17:03:29,335 django.request Internal Server Error: /api/instance/fddbe73b-91c5-484c-9ed4-99ee321295b5/all-index/
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/usr/local/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/usr/local/lib/python3.10/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/usr/local/lib/python3.10/site-packages/django/views/generic/base.py", line 84, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/usr/local/lib/python3.10/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/usr/local/lib/python3.10/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/usr/local/lib/python3.10/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/usr/local/lib/python3.10/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/usr/local/lib/python3.10/site-packages/rest_framework/decorators.py", line 50, in handler
+    return func(*args, **kwargs)
+  File "./redisinsight/core/views/decorators.py", line 47, in _wrapped_view
+  File "./redisinsight/utils/__init__.py", line 109, in _wrapped_view
+  File "./redisinsight/utils/__init__.py", line 144, in _wrapped_view
+  File "./redisinsight/core/services/licensing.py", line 325, in _wrapped_view
+  File "./redisinsight/core/services/access_control.py", line 198, in _wrapped_view
+  File "./redisinsight/utils/__init__.py", line 199, in _wrapped_view
+  File "./redisinsight/core/views/decorators.py", line 21, in wrapped_view
+  File "./redisinsight/redisearch/decorators.py", line 35, in _wrapped_view
+  File "./redisinsight/redisearch/views/__init__.py", line 12, in get_all_index
+  File "./redisinsight/redisearch/services/api.py", line 271, in get_indices
+  File "/usr/local/lib/python3.10/site-packages/rediscluster/client.py", line 555, in execute_command
+    return self._execute_command(*args, **kwargs)
+  File "/usr/local/lib/python3.10/site-packages/rediscluster/client.py", line 588, in _execute_command
+    slot = self._determine_slot(*args)
+  File "/usr/local/lib/python3.10/site-packages/rediscluster/client.py", line 481, in _determine_slot
+    raise RedisClusterException("No way to dispatch this command to Redis Cluster. Missing key.")
+rediscluster.exceptions.RedisClusterException: No way to dispatch this command to Redis Cluster. Missing key.
+ERROR 2022-10-29 17:03:42,831 django.request Internal Server Error: /api/instance/fddbe73b-91c5-484c-9ed4-99ee321295b5/all-index/
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/usr/local/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/usr/local/lib/python3.10/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/usr/local/lib/python3.10/site-packages/django/views/generic/base.py", line 84, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/usr/local/lib/python3.10/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/usr/local/lib/python3.10/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/usr/local/lib/python3.10/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/usr/local/lib/python3.10/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/usr/local/lib/python3.10/site-packages/rest_framework/decorators.py", line 50, in handler
+    return func(*args, **kwargs)
+  File "./redisinsight/core/views/decorators.py", line 47, in _wrapped_view
+  File "./redisinsight/utils/__init__.py", line 109, in _wrapped_view
+  File "./redisinsight/utils/__init__.py", line 144, in _wrapped_view
+  File "./redisinsight/core/services/licensing.py", line 325, in _wrapped_view
+  File "./redisinsight/core/services/access_control.py", line 198, in _wrapped_view
+  File "./redisinsight/utils/__init__.py", line 199, in _wrapped_view
+  File "./redisinsight/core/views/decorators.py", line 21, in wrapped_view
+  File "./redisinsight/redisearch/decorators.py", line 35, in _wrapped_view
+  File "./redisinsight/redisearch/views/__init__.py", line 12, in get_all_index
+  File "./redisinsight/redisearch/services/api.py", line 271, in get_indices
+  File "/usr/local/lib/python3.10/site-packages/rediscluster/client.py", line 555, in execute_command
+    return self._execute_command(*args, **kwargs)
+  File "/usr/local/lib/python3.10/site-packages/rediscluster/client.py", line 588, in _execute_command
+    slot = self._determine_slot(*args)
+  File "/usr/local/lib/python3.10/site-packages/rediscluster/client.py", line 481, in _determine_slot
+    raise RedisClusterException("No way to dispatch this command to Redis Cluster. Missing key.")
+rediscluster.exceptions.RedisClusterException: No way to dispatch this command to Redis Cluster. Missing key.
+ERROR 2022-10-29 17:03:52,996 django.request Internal Server Error: /api/instance/fddbe73b-91c5-484c-9ed4-99ee321295b5/all-index/
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/usr/local/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/usr/local/lib/python3.10/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/usr/local/lib/python3.10/site-packages/django/views/generic/base.py", line 84, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/usr/local/lib/python3.10/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/usr/local/lib/python3.10/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/usr/local/lib/python3.10/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/usr/local/lib/python3.10/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/usr/local/lib/python3.10/site-packages/rest_framework/decorators.py", line 50, in handler
+    return func(*args, **kwargs)
+  File "./redisinsight/core/views/decorators.py", line 47, in _wrapped_view
+  File "./redisinsight/utils/__init__.py", line 109, in _wrapped_view
+  File "./redisinsight/utils/__init__.py", line 144, in _wrapped_view
+  File "./redisinsight/core/services/licensing.py", line 325, in _wrapped_view
+  File "./redisinsight/core/services/access_control.py", line 198, in _wrapped_view
+  File "./redisinsight/utils/__init__.py", line 199, in _wrapped_view
+  File "./redisinsight/core/views/decorators.py", line 21, in wrapped_view
+  File "./redisinsight/redisearch/decorators.py", line 35, in _wrapped_view
+  File "./redisinsight/redisearch/views/__init__.py", line 12, in get_all_index
+  File "./redisinsight/redisearch/services/api.py", line 271, in get_indices
+  File "/usr/local/lib/python3.10/site-packages/rediscluster/client.py", line 555, in execute_command
+    return self._execute_command(*args, **kwargs)
+  File "/usr/local/lib/python3.10/site-packages/rediscluster/client.py", line 588, in _execute_command
+    slot = self._determine_slot(*args)
+  File "/usr/local/lib/python3.10/site-packages/rediscluster/client.py", line 481, in _determine_slot
+    raise RedisClusterException("No way to dispatch this command to Redis Cluster. Missing key.")
+rediscluster.exceptions.RedisClusterException: No way to dispatch this command to Redis Cluster. Missing key.
+ERROR 2022-10-29 17:04:08,365 django.request Internal Server Error: /api/instance/fddbe73b-91c5-484c-9ed4-99ee321295b5/all-index/
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/usr/local/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/usr/local/lib/python3.10/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/usr/local/lib/python3.10/site-packages/django/views/generic/base.py", line 84, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/usr/local/lib/python3.10/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/usr/local/lib/python3.10/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/usr/local/lib/python3.10/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/usr/local/lib/python3.10/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/usr/local/lib/python3.10/site-packages/rest_framework/decorators.py", line 50, in handler
+    return func(*args, **kwargs)
+  File "./redisinsight/core/views/decorators.py", line 47, in _wrapped_view
+  File "./redisinsight/utils/__init__.py", line 109, in _wrapped_view
+  File "./redisinsight/utils/__init__.py", line 144, in _wrapped_view
+  File "./redisinsight/core/services/licensing.py", line 325, in _wrapped_view
+  File "./redisinsight/core/services/access_control.py", line 198, in _wrapped_view
+  File "./redisinsight/utils/__init__.py", line 199, in _wrapped_view
+  File "./redisinsight/core/views/decorators.py", line 21, in wrapped_view
+  File "./redisinsight/redisearch/decorators.py", line 35, in _wrapped_view
+  File "./redisinsight/redisearch/views/__init__.py", line 12, in get_all_index
+  File "./redisinsight/redisearch/services/api.py", line 271, in get_indices
+  File "/usr/local/lib/python3.10/site-packages/rediscluster/client.py", line 555, in execute_command
+    return self._execute_command(*args, **kwargs)
+  File "/usr/local/lib/python3.10/site-packages/rediscluster/client.py", line 588, in _execute_command
+    slot = self._determine_slot(*args)
+  File "/usr/local/lib/python3.10/site-packages/rediscluster/client.py", line 481, in _determine_slot
+    raise RedisClusterException("No way to dispatch this command to Redis Cluster. Missing key.")
+rediscluster.exceptions.RedisClusterException: No way to dispatch this command to Redis Cluster. Missing key.
+ERROR 2022-10-29 17:04:31,751 django.request Internal Server Error: /api/instance/fddbe73b-91c5-484c-9ed4-99ee321295b5/redistimeseries/module-info/
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/usr/local/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/usr/local/lib/python3.10/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/usr/local/lib/python3.10/site-packages/django/views/generic/base.py", line 84, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/usr/local/lib/python3.10/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/usr/local/lib/python3.10/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/usr/local/lib/python3.10/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/usr/local/lib/python3.10/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/usr/local/lib/python3.10/site-packages/rest_framework/decorators.py", line 50, in handler
+    return func(*args, **kwargs)
+  File "./redisinsight/core/views/decorators.py", line 47, in _wrapped_view
+  File "./redisinsight/utils/__init__.py", line 109, in _wrapped_view
+  File "./redisinsight/utils/__init__.py", line 144, in _wrapped_view
+  File "./redisinsight/core/services/licensing.py", line 325, in _wrapped_view
+  File "./redisinsight/utils/__init__.py", line 199, in _wrapped_view
+  File "./redisinsight/core/views/decorators.py", line 21, in wrapped_view
+  File "./redisinsight/redistimeseries/decorators.py", line 39, in _wrapped_view
+  File "./redisinsight/redistimeseries/utils.py", line 47, in get_redistimeseries_module_info
+  File "/usr/local/lib/python3.10/site-packages/rediscluster/client.py", line 555, in execute_command
+    return self._execute_command(*args, **kwargs)
+  File "/usr/local/lib/python3.10/site-packages/rediscluster/client.py", line 588, in _execute_command
+    slot = self._determine_slot(*args)
+  File "/usr/local/lib/python3.10/site-packages/rediscluster/client.py", line 481, in _determine_slot
+    raise RedisClusterException("No way to dispatch this command to Redis Cluster. Missing key.")
+rediscluster.exceptions.RedisClusterException: No way to dispatch this command to Redis Cluster. Missing key.
+ERROR 2022-10-29 17:04:32,353 django.request Internal Server Error: /api/instance/fddbe73b-91c5-484c-9ed4-99ee321295b5/all-index/
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/usr/local/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/usr/local/lib/python3.10/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/usr/local/lib/python3.10/site-packages/django/views/generic/base.py", line 84, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/usr/local/lib/python3.10/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/usr/local/lib/python3.10/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/usr/local/lib/python3.10/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/usr/local/lib/python3.10/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/usr/local/lib/python3.10/site-packages/rest_framework/decorators.py", line 50, in handler
+    return func(*args, **kwargs)
+  File "./redisinsight/core/views/decorators.py", line 47, in _wrapped_view
+  File "./redisinsight/utils/__init__.py", line 109, in _wrapped_view
+  File "./redisinsight/utils/__init__.py", line 144, in _wrapped_view
+  File "./redisinsight/core/services/licensing.py", line 325, in _wrapped_view
+  File "./redisinsight/core/services/access_control.py", line 198, in _wrapped_view
+  File "./redisinsight/utils/__init__.py", line 199, in _wrapped_view
+  File "./redisinsight/core/views/decorators.py", line 21, in wrapped_view
+  File "./redisinsight/redisearch/decorators.py", line 35, in _wrapped_view
+  File "./redisinsight/redisearch/views/__init__.py", line 12, in get_all_index
+  File "./redisinsight/redisearch/services/api.py", line 271, in get_indices
+  File "/usr/local/lib/python3.10/site-packages/rediscluster/client.py", line 555, in execute_command
+    return self._execute_command(*args, **kwargs)
+  File "/usr/local/lib/python3.10/site-packages/rediscluster/client.py", line 588, in _execute_command
+    slot = self._determine_slot(*args)
+  File "/usr/local/lib/python3.10/site-packages/rediscluster/client.py", line 481, in _determine_slot
+    raise RedisClusterException("No way to dispatch this command to Redis Cluster. Missing key.")
+rediscluster.exceptions.RedisClusterException: No way to dispatch this command to Redis Cluster. Missing key.
+ERROR 2022-10-29 17:04:35,444 django.request Internal Server Error: /api/instance/fddbe73b-91c5-484c-9ed4-99ee321295b5/all-index/
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/usr/local/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/usr/local/lib/python3.10/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/usr/local/lib/python3.10/site-packages/django/views/generic/base.py", line 84, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/usr/local/lib/python3.10/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/usr/local/lib/python3.10/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/usr/local/lib/python3.10/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/usr/local/lib/python3.10/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/usr/local/lib/python3.10/site-packages/rest_framework/decorators.py", line 50, in handler
+    return func(*args, **kwargs)
+  File "./redisinsight/core/views/decorators.py", line 47, in _wrapped_view
+  File "./redisinsight/utils/__init__.py", line 109, in _wrapped_view
+  File "./redisinsight/utils/__init__.py", line 144, in _wrapped_view
+  File "./redisinsight/core/services/licensing.py", line 325, in _wrapped_view
+  File "./redisinsight/core/services/access_control.py", line 198, in _wrapped_view
+  File "./redisinsight/utils/__init__.py", line 199, in _wrapped_view
+  File "./redisinsight/core/views/decorators.py", line 21, in wrapped_view
+  File "./redisinsight/redisearch/decorators.py", line 35, in _wrapped_view
+  File "./redisinsight/redisearch/views/__init__.py", line 12, in get_all_index
+  File "./redisinsight/redisearch/services/api.py", line 271, in get_indices
+  File "/usr/local/lib/python3.10/site-packages/rediscluster/client.py", line 555, in execute_command
+    return self._execute_command(*args, **kwargs)
+  File "/usr/local/lib/python3.10/site-packages/rediscluster/client.py", line 588, in _execute_command
+    slot = self._determine_slot(*args)
+  File "/usr/local/lib/python3.10/site-packages/rediscluster/client.py", line 481, in _determine_slot
+    raise RedisClusterException("No way to dispatch this command to Redis Cluster. Missing key.")
+rediscluster.exceptions.RedisClusterException: No way to dispatch this command to Redis Cluster. Missing key.
+ERROR 2022-10-29 17:04:35,633 django.request Internal Server Error: /api/instance/fddbe73b-91c5-484c-9ed4-99ee321295b5/all-index/
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/usr/local/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/usr/local/lib/python3.10/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/usr/local/lib/python3.10/site-packages/django/views/generic/base.py", line 84, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/usr/local/lib/python3.10/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/usr/local/lib/python3.10/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/usr/local/lib/python3.10/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/usr/local/lib/python3.10/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/usr/local/lib/python3.10/site-packages/rest_framework/decorators.py", line 50, in handler
+    return func(*args, **kwargs)
+  File "./redisinsight/core/views/decorators.py", line 47, in _wrapped_view
+  File "./redisinsight/utils/__init__.py", line 109, in _wrapped_view
+  File "./redisinsight/utils/__init__.py", line 144, in _wrapped_view
+  File "./redisinsight/core/services/licensing.py", line 325, in _wrapped_view
+  File "./redisinsight/core/services/access_control.py", line 198, in _wrapped_view
+  File "./redisinsight/utils/__init__.py", line 199, in _wrapped_view
+  File "./redisinsight/core/views/decorators.py", line 21, in wrapped_view
+  File "./redisinsight/redisearch/decorators.py", line 35, in _wrapped_view
+  File "./redisinsight/redisearch/views/__init__.py", line 12, in get_all_index
+  File "./redisinsight/redisearch/services/api.py", line 271, in get_indices
+  File "/usr/local/lib/python3.10/site-packages/rediscluster/client.py", line 555, in execute_command
+    return self._execute_command(*args, **kwargs)
+  File "/usr/local/lib/python3.10/site-packages/rediscluster/client.py", line 588, in _execute_command
+    slot = self._determine_slot(*args)
+  File "/usr/local/lib/python3.10/site-packages/rediscluster/client.py", line 481, in _determine_slot
+    raise RedisClusterException("No way to dispatch this command to Redis Cluster. Missing key.")
+rediscluster.exceptions.RedisClusterException: No way to dispatch this command to Redis Cluster. Missing key.
+ERROR 2022-10-29 17:04:35,812 django.request Internal Server Error: /api/instance/fddbe73b-91c5-484c-9ed4-99ee321295b5/all-index/
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/usr/local/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/usr/local/lib/python3.10/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/usr/local/lib/python3.10/site-packages/django/views/generic/base.py", line 84, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/usr/local/lib/python3.10/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/usr/local/lib/python3.10/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/usr/local/lib/python3.10/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/usr/local/lib/python3.10/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/usr/local/lib/python3.10/site-packages/rest_framework/decorators.py", line 50, in handler
+    return func(*args, **kwargs)
+  File "./redisinsight/core/views/decorators.py", line 47, in _wrapped_view
+  File "./redisinsight/utils/__init__.py", line 109, in _wrapped_view
+  File "./redisinsight/utils/__init__.py", line 144, in _wrapped_view
+  File "./redisinsight/core/services/licensing.py", line 325, in _wrapped_view
+  File "./redisinsight/core/services/access_control.py", line 198, in _wrapped_view
+  File "./redisinsight/utils/__init__.py", line 199, in _wrapped_view
+  File "./redisinsight/core/views/decorators.py", line 21, in wrapped_view
+  File "./redisinsight/redisearch/decorators.py", line 35, in _wrapped_view
+  File "./redisinsight/redisearch/views/__init__.py", line 12, in get_all_index
+  File "./redisinsight/redisearch/services/api.py", line 271, in get_indices
+  File "/usr/local/lib/python3.10/site-packages/rediscluster/client.py", line 555, in execute_command
+    return self._execute_command(*args, **kwargs)
+  File "/usr/local/lib/python3.10/site-packages/rediscluster/client.py", line 588, in _execute_command
+    slot = self._determine_slot(*args)
+  File "/usr/local/lib/python3.10/site-packages/rediscluster/client.py", line 481, in _determine_slot
+    raise RedisClusterException("No way to dispatch this command to Redis Cluster. Missing key.")
+rediscluster.exceptions.RedisClusterException: No way to dispatch this command to Redis Cluster. Missing key.
+ERROR 2022-10-29 17:04:35,984 django.request Internal Server Error: /api/instance/fddbe73b-91c5-484c-9ed4-99ee321295b5/all-index/
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/usr/local/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/usr/local/lib/python3.10/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/usr/local/lib/python3.10/site-packages/django/views/generic/base.py", line 84, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/usr/local/lib/python3.10/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/usr/local/lib/python3.10/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/usr/local/lib/python3.10/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/usr/local/lib/python3.10/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/usr/local/lib/python3.10/site-packages/rest_framework/decorators.py", line 50, in handler
+    return func(*args, **kwargs)
+  File "./redisinsight/core/views/decorators.py", line 47, in _wrapped_view
+  File "./redisinsight/utils/__init__.py", line 109, in _wrapped_view
+  File "./redisinsight/utils/__init__.py", line 144, in _wrapped_view
+  File "./redisinsight/core/services/licensing.py", line 325, in _wrapped_view
+  File "./redisinsight/core/services/access_control.py", line 198, in _wrapped_view
+  File "./redisinsight/utils/__init__.py", line 199, in _wrapped_view
+  File "./redisinsight/core/views/decorators.py", line 21, in wrapped_view
+  File "./redisinsight/redisearch/decorators.py", line 35, in _wrapped_view
+  File "./redisinsight/redisearch/views/__init__.py", line 12, in get_all_index
+  File "./redisinsight/redisearch/services/api.py", line 271, in get_indices
+  File "/usr/local/lib/python3.10/site-packages/rediscluster/client.py", line 555, in execute_command
+    return self._execute_command(*args, **kwargs)
+  File "/usr/local/lib/python3.10/site-packages/rediscluster/client.py", line 588, in _execute_command
+    slot = self._determine_slot(*args)
+  File "/usr/local/lib/python3.10/site-packages/rediscluster/client.py", line 481, in _determine_slot
+    raise RedisClusterException("No way to dispatch this command to Redis Cluster. Missing key.")
+rediscluster.exceptions.RedisClusterException: No way to dispatch this command to Redis Cluster. Missing key.
+ERROR 2022-10-29 17:04:36,170 django.request Internal Server Error: /api/instance/fddbe73b-91c5-484c-9ed4-99ee321295b5/all-index/
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/usr/local/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/usr/local/lib/python3.10/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/usr/local/lib/python3.10/site-packages/django/views/generic/base.py", line 84, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/usr/local/lib/python3.10/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/usr/local/lib/python3.10/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/usr/local/lib/python3.10/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/usr/local/lib/python3.10/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/usr/local/lib/python3.10/site-packages/rest_framework/decorators.py", line 50, in handler
+    return func(*args, **kwargs)
+  File "./redisinsight/core/views/decorators.py", line 47, in _wrapped_view
+  File "./redisinsight/utils/__init__.py", line 109, in _wrapped_view
+  File "./redisinsight/utils/__init__.py", line 144, in _wrapped_view
+  File "./redisinsight/core/services/licensing.py", line 325, in _wrapped_view
+  File "./redisinsight/core/services/access_control.py", line 198, in _wrapped_view
+  File "./redisinsight/utils/__init__.py", line 199, in _wrapped_view
+  File "./redisinsight/core/views/decorators.py", line 21, in wrapped_view
+  File "./redisinsight/redisearch/decorators.py", line 35, in _wrapped_view
+  File "./redisinsight/redisearch/views/__init__.py", line 12, in get_all_index
+  File "./redisinsight/redisearch/services/api.py", line 271, in get_indices
+  File "/usr/local/lib/python3.10/site-packages/rediscluster/client.py", line 555, in execute_command
+    return self._execute_command(*args, **kwargs)
+  File "/usr/local/lib/python3.10/site-packages/rediscluster/client.py", line 588, in _execute_command
+    slot = self._determine_slot(*args)
+  File "/usr/local/lib/python3.10/site-packages/rediscluster/client.py", line 481, in _determine_slot
+    raise RedisClusterException("No way to dispatch this command to Redis Cluster. Missing key.")
+rediscluster.exceptions.RedisClusterException: No way to dispatch this command to Redis Cluster. Missing key.
+ERROR 2022-10-29 17:08:27,878 django.request Internal Server Error: /api/instance/fddbe73b-91c5-484c-9ed4-99ee321295b5/all-index/
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/usr/local/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/usr/local/lib/python3.10/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/usr/local/lib/python3.10/site-packages/django/views/generic/base.py", line 84, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/usr/local/lib/python3.10/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/usr/local/lib/python3.10/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/usr/local/lib/python3.10/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/usr/local/lib/python3.10/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/usr/local/lib/python3.10/site-packages/rest_framework/decorators.py", line 50, in handler
+    return func(*args, **kwargs)
+  File "./redisinsight/core/views/decorators.py", line 47, in _wrapped_view
+  File "./redisinsight/utils/__init__.py", line 109, in _wrapped_view
+  File "./redisinsight/utils/__init__.py", line 144, in _wrapped_view
+  File "./redisinsight/core/services/licensing.py", line 325, in _wrapped_view
+  File "./redisinsight/core/services/access_control.py", line 198, in _wrapped_view
+  File "./redisinsight/utils/__init__.py", line 199, in _wrapped_view
+  File "./redisinsight/core/views/decorators.py", line 21, in wrapped_view
+  File "./redisinsight/redisearch/decorators.py", line 35, in _wrapped_view
+  File "./redisinsight/redisearch/views/__init__.py", line 12, in get_all_index
+  File "./redisinsight/redisearch/services/api.py", line 271, in get_indices
+  File "/usr/local/lib/python3.10/site-packages/rediscluster/client.py", line 555, in execute_command
+    return self._execute_command(*args, **kwargs)
+  File "/usr/local/lib/python3.10/site-packages/rediscluster/client.py", line 588, in _execute_command
+    slot = self._determine_slot(*args)
+  File "/usr/local/lib/python3.10/site-packages/rediscluster/client.py", line 481, in _determine_slot
+    raise RedisClusterException("No way to dispatch this command to Redis Cluster. Missing key.")
+rediscluster.exceptions.RedisClusterException: No way to dispatch this command to Redis Cluster. Missing key.
+ERROR 2022-10-29 17:17:54,474 django.request Internal Server Error: /api/instance/fddbe73b-91c5-484c-9ed4-99ee321295b5/all-index/
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/usr/local/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/usr/local/lib/python3.10/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/usr/local/lib/python3.10/site-packages/django/views/generic/base.py", line 84, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/usr/local/lib/python3.10/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/usr/local/lib/python3.10/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/usr/local/lib/python3.10/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/usr/local/lib/python3.10/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/usr/local/lib/python3.10/site-packages/rest_framework/decorators.py", line 50, in handler
+    return func(*args, **kwargs)
+  File "./redisinsight/core/views/decorators.py", line 47, in _wrapped_view
+  File "./redisinsight/utils/__init__.py", line 109, in _wrapped_view
+  File "./redisinsight/utils/__init__.py", line 144, in _wrapped_view
+  File "./redisinsight/core/services/licensing.py", line 325, in _wrapped_view
+  File "./redisinsight/core/services/access_control.py", line 198, in _wrapped_view
+  File "./redisinsight/utils/__init__.py", line 199, in _wrapped_view
+  File "./redisinsight/core/views/decorators.py", line 21, in wrapped_view
+  File "./redisinsight/redisearch/decorators.py", line 35, in _wrapped_view
+  File "./redisinsight/redisearch/views/__init__.py", line 12, in get_all_index
+  File "./redisinsight/redisearch/services/api.py", line 271, in get_indices
+  File "/usr/local/lib/python3.10/site-packages/rediscluster/client.py", line 555, in execute_command
+    return self._execute_command(*args, **kwargs)
+  File "/usr/local/lib/python3.10/site-packages/rediscluster/client.py", line 588, in _execute_command
+    slot = self._determine_slot(*args)
+  File "/usr/local/lib/python3.10/site-packages/rediscluster/client.py", line 481, in _determine_slot
+    raise RedisClusterException("No way to dispatch this command to Redis Cluster. Missing key.")
+rediscluster.exceptions.RedisClusterException: No way to dispatch this command to Redis Cluster. Missing key.
+WARNING 2022-10-29 18:09:21,322 django.request Not Found: /api/instance/fddbe73b-91c5-484c-9ed4-99ee321295b5/value-details/
+WARNING 2022-10-29 18:09:21,422 django.request Not Found: /api/instance/fddbe73b-91c5-484c-9ed4-99ee321295b5/key-metadata/

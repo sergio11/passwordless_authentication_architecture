@@ -15,7 +15,8 @@ val configModule = module {
             .build()
             .loadConfigOrThrow()
     }
-    single { get<AppConfig>().mfa }
+    single { get<AppConfig>().senders }
     single { get<AppConfig>().redis }
+    single { get<AppConfig>().redis.storageConfig }
     single { get<AppConfig>().auth }
 }

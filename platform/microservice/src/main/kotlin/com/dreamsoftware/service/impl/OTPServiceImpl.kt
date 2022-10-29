@@ -3,7 +3,7 @@ package com.dreamsoftware.service.impl
 import com.dreamsoftware.di.MAIL_NOTIFICATION_SENDER
 import com.dreamsoftware.di.PUSH_NOTIFICATION_SENDER
 import com.dreamsoftware.di.SMS_NOTIFICATION_SENDER
-import com.dreamsoftware.model.MfaConfig
+import com.dreamsoftware.model.SendersConfig
 import com.dreamsoftware.model.OTPGenerated
 import com.dreamsoftware.model.OtpSenderConfig
 import com.dreamsoftware.model.exception.OTPMaxAttemptsAllowedReachedException
@@ -19,7 +19,7 @@ import org.koin.core.qualifier.named
 class OTPServiceImpl(
     private val otpRepository: OTPRepository,
     private val otpGenerator: OTPGenerator,
-    private val mfaConfig: MfaConfig
+    private val sendersConfig: SendersConfig
 ): OTPService, KoinComponent {
 
     private companion object {
@@ -68,9 +68,9 @@ class OTPServiceImpl(
      */
 
     private fun getOtpSenderConfig(type: OTPTypeEnum) = when(type) {
-        OTPTypeEnum.SMS -> mfaConfig.smsSender
-        OTPTypeEnum.PUSH -> mfaConfig.pushSender
-        OTPTypeEnum.MAIL -> mfaConfig.mailSender
+        OTPTypeEnum.SMS -> sendersConfig.smsSender
+        OTPTypeEnum.PUSH -> sendersConfig.pushSender
+        OTPTypeEnum.MAIL -> sendersConfig.mailSender
     }
 
     private fun <T: OtpSenderConfig> getOtpSender(type: OTPTypeEnum): OTPSender<T> =  when(type) {
