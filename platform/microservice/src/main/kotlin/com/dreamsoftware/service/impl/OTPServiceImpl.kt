@@ -3,9 +3,9 @@ package com.dreamsoftware.service.impl
 import com.dreamsoftware.di.MAIL_NOTIFICATION_SENDER
 import com.dreamsoftware.di.PUSH_NOTIFICATION_SENDER
 import com.dreamsoftware.di.SMS_NOTIFICATION_SENDER
-import com.dreamsoftware.model.SendersConfig
 import com.dreamsoftware.model.OTPGenerated
 import com.dreamsoftware.model.OtpSenderConfig
+import com.dreamsoftware.model.SendersConfig
 import com.dreamsoftware.model.exception.OTPMaxAttemptsAllowedReachedException
 import com.dreamsoftware.repository.OTPRepository
 import com.dreamsoftware.rest.dto.*
@@ -54,11 +54,8 @@ class OTPServiceImpl(
 
     override suspend fun verify(otpVerifyRequestDTO: OTPVerifyRequestDTO): OTPVerifyResultDTO = with(otpVerifyRequestDTO) {
         with(otpRepository) {
-            OTPVerifyResultDTO(operationId, existsByOperationIdAndOtp(operationId, otp).also {exists ->
+            OTPVerifyResultDTO(operationId, existsByOperationIdAndOtp(operationId, otp).also {
                 deleteByOperationId(operationId)
-                if(!exists) {
-
-                }
             })
         }
     }

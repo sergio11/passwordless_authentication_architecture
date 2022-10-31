@@ -1,11 +1,11 @@
 package com.dreamsoftware
 
 import com.dreamsoftware.plugins.*
-import io.ktor.server.cio.*
 import io.ktor.server.engine.*
+import io.ktor.server.netty.*
 
 fun main() {
-    embeddedServer(CIO, port = 8080, host = "0.0.0.0") {
+    embeddedServer(Netty, port = 8080, host = "0.0.0.0") {
         configureKoin()
         configureAdministration()
         configureSerialization()

@@ -20,9 +20,11 @@ class OTPRepositoryImpl(
             with(jedisCluster) {
                 with(redisStorageConfig) {
                     val operationKey = operationsPrefix + operationId
+                    val destinationKey = destinationsPrefix + destination.hashSha256andEncode()
                     jsonSet(operationKey, toJSON())
                     expire(operationKey, ttlInSeconds)
-                    set(destinationsPrefix + destination.hashSha256andEncode(), operationId)
+                    set(destinationKey, operationId)
+                    expire(destinationKey, ttlInSeconds)
                 }
             }
         }.getOrElse {
@@ -37,14 +39,13 @@ class OTPRepositoryImpl(
         throw OTPNotFoundException("OTP data not found", it)
     }
 
-    override fun findByOperationId(operationId: String): OTPGenerated = runCatching {
-        println("findByOperationId -> ${redisStorageConfig.operationsPrefix + operationId}")
-        jedisCluster.jsonGet(redisStorageConfig.operationsPrefix + operationId, OTPGenerated::class.java)
-    }.getOrElse {
-        throw OTPNotFoundException("OTP data not found", it)
-    }.also {
-        checkDestinationIsBlocked(it.destination)
-    }
+    override fun findByOperationId(operationId: String): OTPGenerated =
+        jedisCluster.jsonGet(redisStorageConfig.operationsPrefix + operationId, OTPGenerated::class.java).also {
+            println("findByOperationId -> ${redisStorageConfig.operationsPrefix + operationId}")
+            if(it == null)
+                throw OTPNotFoundException("OTP data not found")
+            checkDestinationIsBlocked(it.destination)
+        }
 
     override fun existsByOperationIdAndOtp(operationId: String, otp: String): Boolean = runCatching {
         findByOperationId(operationId)
@@ -61,8 +62,20 @@ class OTPRepositoryImpl(
     }
 
     override fun deleteByOperationId(operationId: String) {
-        jedisCluster.del(redisStorageConfig.operationsPrefix + operationId).also {
-            println("deleteByOperationId -> $operationId result -> $it")
+        try {
+            with(jedisCluster) {
+                with(redisStorageConfig) {
+                    jsonGet(operationsPrefix + operationId, OTPGenerated::class.java).also {
+                        del(destinationsPrefix + it.destinationHash)
+                    }
+                    del(operationsPrefix + operationId).also {
+                        println("deleteByOperationId -> $operationId result -> $it")
+                    }
+                }
+            }
+
+        } catch (ex: Exception) {
+            println("deleteByOperationId ex -> ${ex.message}")
         }
     }
 

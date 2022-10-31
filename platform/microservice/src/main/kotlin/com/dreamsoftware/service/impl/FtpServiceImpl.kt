@@ -21,6 +21,7 @@ class FtpServiceImpl(
         var downloadedFile: File? = null
         with(ftpClient) {
             try {
+                println("try to connect to FTP Host: $FTP_HOSTNAME")
                 connect(FTP_HOSTNAME)
                 enterLocalPassiveMode()
                 login(FTP_USER, FTP_PASSWORD)
