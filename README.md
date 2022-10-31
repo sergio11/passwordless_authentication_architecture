@@ -90,3 +90,17 @@ In this table you can view the ports assigned to each service to access to the W
 | Redis Insight | localhost:8001 |
 | HAProxy Load Balancer | localhost:9090 |
 | HAProxy Stats | localhost:8404 |
+
+## Some screenshots
+
+As follow, I include some images that help us to understand the performance of each part of system
+
+<img width="auto" src="./doc/screenshots/hproxy_stats.PNG" />
+<img width="auto" src="./doc/screenshots/redis_cluster.PNG" />
+<img width="auto" src="./doc/screenshots/redis_cluster.PNG" />
+<img width="auto" src="./doc/screenshots/redis_cluster_1.PNG" />
+<img width="auto" src="./doc/screenshots/redis_cluster_2.PNG" />
+<img width="auto" src="./doc/screenshots/redis_cluster_containers.PNG" />
+
+<img width="auto" src="./doc/screenshots/platform_microservices_hotspot_containers.PNG" />
+<img width="auto" src="./doc/screenshots/microservice_hotspot_stats.PNG" />
