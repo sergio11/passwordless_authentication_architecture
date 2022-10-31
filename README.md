@@ -103,5 +103,4 @@ As follow, I include some images that help us to understand the performance of e
 <img width="auto" src="./doc/screenshots/redis_cluster_containers.PNG" />
 
 <img width="auto" src="./doc/screenshots/platform_microservices_hotspot_containers.PNG" />
-<img width="auto" src="./doc/screenshots/microservice_container_hotspot.PNG" />
 <img width="auto" src="./doc/screenshots/microservice_hotspot_stats.PNG" />
