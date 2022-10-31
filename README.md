@@ -25,8 +25,20 @@ Furthermore, one-time passwords are always linked to a unique reference, so ther
 
 ## Powered by lightweight cloud-native microservices implemented by Ktor Graalvm native images.
 
-<img width="350" height="auto" src="./doc/screenshots/ktor_logo.png" />
-<img width="250" height="auto" src="./doc/screenshots/graalvm_logo.png" />
+Using GraalVM Native Image technology we can compile the services to native code ahead of time in a way in which the resulting binary does not depend on the JVM for the execution. This executable can be placed as a standalone application in a container and started really, really fast.
+
+<p align="center">
+  <img width="350" height="auto" src="./doc/screenshots/ktor_logo.png" />
+</p>
+
+* Faster startup time: Building Ahead-of-time compiled microservices that start in milliseconds and deliver peak performance with no warmup.
+* Low resource usage: Building Ahead-of-time compiled microservices that use only a fraction of the resources required by the JVM which means they cost less to run and improve utilization.
+* Small container image: Trying to compact native executables in lightweight container images for more secure, faster, and efficient deployments.
+* Minimize vulnerability: Trying to reduce the attack surface area using Native image by removing all unused classes, method, and fields from your application and libraries while making reverse engineering difficult by converting Java bytecode into native machine code.
+
+<p align="center">
+  <img width="250" height="auto" src="./doc/screenshots/graalvm_logo.png" />
+</p>
 
 ## Used technology.
 
@@ -76,3 +88,5 @@ In this table you can view the ports assigned to each service to access to the W
 | Container | Port |
 | ------ | ------ |
 | Redis Insight | localhost:8001 |
+| HAProxy Load Balancer | localhost:9090 |
+| HAProxy Stats | localhost:8404 |
