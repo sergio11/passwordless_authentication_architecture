@@ -15,4 +15,4 @@ COPY --from=build /src/build/libs/otp_service.jar /opt/app/otp_service.jar
 COPY --from=build /src/resources/wait-for-it.sh /opt/app/wait-for-it.sh
 WORKDIR /opt/app
 EXPOSE 8080
-CMD ["sh", "-c", "echo 'waiting for 300 seconds for sftp to be accessable before starting application' && ./wait-for-it.sh -t 300 sftp:22 -- java -jar otp_service.jar"]
+CMD ["sh", "-c", "echo 'waiting for 300 seconds for FTP Repository to be accessable before starting application' && ./wait-for-it.sh -t 300 ftp_repository:21 -- java -jar otp_service.jar"]
