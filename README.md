@@ -138,9 +138,20 @@ Microservices based on this JDK distribution take more memory than the GraalVM a
 
 <img width="auto" src="./doc/screenshots/microservice_hotspot_stats.PNG" />
 
-<img width="auto" src="./doc/screenshots/images_sizes.PNG" />
-<img width="auto" src="./doc/screenshots/microservice_native_stats.PNG" />
+You can execute the task `thunderotp:platform:start` in order to deploy a microservice platform based on GraalVM native images.
+
+Using GraalVM Native Image technology we can compile the services to native code ahead of time in a way in which the resulting binary does not depend on the JVM for the execution. This executable can be placed as a standalone application in a container and started really, really fast.
+
 <img width="auto" src="./doc/screenshots/platform_microservices_native_containers.PNG" />
+
+In this way we will have microservices with a Faster startup time and a Low resource usage as you can see in the picture below.
+
+<img width="auto" src="./doc/screenshots/microservice_native_stats.PNG" />
+
+<img width="auto" src="./doc/screenshots/images_sizes.PNG" />
+
+The platform uses several senders to deliver the OTP codes below you can see examples of deliveries using the SendGrid and Twilio SMS service.
+
 <img width="auto" src="./doc/screenshots/sender_mail.PNG" />
 
 
