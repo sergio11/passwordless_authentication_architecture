@@ -152,6 +152,7 @@ In this way we will have microservices with a Faster startup time and a Low reso
 
 The platform uses several senders to deliver the OTP codes below you can see examples of deliveries using the SendGrid and Twilio SMS service.
 
-<img width="auto" src="./doc/screenshots/sender_mail.PNG" />
-
-
+<p align="center">
+  <img width="300" src="./doc/screenshots/sender_sms.jpg" />
+  <img width="700" src="./doc/screenshots/sender_mail.PNG" />
+</p>
