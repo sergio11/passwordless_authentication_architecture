@@ -106,12 +106,52 @@ In this table you can view the ports assigned to each service to access to the W
 
 As follow, I include some images that help us to understand the performance of each part of system
 
+HAProxy offers a website to monitor the operation of the load balancer, we can view statistics and metrics related to requests related to microservices.
+
 <img width="auto" src="./doc/screenshots/hproxy_stats.PNG" />
+
+The Redis Insight tool allows us to visualize the distribution of our Redis cluster configuration, more specifically, we can visualize which are the master and slave nodes, the total memory consumed by each node, the number of keys that each node hosts...
+
 <img width="auto" src="./doc/screenshots/redis_cluster.PNG" />
-<img width="auto" src="./doc/screenshots/redis_cluster.PNG" />
+
+With the Redis Insight Browser tool we can manage and view the hosted keys and view their content.
+
 <img width="auto" src="./doc/screenshots/redis_cluster_1.PNG" />
+
+OTP token information is stored as JSON templates using the Redis ReJSON module. It used the Jedis library to store and retrieve the models using GSON as a data serialization library, apart from that, it took advantage of the intrinsic mechanism of TTLs that can be applied to the keys, as a way to configure the validity time of the generated codes, as you can see below.
+
 <img width="auto" src="./doc/screenshots/redis_cluster_2.PNG" />
+
+The Redis cluster configuration is made up of 8 Redis nodes, 4 nodes act as master nodes and the other 4 are slave nodes. Apart from that, we have the official Redis Insight container that allows us to operate with the configuration.
+
 <img width="auto" src="./doc/screenshots/redis_cluster_containers.PNG" />
 
+### Microservices deployment based on OpenJDK 11 HotSpot provide by AdoptOpenJDK 
+
+You can execute the task `thunderotp:platform:start_hotspot` in order to deploy a microservice platform based on OpenJDK Hotspot images if you want.
+
+HotSpot is one implementation of JIT technology that starts by running interpreted, and watches the actual performance of the app. Parts of the app are then selected to be fully-compiled as native code and cached, for much faster execution. HotSpot was developed at Sun as a commercial product. After acquiring Sun, Oracle further evolved HotSpot by combining important parts of their competing product, JRockit. HotSpot is now open-sourced through the OpenJDK project, available free-of-charge.
+
 <img width="auto" src="./doc/screenshots/platform_microservices_hotspot_containers.PNG" />
+
+Microservices based on this JDK distribution take more memory than the GraalVM alternatives.
+
 <img width="auto" src="./doc/screenshots/microservice_hotspot_stats.PNG" />
+
+You can execute the task `thunderotp:platform:start` in order to deploy a microservice platform based on GraalVM native images.
+
+Using GraalVM Native Image technology we can compile the services to native code ahead of time in a way in which the resulting binary does not depend on the JVM for the execution. This executable can be placed as a standalone application in a container and started really, really fast.
+
+<img width="auto" src="./doc/screenshots/platform_microservices_native_containers.PNG" />
+
+In this way we will have microservices with a Faster startup time and a Low resource usage as you can see in the picture below.
+
+<img width="auto" src="./doc/screenshots/microservice_native_stats.PNG" />
+
+<img width="auto" src="./doc/screenshots/images_sizes.PNG" />
+
+The platform uses several senders to deliver the OTP codes below you can see examples of deliveries using the SendGrid and Twilio SMS service.
+
+<img width="auto" src="./doc/screenshots/sender_mail.PNG" />
+
+
