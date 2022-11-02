@@ -156,3 +156,7 @@ The platform uses several senders to deliver the OTP codes below you can see exa
   <img width="300" src="./doc/screenshots/sender_sms.jpg" />
   <img width="700" src="./doc/screenshots/sender_mail.PNG" />
 </p>
+
+## Visitors Count
+
+<img width="auto" src="https://profile-counter.glitch.me/passwordless_authentication_architecture/count.svg" />
