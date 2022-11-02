@@ -112,6 +112,12 @@ As follow, I include some images that help us to understand the performance of e
 <img width="auto" src="./doc/screenshots/redis_cluster_1.PNG" />
 <img width="auto" src="./doc/screenshots/redis_cluster_2.PNG" />
 <img width="auto" src="./doc/screenshots/redis_cluster_containers.PNG" />
-
 <img width="auto" src="./doc/screenshots/platform_microservices_hotspot_containers.PNG" />
 <img width="auto" src="./doc/screenshots/microservice_hotspot_stats.PNG" />
+
+<img width="auto" src="./doc/screenshots/images_sizes.PNG" />
+<img width="auto" src="./doc/screenshots/microservice_native_stats.PNG" />
+<img width="auto" src="./doc/screenshots/platform_microservices_native_containers.PNG" />
+<img width="auto" src="./doc/screenshots/sender_mail.PNG" />
+
+
