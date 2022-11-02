@@ -125,7 +125,17 @@ OTP token information is stored as JSON templates using the Redis ReJSON module.
 The Redis cluster configuration is made up of 8 Redis nodes, 4 nodes act as master nodes and the other 4 are slave nodes. Apart from that, we have the official Redis Insight container that allows us to operate with the configuration.
 
 <img width="auto" src="./doc/screenshots/redis_cluster_containers.PNG" />
+
+### Microservices deployment based on OpenJDK 11 HotSpot provide by AdoptOpenJDK 
+
+You can execute the task `thunderotp:platform:start_hotspot` in order to deploy a microservice platform based on OpenJDK Hotspot images if you want.
+
+HotSpot is one implementation of JIT technology that starts by running interpreted, and watches the actual performance of the app. Parts of the app are then selected to be fully-compiled as native code and cached, for much faster execution. HotSpot was developed at Sun as a commercial product. After acquiring Sun, Oracle further evolved HotSpot by combining important parts of their competing product, JRockit. HotSpot is now open-sourced through the OpenJDK project, available free-of-charge.
+
 <img width="auto" src="./doc/screenshots/platform_microservices_hotspot_containers.PNG" />
+
+Microservices based on this JDK distribution take more memory than the GraalVM alternatives.
+
 <img width="auto" src="./doc/screenshots/microservice_hotspot_stats.PNG" />
 
 <img width="auto" src="./doc/screenshots/images_sizes.PNG" />
