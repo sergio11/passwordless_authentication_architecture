@@ -106,11 +106,24 @@ In this table you can view the ports assigned to each service to access to the W
 
 As follow, I include some images that help us to understand the performance of each part of system
 
+HAProxy offers a website to monitor the operation of the load balancer, we can view statistics and metrics related to requests related to microservices.
+
 <img width="auto" src="./doc/screenshots/hproxy_stats.PNG" />
+
+The Redis Insight tool allows us to visualize the distribution of our Redis cluster configuration, more specifically, we can visualize which are the master and slave nodes, the total memory consumed by each node, the number of keys that each node hosts...
+
 <img width="auto" src="./doc/screenshots/redis_cluster.PNG" />
-<img width="auto" src="./doc/screenshots/redis_cluster.PNG" />
+
+With the Redis Insight Browser tool we can manage and view the hosted keys and view their content.
+
 <img width="auto" src="./doc/screenshots/redis_cluster_1.PNG" />
+
+OTP token information is stored as JSON templates using the Redis ReJSON module. It used the Jedis library to store and retrieve the models using GSON as a data serialization library, apart from that, it took advantage of the intrinsic mechanism of TTLs that can be applied to the keys, as a way to configure the validity time of the generated codes, as you can see below.
+
 <img width="auto" src="./doc/screenshots/redis_cluster_2.PNG" />
+
+The Redis cluster configuration is made up of 8 Redis nodes, 4 nodes act as master nodes and the other 4 are slave nodes. Apart from that, we have the official Redis Insight container that allows us to operate with the configuration.
+
 <img width="auto" src="./doc/screenshots/redis_cluster_containers.PNG" />
 <img width="auto" src="./doc/screenshots/platform_microservices_hotspot_containers.PNG" />
 <img width="auto" src="./doc/screenshots/microservice_hotspot_stats.PNG" />
