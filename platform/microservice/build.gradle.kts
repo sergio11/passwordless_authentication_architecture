@@ -108,6 +108,7 @@ graalvmNative {
             buildArgs.add("--initialize-at-run-time=io.netty.channel.unix.Limits")
             buildArgs.add("--initialize-at-run-time=io.netty.channel.unix.Errors")
             buildArgs.add("--initialize-at-run-time=io.netty.channel.unix.IovArray")
+            buildArgs.add("--enable-url-protocols=https")
             buildArgs.add("-H:+InstallExitHandlers")
             buildArgs.add("-H:+PrintClassInitialization")
             buildArgs.add("-H:+ReportUnsupportedElementsAtRuntime")
