@@ -32,6 +32,9 @@ Furthermore, one-time passwords are always linked to a unique reference, so ther
 
 ## Architecture Overview
 
+This architecture can be used as a stand-alone authentication service or as part of a more complex MFA solution. Clients will request a one-time code or password in order to verify their identity, they will indicate the delivery service by which they wish to receive the token (Email, SMS, push notification are the options currently available). The system will generate an OTP token applying rules linked to the specified delivery service, the generated token will persist in the redis cluster with the TTL associated with the type of service and will return to the client a unique operation identifier that can be used for subsequent validation operations , cancel or resend.
+The system allows up to a total of 3 resubmissions for an operation identifier, if the client provides an incorrect OTP at the time of validation, it will be eliminated and a new OTP will have to be requested. The system carries out various checks to prevent misuse of the service.
+
 <img width="auto" src="./doc/ThunderOTP.drawio.png" />
 
 ## Powered by lightweight cloud-native microservices implemented by Ktor Graalvm native images.
