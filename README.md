@@ -1,6 +1,10 @@
 
 # ThunderOTP - A passwordless authentication architecture based on One-time codes approach.
 
+<p>
+  <img src="https://img.shields.io/github/last-commit/sergio11/passwordless_authentication_architecture.svg" />
+</p>
+
 <img width="auto" align="left" src="./doc/logo.png" />
 
 Passwordless authentication will be the future of online authentication!
