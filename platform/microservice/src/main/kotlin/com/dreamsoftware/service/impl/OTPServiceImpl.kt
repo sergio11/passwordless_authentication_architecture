@@ -60,6 +60,10 @@ class OTPServiceImpl(
         }
     }
 
+    override suspend fun cancel(cancelOperationDTO: CancelOperationDTO) {
+        otpRepository.deleteByOperationId(cancelOperationDTO.operationId)
+    }
+
     /**
      * Private Methods
      */

@@ -1,23 +1,56 @@
 package com.dreamsoftware.rest.validation
 
+import com.dreamsoftware.rest.dto.CancelOperationDTO
 import com.dreamsoftware.rest.dto.OTPGenerationRequestDTO
 import com.dreamsoftware.rest.dto.OTPTypeEnum
 import com.dreamsoftware.rest.dto.OTPVerifyRequestDTO
 import io.ktor.server.plugins.requestvalidation.*
 
-fun RequestValidationConfig.validateOTPGenerationRequest() {
+fun RequestValidationConfig.configureOtpRoutingValidation() {
+    validateOTPGenerationRequest()
+    validateOTPVerifyRequest()
+    validateCancelOperationDTO()
+    validateOTPResendRequestDTO()
+}
+
+private fun RequestValidationConfig.validateOTPGenerationRequest() {
     validate<OTPGenerationRequestDTO> { request ->
         request.validateDestination()
     }
 }
 
-fun RequestValidationConfig.validateOTPVerifyRequest() {
+private fun RequestValidationConfig.validateOTPVerifyRequest() {
     validate<OTPVerifyRequestDTO> { request ->
-        request.validateOtp()
+        if(request.otp.isBlank()) {
+            ValidationResult.Invalid("OTP can not be empty, You must specify it")
+        } else {
+            ValidationResult.Valid
+        }
     }
 }
 
-fun OTPGenerationRequestDTO.validateDestination() = if(destination.isBlank()) {
+private fun RequestValidationConfig.validateCancelOperationDTO() {
+    validate<CancelOperationDTO> { request ->
+        if(request.operationId.isBlank()) {
+            ValidationResult.Invalid("Operation Id can not be empty, You must specify it")
+        } else {
+            ValidationResult.Valid
+        }
+    }
+}
+
+private fun RequestValidationConfig.validateOTPResendRequestDTO() {
+    validate<CancelOperationDTO> { request ->
+        if(request.operationId.isBlank()) {
+            ValidationResult.Invalid("Operation Id can not be empty, You must specify it")
+        } else {
+            ValidationResult.Valid
+        }
+    }
+}
+
+
+private fun OTPGenerationRequestDTO.validateDestination() = if(destination.isBlank()) {
     ValidationResult.Invalid("Destination can not be empty, You must specify it")
 } else {
     when(type) {
@@ -46,10 +79,4 @@ fun OTPGenerationRequestDTO.validateDestination() = if(destination.isBlank()) {
             }
         }
     }
-}
-
-fun OTPVerifyRequestDTO.validateOtp() = if(otp.isBlank()) {
-    ValidationResult.Invalid("OTP can not be empty, You must specify it")
-} else {
-    ValidationResult.Valid
 }

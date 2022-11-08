@@ -38,6 +38,13 @@ fun Route.configureOtpRoutes() {
                     respond(otpService.resend(receive()))
                 }
             }
+            delete("/cancel") {
+                with(call) {
+                    otpService.cancel(receive()).also {
+                        respond(status = HttpStatusCode.OK, "Operation has been cancelled")
+                    }
+                }
+            }
         }
     }
 }

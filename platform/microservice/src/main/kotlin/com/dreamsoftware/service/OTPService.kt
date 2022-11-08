@@ -14,4 +14,6 @@ interface OTPService {
     suspend fun resend(otpResendRequestDTO: OTPResendRequestDTO): OTPGenerationResultDTO
 
     suspend fun verify(otpVerifyRequestDTO: OTPVerifyRequestDTO): OTPVerifyResultDTO
+
+    suspend fun cancel(cancelOperationDTO: CancelOperationDTO)
 }
