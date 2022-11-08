@@ -1,6 +1,10 @@
 
 # ThunderOTP - A passwordless authentication architecture based on One-time codes approach.
 
+<p>
+  <img src="https://img.shields.io/github/last-commit/sergio11/passwordless_authentication_architecture.svg" />
+</p>
+
 <img width="auto" align="left" src="./doc/logo.png" />
 
 Passwordless authentication will be the future of online authentication!
@@ -31,6 +35,9 @@ These codes will be sent to the user's phone via SMS, Push Notification or e-mai
 Furthermore, one-time passwords are always linked to a unique reference, so there aren't any chances that the code is overtaken by different uses. OTPs can be limited in time too, which limits the time of validity of the code.
 
 ## Architecture Overview
+
+This architecture can be used as a stand-alone authentication service or as part of a more complex MFA solution. Clients will request a one-time code or password in order to verify their identity, they will indicate the delivery service by which they wish to receive the token (Email, SMS, push notification are the options currently available). The system will generate an OTP token applying rules linked to the specified delivery service, the generated token will persist in the redis cluster with the TTL associated with the type of service and will return to the client a unique operation identifier that can be used for subsequent validation operations , cancel or resend.
+The system allows up to a total of 3 resubmissions for an operation identifier, if the client provides an incorrect OTP at the time of validation, it will be eliminated and a new OTP will have to be requested. The system carries out various checks to prevent misuse of the service.
 
 <img width="auto" src="./doc/ThunderOTP.drawio.png" />
 
@@ -152,6 +159,11 @@ In this way we will have microservices with a Faster startup time and a Low reso
 
 The platform uses several senders to deliver the OTP codes below you can see examples of deliveries using the SendGrid and Twilio SMS service.
 
-<img width="auto" src="./doc/screenshots/sender_mail.PNG" />
+<p align="center">
+  <img width="300" src="./doc/screenshots/sender_sms.jpg" />
+  <img width="700" src="./doc/screenshots/sender_mail.PNG" />
+</p>
 
+## Visitors Count
 
+<img width="auto" src="https://profile-counter.glitch.me/passwordless_authentication_architecture/count.svg" />
