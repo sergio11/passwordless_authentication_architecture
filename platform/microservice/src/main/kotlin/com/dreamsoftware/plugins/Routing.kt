@@ -8,6 +8,7 @@ import com.dreamsoftware.rest.routes.configureOtpRoutes
 import com.dreamsoftware.rest.routes.configureOtpStatusPages
 import io.ktor.http.*
 import io.ktor.server.application.*
+import io.ktor.server.plugins.*
 import io.ktor.server.plugins.requestvalidation.*
 import io.ktor.server.plugins.statuspages.*
 import io.ktor.server.response.*
@@ -18,6 +19,10 @@ fun Application.configureRouting() {
         exception<RequestValidationException> { call, cause ->
             call.respond(HttpStatusCode.BadRequest,
                 ErrorType.REQUEST_VALIDATION_FAILED.toErrorResponseDTO().copy(details = cause.reasons.joinToString()))
+        }
+        exception<BadRequestException> { call, cause ->
+            call.respond(HttpStatusCode.BadRequest,
+                ErrorType.REQUEST_VALIDATION_FAILED.toErrorResponseDTO().copy(details = cause.message))
         }
         configureAuthorizedClientsStatusPages()
         configureOtpStatusPages()
