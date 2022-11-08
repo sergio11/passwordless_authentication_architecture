@@ -13,13 +13,13 @@
 				"header": [
 					{
 						"key": "ClientId",
-						"value": "QqKmp3WjxtHAliqF3vCFm1RrM7d+FLwXSXoIt58UQGM=",
+						"value": "/0GiNd8HKN3PKjOedxi9g3+7oz14gLLLg4fIRGHHSTc=",
 						"type": "text"
 					}
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"type\": \"MAIL\",\r\n    \"destination\": \"target_mail@gmail.com\",\r\n    \"properties\": {}\r\n}",
+					"raw": "{\r\n    \"type\": \"MAIL\",\r\n    \"destination\": \"testmail@yopmail.com\",\r\n    \"properties\": {}\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -49,13 +49,13 @@
 				"header": [
 					{
 						"key": "ClientId",
-						"value": "QqKmp3WjxtHAliqF3vCFm1RrM7d+FLwXSXoIt58UQGM=",
+						"value": "/0GiNd8HKN3PKjOedxi9g3+7oz14gLLLg4fIRGHHSTc=",
 						"type": "text"
 					}
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"operation_id\": \"73400643-adbb-4bbb-8349-d6a89f0fa1aa\",\r\n    \"otp\": \"Iv1T4czJBaZb9d3984D\"\r\n}",
+					"raw": "{\r\n    \"operation_id\": \"a32b2438-cc61-4d28-b4b9-2365a63a9230\",\r\n    \"otp\": \"48482\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -85,13 +85,13 @@
 				"header": [
 					{
 						"key": "ClientId",
-						"value": "QqKmp3WjxtHAliqF3vCFm1RrM7d+FLwXSXoIt58UQGM=",
+						"value": "/0GiNd8HKN3PKjOedxi9g3+7oz14gLLLg4fIRGHHSTc=",
 						"type": "text"
 					}
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n   \"operation_id\": \"260e108b-d323-4f21-bc22-75f89f1d5ce7\"\r\n}",
+					"raw": "{\r\n   \"operation_id\": \"9fbaaaa3-cff0-435d-b364-7fbe6005209f\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -146,7 +146,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n   \"name\": \"client_name\",\r\n   \"password\": \"client_password\"\r\n}",
+					"raw": "{\r\n   \"name\": \"test_2\",\r\n   \"password\": \"test_2\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -201,7 +201,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n   \"id\": \"LJN9RqrcyypqRqQj3cAPWVPsTuyKxDY3Fbe6E3NCSXs=\"\r\n}",
+					"raw": "{\r\n   \"id\": \"S4qvrmOsBNGEpTCTzsKfiAhs4gHw4gnyyD/Mh8Oxc5c=\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -219,6 +219,78 @@
 						"clients",
 						"v1",
 						"delete"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "OTPGenerationRequest Copy",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "ClientId",
+						"value": "QqKmp3WjxtHAliqF3vCFm1RrM7d+FLwXSXoIt58UQGM=",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"type\": \"MAIL\",\r\n    \"destination\": \"target_mail@gmail.com\",\r\n    \"properties\": {}\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9090/otp/v1/generate",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9090",
+					"path": [
+						"otp",
+						"v1",
+						"generate"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "OTPCancelOperation",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "ClientId",
+						"value": "/0GiNd8HKN3PKjOedxi9g3+7oz14gLLLg4fIRGHHSTc=",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"operation_id\": \"9fbaaaa3-cff0-435d-b364-7fbe6005209f\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9090/otp/v1/cancel",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9090",
+					"path": [
+						"otp",
+						"v1",
+						"cancel"
 					]
 				}
 			},
