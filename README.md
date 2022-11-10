@@ -22,6 +22,8 @@ Passwordless authentication has been gaining traction, and the main reason is th
   <img src="https://img.shields.io/badge/Docker-2CA5E0?style=for-the-badge&logo=docker&logoColor=white" />
 </p>
 
+Also you can read more detail information about this project [in this Medium article](https://medium.com/better-programming/a-passwordless-authentication-architecture-based-on-a-one-time-code-approach-2ef30d0f25d8).
+
 ## What is passwordless authentication?
 
 In online authentication, a passwordless authentication system is any process that authenticates the user without using a password, more specifically is the verification of a user's identity by a method that does not require a password. It is important to make a clear distinction between the different methods used to deliver passwordless authentication. Some are more secure and some provide a better user experience. This architecture has been implemented using the one-time passwords (OTPs) solution. They are best known for multi-factor authentication processes, but one-time passwords or one-time codes can also be used as a standalone authentication method.
