@@ -1,5 +1,5 @@
 
-# ThunderOTP - A passwordless authentication architecture based on One-time codes approach.
+# ⚡ ThunderOTP 🔐 - Revolutionizing authentication with a cutting-edge passwordless architecture based on One-time codes approach! 💫
 
 <p>
   <img src="https://img.shields.io/github/last-commit/sergio11/passwordless_authentication_architecture.svg" />
@@ -7,9 +7,14 @@
 
 <img width="auto" align="left" src="./doc/logo.png" />
 
-Passwordless authentication will be the future of online authentication!
+Passwordless authentication is poised to redefine the future of online security! 🚀
 
-Passwordless authentication has been gaining traction, and the main reason is the lack of security that passwords offer today, as passwords are reused and stolen, more and more frequently. The second reason is that passwords have to be increasingly complex, which degrades the user experience. Security and user experience are among the top priorities of any digital company and usually are in direct conflict. Hence the interest in passwordless authentication, with its promises to offer more security and a better user experience at the same time.
+In an era where password security is increasingly compromised, and user experience is paramount, ThunderOTP emerges as the solution. Traditional passwords are susceptible to theft and reuse, jeopardizing user data and online safety. Moreover, the demand for complex passwords burdens users with a frustrating login process.
+
+🛡️ Uniting Security and User Experience
+Enter ThunderOTP, a game-changer in the realm of authentication. This innovative approach not only enhances security but also elevates the user experience. Say goodbye to the age-old trade-off between security and convenience, as ThunderOTP paves the way for a safer, smoother online journey.
+
+Please, give a star to this repository in order to redefine online security with ThunderOTP! ⚡🔒
 
 </br>
 
