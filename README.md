@@ -1,10 +1,6 @@
 
 # ⚡ ThunderOTP 🔐 - Revolutionizing authentication with a cutting-edge passwordless architecture based on One-time codes approach! 💫
 
-<p>
-  <img src="https://img.shields.io/github/last-commit/sergio11/passwordless_authentication_architecture.svg" />
-</p>
-
 <img width="auto" align="left" src="./doc/logo.png" />
 
 Passwordless authentication is poised to redefine the future of online security! 🚀
