@@ -1,7 +1,7 @@
 
 # ⚡ ThunderOTP 🔐 - Revolutionizing authentication with a cutting-edge passwordless architecture based on One-time codes approach! 💫
 
-<img width="auto" align="left" src="./doc/logo.png" />
+<img width="auto" height="250" align="left" src="./doc/thunderotp_main_logo.PNG" />
 
 Passwordless authentication is poised to redefine the future of online security! 🚀
 
