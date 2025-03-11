@@ -23,6 +23,10 @@ Please, give a star to this repository in order to redefine online security with
   <img src="https://img.shields.io/badge/Docker-2CA5E0?style=for-the-badge&logo=docker&logoColor=white" />
 </p>
 
+## ⚠️ Disclaimer
+
+**ThunderOTP** is an **experimental passwordless authentication platform** designed to enhance user security and experience by utilizing **one-time codes (OTPs)**. While this approach provides a promising alternative to traditional passwords, it is currently under **development and testing**.
+
 Also you can read more detail information about this project [in this Medium article](https://medium.com/better-programming/a-passwordless-authentication-architecture-based-on-a-one-time-code-approach-2ef30d0f25d8).
 
 ## What is passwordless authentication?
