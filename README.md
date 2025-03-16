@@ -1,7 +1,7 @@
 
 # ⚡ ThunderOTP 🔐 - Revolutionizing authentication with a cutting-edge passwordless architecture based on One-time codes approach! 💫
 
-<img width="auto" height="250" align="left" src="./doc/thunderotp_main_logo.PNG" />
+<img width="auto" height="300" align="left" src="./doc/thunder_otp_logo.webp" />
 
 Passwordless authentication is poised to redefine the future of online security! 🚀
 
@@ -11,6 +11,8 @@ In an era where password security is increasingly compromised, and user experien
 Enter ThunderOTP, a game-changer in the realm of authentication. This innovative approach not only enhances security but also elevates the user experience. Say goodbye to the age-old trade-off between security and convenience, as ThunderOTP paves the way for a safer, smoother online journey.
 
 Please, give a star to this repository in order to redefine online security with ThunderOTP! ⚡🔒
+
+Also you can read more detail information about this project [in this Medium article](https://medium.com/better-programming/a-passwordless-authentication-architecture-based-on-a-one-time-code-approach-2ef30d0f25d8).
 
 </br>
 
@@ -23,11 +25,11 @@ Please, give a star to this repository in order to redefine online security with
   <img src="https://img.shields.io/badge/Docker-2CA5E0?style=for-the-badge&logo=docker&logoColor=white" />
 </p>
 
-## ⚠️ Disclaimer
+## ⚠️ Disclaimer  
 
-**ThunderOTP** is an **experimental passwordless authentication platform** designed to enhance user security and experience by utilizing **one-time codes (OTPs)**. While this approach provides a promising alternative to traditional passwords, it is currently under **development and testing**.
+**ThunderOTP** is an **experimental passwordless authentication platform** designed to enhance user security and experience by utilizing **one-time codes (OTPs)**. While this approach provides a promising alternative to traditional passwords, it is currently under **development and testing**.  
 
-Also you can read more detail information about this project [in this Medium article](https://medium.com/better-programming/a-passwordless-authentication-architecture-based-on-a-one-time-code-approach-2ef30d0f25d8).
+Both the **logo** and the **name** of ThunderOTP were conceptualized during a **creative brainstorming session with AI assistance (ChatGPT)**. Any resemblance to existing products, services, or trademarks is purely **coincidental**.
 
 ## What is passwordless authentication?
 
